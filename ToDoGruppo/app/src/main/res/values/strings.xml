@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">ToDoGruppo</string>
+    <string name="app_name">BOTTOM</string>
+    <string name="home">home</string>
+    <string name="checklist">checklist</string>
+    <string name="note">note</string>
+    <string name="diario">diario</string>
+    <string name="calendario">calendario</string>
+    <string name="focus">focus</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
