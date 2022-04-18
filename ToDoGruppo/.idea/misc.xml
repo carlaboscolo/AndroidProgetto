@@ -7,9 +7,12 @@
         <entry key="app/src/main/res/drawable/ic_baseline_checklist_24.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_note_24.xml" value="0.1115" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1115" />
+        <entry key="app/src/main/res/font/se.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1623011271158854" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21851654052734382" />
+        <entry key="app/src/main/res/layout/home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.1598731884057971" />
         <entry key="app/src/main/res/layout/ss.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
       </map>
