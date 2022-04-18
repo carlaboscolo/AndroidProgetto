@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:weightSum="4"
     android:background="@color/colorPrimary">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -18,6 +19,7 @@
             android:src="@drawable/back_icon"
             android:layout_marginLeft="22dp"
             android:layout_marginTop="14dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,6 +66,7 @@
             android:orientation="vertical"
             android:layout_centerVertical="true">
             <EditText
+                android:id="@+id/username"
                 android:textColorHint="@color/colorPlaceholder"
                 android:drawableEnd="@drawable/user_icon"
                 android:drawableTint="@color/colorTextBlack"
@@ -79,6 +82,7 @@
                 android:layout_marginLeft="48dp"
                 android:layout_marginRight="48dp"/>
             <EditText
+                android:id="@+id/password"
                 android:textColorHint="@color/colorPlaceholder"
                 android:layout_marginTop="24dp"
                 android:drawableEnd="@drawable/lock_icon"
@@ -124,6 +128,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_weight="1" />
                 <Button
+                    android:id="@+id/button"
                     android:layout_width="0dp"
                     android:layout_height="52dp"
                     android:layout_weight="1"
@@ -159,7 +164,9 @@
                 android:fontFamily="@font/segoe_ui_bold"
                 android:layout_marginLeft="12dp"/>
         </LinearLayout>
+
     </RelativeLayout>
+
 </LinearLayout>
 
 
