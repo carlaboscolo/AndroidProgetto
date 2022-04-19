@@ -11,19 +11,43 @@ class HomePage : MainActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
 
-
+/*
         val transaction = supportFragmentManager.beginTransaction()
             .add(R.id.fragmentContainer, HomeFragment.newInstance("", ""))
         transaction.commit()
+*/
 
         NavigationBarView.OnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.home -> {
+              when (item.itemId) {
+                   R.id.home -> {
                     // Respond to navigation item 1 click
                     true
-                } else -> {
+                   }
+                  R.id.checklist -> {
+                      // Respond to navigation item 1 click
+                      true
+                  }
+                  R.id.note-> {
+                      // Respond to navigation item 1 click
+                      true
+                  }
+                 R.id.diario -> {
+                      // Respond to navigation item 1 click
+                      true
+                  }
+                     R.id.calendario-> {
+                        // Respond to navigation item 1 click
+                        true
+                    }
+                 /* R.id.focus -> {
+                      // Respond to navigation item 1 click
+                      true
+                  }
+                  */
+
+                  else -> {
                 false
-            }
+              }
             }
         }
     }

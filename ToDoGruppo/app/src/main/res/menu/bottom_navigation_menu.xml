@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/home"
         />
-  <!-- <item
+    <item
         android:id="@+id/checklist"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_checklist_24"
@@ -26,16 +26,18 @@
         android:title="@string/diario" />
 
     <item
-        android:id="@+id/calendario"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_calendar_month_24"
-        android:title="@string/calendario" />
-
+            android:id="@+id/calendario"
+            android:enabled="true"
+            android:icon="@drawable/ic_baseline_calendar_month_24"
+            android:title="@string/calendario" />
+<!--
     <item
-        android:id="@+id/focus"
+        android:id = "@+id/focus"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_timer_24"
-        android:title="@string/focus" /> -->
+        android:icon= "@drawable/ic_baseline_timer_24"
+        android:title="@string/focus" />
+-->
+
 </menu>
 
 
