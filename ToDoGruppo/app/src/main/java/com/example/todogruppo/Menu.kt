@@ -2,6 +2,7 @@ package com.example.todogruppo
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.fragment.CalendarFragment
@@ -21,8 +22,8 @@ class HomePage : MainActivity() {
         val calendarFragment = CalendarFragment()
         setCurrentFragment(homeFragment)
 
-
-        NavigationBarView.OnItemSelectedListener { item ->
+        val bottom_navigation = findViewById<NavigationBarView>(R.id.bottom_navigation)
+        bottom_navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
                     setCurrentFragment(homeFragment)
@@ -37,6 +38,8 @@ class HomePage : MainActivity() {
                 }
             }
         }
+
+
     }
 
 
