@@ -24,11 +24,12 @@ open class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
 
         button.setOnClickListener {
+          /*
             if (username.text.toString().isEmpty() && password.text.toString().isEmpty()){
                 Log.d("log", "credential empty ")
-            }else {
+            }else { */
                 launchSecondActivity()
-            }
+          /*  } */
         }
     }
 
@@ -37,15 +38,19 @@ private fun launchSecondActivity() {
     val username = findViewById<EditText>(R.id.username)
     val password = findViewById<EditText>(R.id.password)
 
-    val us = "carlaboscolo@gmail.com"
+   /* val us = "carlaboscolo@gmail.com"
     val psw = "123"
 
     if ((username.text.toString() == us) && (password.text.toString() == psw)) {
-        val intent = Intent(this, HomePage::class.java)
+
+    */
+       val intent = Intent(this, HomePage::class.java)
         startActivity(intent)
+
+    /*
     } else {
         Log.d("log", "error credential")
-    }
+    } */
 }
 
 
