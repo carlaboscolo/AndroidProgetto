@@ -18,8 +18,12 @@ class HomePage : MainActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
 
+        //fragment
         val homeFragment = HomeFragment()
         val calendarFragment = CalendarFragment()
+        val diaryFragment = DiaryFragment()
+        val listFragment = ListFragment()
+        val focusFragment = FocusFragment()
 
         //serve per impostare come default il fragment della home
         setCurrentFragment(homeFragment)
@@ -32,11 +36,11 @@ class HomePage : MainActivity() {
         bottom_navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.checklist -> {
-                    setCurrentFragment(homeFragment)
+                    setCurrentFragment(listFragment)
                     true
                 }
                 R.id.diario -> {
-                    setCurrentFragment(homeFragment)
+                    setCurrentFragment(diaryFragment)
                     true
                 }
                 R.id.home -> {
@@ -48,7 +52,7 @@ class HomePage : MainActivity() {
                     true
                 }
                 R.id.focus -> {
-                    setCurrentFragment(homeFragment)
+                    setCurrentFragment(focusFragment)
                     true
                 }
                 else -> {
