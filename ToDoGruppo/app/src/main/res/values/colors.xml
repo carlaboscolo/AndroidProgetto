@@ -24,4 +24,9 @@
     <color name="home">#0B93FF</color>
     <color name="calendar">#30FF38</color>
 
+
+    <color name="defaultBackground">  #2D2E33 </color>
+
+
+
 </resources>

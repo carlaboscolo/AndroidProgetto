@@ -20,17 +20,35 @@ class HomePage : MainActivity() {
 
         val homeFragment = HomeFragment()
         val calendarFragment = CalendarFragment()
+
+        //serve per impostare come default il fragment della home
         setCurrentFragment(homeFragment)
 
         val bottom_navigation = findViewById<NavigationBarView>(R.id.bottom_navigation)
+
+        //serve per selezionare il pulsante home, appena apro il codicee
+        bottom_navigation.selectedItemId = R.id.home
+
         bottom_navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
+                R.id.checklist -> {
+                    setCurrentFragment(homeFragment)
+                    true
+                }
+                R.id.diario -> {
+                    setCurrentFragment(homeFragment)
+                    true
+                }
                 R.id.home -> {
                     setCurrentFragment(homeFragment)
                     true
                 }
                 R.id.calendario -> {
                     setCurrentFragment(calendarFragment)
+                    true
+                }
+                R.id.focus -> {
+                    setCurrentFragment(homeFragment)
                     true
                 }
                 else -> {
