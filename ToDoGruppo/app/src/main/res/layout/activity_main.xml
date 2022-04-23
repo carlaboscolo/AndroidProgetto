@@ -13,13 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+      <!--
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/back_icon"
             android:layout_marginLeft="22dp"
             android:layout_marginTop="14dp"/>
-
+-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,15 +32,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:text="Welcome Back"
+                android:text="Benvenuto"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/colorTextWhite"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="We missed you! Login to get started"
+                android:textSize="15dp"
+                android:text="Loggati per iniziare ad usare l'app"
                 android:fontFamily="@font/seg_ui_semibold"
                 android:textColor="@color/colorTextWhite"/>
         </LinearLayout>
@@ -107,9 +108,9 @@
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Remember me"
+                android:text="Ricorda"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="18dp" />
+                android:textSize="15dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,15 +124,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextWhite"
-                    android:textSize="18dp"
-                    android:text="Need Help?"
+                    android:textSize="12dp"
+                    android:text="Hai bisogno di aiuto?"
                     android:fontFamily="@font/seg_ui_semibold"
                     android:layout_marginLeft="12dp"
                     android:layout_weight="1" />
                 <Button
                     android:id="@+id/button"
                     android:layout_width="0dp"
-                    android:layout_height="52dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Sign In"
                     android:textAllCaps="false"
@@ -156,18 +157,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Don't have an account?"
+                android:text="Non hai un account?"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="18dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:fontFamily="@font/segoe_ui_bold"
-                android:text="Register instead"
+                android:text="Registrati"
                 android:textColor="@color/Button"
-                android:textSize="18dp" />
+                android:textSize="15dp" />
         </LinearLayout>
 
     </RelativeLayout>
