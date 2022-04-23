@@ -14,7 +14,7 @@ class HomePage : MainActivity() {
     val name = "HOME"
 
 
-    override fun onCreate(savedInstanceState: Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
 
@@ -70,6 +70,8 @@ class HomePage : MainActivity() {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
+
+
 }
 
 
