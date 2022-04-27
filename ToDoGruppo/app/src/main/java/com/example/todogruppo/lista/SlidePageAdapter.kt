@@ -1,19 +1,18 @@
-package com.example.viewpagerexample.page
+package com.example.todogruppo.lista
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.todogruppo.page.DeadlineFragment
-import com.example.todogruppo.page.TodayFragment
 
 class SlidePageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa){
     override fun getItemCount(): Int {
-        return 2
+        return 3
     }
 
     override fun createFragment(position: Int): Fragment {
-
-        return if(position == 0) TodayFragment() else DeadlineFragment()
+        return if(position == 0) TodayFragment()
+        else if(position == 1) DeadlineFragment()
+        else NoDeadlineFragment()
     }
 
 }
