@@ -1,4 +1,4 @@
-package com.example.todogruppo.lista
+package com.example.todogruppo.TaskList
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

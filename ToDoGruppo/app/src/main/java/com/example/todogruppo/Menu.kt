@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.fragment.CalendarFragment
 import com.example.fragment.HomeFragment
-import com.example.todogruppo.lista.ListFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationBarView
 
@@ -21,7 +20,6 @@ class HomePage : MainActivity() {
         val homeFragment = HomeFragment()
         val calendarFragment = CalendarFragment()
         val diaryFragment = DiaryFragment()
-        val listFragment = ListFragment()
         val focusFragment = FocusFragment()
 
         //serve per impostare come default il fragment della home
@@ -39,12 +37,7 @@ class HomePage : MainActivity() {
             when (item.itemId) {
                 R.id.checklist -> {
                     titleUp.title = "Checklist"
-                    //setCurrentFragment(listFragment)
-
-                    //prova
-                    val intent = Intent(this, ListTask::class.java)
-                    startActivity(intent)
-
+                    launchListActivity()
                     true
                 }
                 R.id.diario -> {
@@ -86,8 +79,10 @@ class HomePage : MainActivity() {
         }
 
 
-
-
+    private fun launchListActivity() {
+        val intent = Intent(this, ListTask::class.java)
+        startActivity(intent)
+    }
 
 
 

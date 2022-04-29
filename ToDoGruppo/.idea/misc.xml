@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1075" />
         <entry key="app/src/main/res/font/se.xml" value="0.27708333333333335" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5596401613972248" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.29304635761589404" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/fragment_deadline.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/fragment_diary.xml" value="0.1" />
@@ -27,7 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_today.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/fragment_top_bar.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/fragment_topbar.xml" value="0.18659420289855072" />
-        <entry key="app/src/main/res/layout/home.xml" value="0.1360198974609375" />
+        <entry key="app/src/main/res/layout/home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login.xml" value="0.1598731884057971" />
         <entry key="app/src/main/res/layout/ss.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_pager.xml" value="0.1" />
