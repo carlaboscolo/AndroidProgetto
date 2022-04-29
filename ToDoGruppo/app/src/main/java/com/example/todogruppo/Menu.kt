@@ -1,5 +1,6 @@
 package com.example.todogruppo
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.fragment.CalendarFragment
@@ -28,7 +29,7 @@ class HomePage : MainActivity() {
 
         val bottom_navigation = findViewById<NavigationBarView>(R.id.bottom_navigation)
 
-        //serve per selezionare il pulsante home, appena apro il codicee
+        //serve per selezionare il pulsante home, appena apro il codice
         bottom_navigation.selectedItemId = R.id.home
 
         //barra sopra -> titolo
@@ -38,7 +39,12 @@ class HomePage : MainActivity() {
             when (item.itemId) {
                 R.id.checklist -> {
                     titleUp.title = "Checklist"
-                    setCurrentFragment(listFragment)
+                    //setCurrentFragment(listFragment)
+
+                    //prova
+                    val intent = Intent(this, ListTask::class.java)
+                    startActivity(intent)
+
                     true
                 }
                 R.id.diario -> {
