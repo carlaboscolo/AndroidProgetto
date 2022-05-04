@@ -8,7 +8,7 @@ import com.example.fragment.HomeFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationBarView
 
-class HomePage : MainActivity() {
+open class HomePage : MainActivity() {
     val name = "HOME"
 
 
@@ -19,6 +19,7 @@ class HomePage : MainActivity() {
         //fragment
         val homeFragment = HomeFragment()
         val calendarFragment = CalendarFragment()
+        val listFragment = ListFragment()
         val diaryFragment = DiaryFragment()
         val focusFragment = FocusFragment()
 
@@ -37,7 +38,8 @@ class HomePage : MainActivity() {
             when (item.itemId) {
                 R.id.checklist -> {
                     titleUp.title = "Checklist"
-                    launchListActivity()
+                   setCurrentFragment(listFragment)
+                   // launchListActivity()
                     true
                 }
                 R.id.diario -> {
@@ -72,14 +74,14 @@ class HomePage : MainActivity() {
     }
 
 
-    private fun setCurrentFragment(fragment: Fragment ) =
+     private fun setCurrentFragment(fragment: Fragment ) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
 
 
-    private fun launchListActivity() {
+     private fun launchListActivity() {
         val intent = Intent(this, ListTask::class.java)
         startActivity(intent)
     }
@@ -87,6 +89,6 @@ class HomePage : MainActivity() {
 
 
 
-    }
+}
 
 

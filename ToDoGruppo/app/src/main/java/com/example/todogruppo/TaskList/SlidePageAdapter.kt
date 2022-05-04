@@ -3,6 +3,7 @@ package com.example.todogruppo.TaskList
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.todogruppo.R
 
 class SlidePageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa){
     override fun getItemCount(): Int {
@@ -15,4 +16,7 @@ class SlidePageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa){
         else NoDeadlineFragment()
     }
 
+
 }
+
+
