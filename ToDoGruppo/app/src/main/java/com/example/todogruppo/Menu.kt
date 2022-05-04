@@ -39,7 +39,6 @@ open class HomePage : MainActivity() {
                 R.id.checklist -> {
                     titleUp.title = "Checklist"
                    setCurrentFragment(listFragment)
-                   // launchListActivity()
                     true
                 }
                 R.id.diario -> {
@@ -79,13 +78,6 @@ open class HomePage : MainActivity() {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
-
-
-     private fun launchListActivity() {
-        val intent = Intent(this, ListTask::class.java)
-        startActivity(intent)
-    }
-
 
 
 
