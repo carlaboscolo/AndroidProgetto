@@ -24,12 +24,14 @@
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_no_deadline.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/fragment_oggi.xml" value="0.18659420289855072" />
-        <entry key="app/src/main/res/layout/fragment_today.xml" value="0.18659420289855072" />
+        <entry key="app/src/main/res/layout/fragment_today.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_top_bar.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/fragment_topbar.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login.xml" value="0.1598731884057971" />
+        <entry key="app/src/main/res/layout/new_task.xml" value="0.1" />
         <entry key="app/src/main/res/layout/ss.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/task_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_pager.xml" value="0.21448822021484376" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.15555555555555556" />
         <entry key="app/src/main/res/menu/top_bar.xml" value="0.28229166666666666" />
