@@ -8,21 +8,26 @@
     <EditText
         android:id="@+id/newTaskText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:hint="New Task"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:textColorHint="@android:color/darker_gray" />
 
     <RelativeLayout
         android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_below="@+id/newTaskText">
 
         <TextView
             android:id="@+id/textData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:hint="Seleziona una data"
+            android:textSize="20sp"
             android:textColorHint="@android:color/darker_gray" />
 
 
@@ -33,13 +38,14 @@
             android:layout_marginLeft="10dp"
             android:layout_toStartOf="@+id/addDataBtn"
             android:layout_toEndOf="@+id/textData"
-            android:text="data" />
+            android:textSize="20sp"
+            android:text="Data" />
 
 
         <Button
             android:id="@+id/addDataBtn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignBaseline="@+id/selected_data"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -56,10 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/calendar"
         android:layout_alignParentEnd="true"
-        android:textSize="16sp"
+        android:textSize="25sp"
         android:text="Save"
         android:textAllCaps="false"
         android:background="@android:color/transparent"
         android:textColor="@android:color/darker_gray" />
+
 
 </RelativeLayout>

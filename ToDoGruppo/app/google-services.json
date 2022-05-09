@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1027139794146",
+    "project_id": "todogruppo",
+    "storage_bucket": "todogruppo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027139794146:android:26cfca11d8fbfb5b461abb",
+        "android_client_info": {
+          "package_name": "com.example.todogruppo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027139794146-afvlql1qtv1gaklnp3stnnt6b9du0lj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMHslH6m8Pyifxk_Q7v5XGDPxr8M1sM6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027139794146-afvlql1qtv1gaklnp3stnnt6b9du0lj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
