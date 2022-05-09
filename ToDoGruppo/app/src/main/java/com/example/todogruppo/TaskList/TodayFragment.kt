@@ -34,11 +34,10 @@ class TodayFragment : Fragment() {
     aggiungiTask.setOnClickListener {
         //aggiungere task
 
-
-
        childFragmentManager.beginTransaction()
-    .add(R.id.newTaskContainer, task)
-    .commit()
+           .replace(R.id.newTaskContainer, task)
+           .addToBackStack(null)
+           .commit()
 
 
     }

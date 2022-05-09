@@ -7,9 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.example.todogruppo.R
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AddTaskFragment : Fragment() {
+
+    private lateinit var CalendarBtn: Button
+    private lateinit var selectedDate : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +38,31 @@ class AddTaskFragment : Fragment() {
         addBtn.setOnClickListener {
             /*  val value = inputText.text.toString()
             viewModel.update(value) */
-            parentFragmentManager.popBackStack()
+
+         //torna indietro di un fragment
+          parentFragmentManager.popBackStackImmediate()
         }
+
+        CalendarBtn = view.findViewById(R.id.addDataBtn)
+        selectedDate = view.findViewById(R.id.selected_data)
+
+        //MaterialDatePicker
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .build()
+
+        CalendarBtn.setOnClickListener {
+            //far comparire il calendario
+            datePicker.show(parentFragmentManager, "tag");
+
+            datePicker.addOnPositiveButtonClickListener {
+                // Respond to positive button click.
+                selectedDate.setText(datePicker.headerText)
+            }
+
+        }
+
     }
 }
 

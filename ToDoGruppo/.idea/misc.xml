@@ -16,7 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1075" />
         <entry key="app/src/main/res/font/se.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29304635761589404" />
-        <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.2573562622070313" />
+        <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.3670886075949367" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/fragment_deadline.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/fragment_diary.xml" value="0.1" />
