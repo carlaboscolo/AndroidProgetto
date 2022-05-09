@@ -29,10 +29,18 @@ class TodayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     val task = AddTaskFragment()
-    val aggiungiTask = view.findViewById<FloatingActionButton>(R.id.add)
+    val aggiungiTask = view.findViewById<FloatingActionButton>(R.id.addTask)
 
     aggiungiTask.setOnClickListener {
         //aggiungere task
+
+
+
+       childFragmentManager.beginTransaction()
+    .add(R.id.newTaskContainer, task)
+    .commit()
+
+
     }
 
     heading = arrayOf(

@@ -16,7 +16,7 @@
         android:nestedScrollingEnabled="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add"
+        android:id="@+id/addTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -25,12 +25,13 @@
         android:backgroundTint="@android:color/holo_green_dark"
         android:src = "@drawable/ic_baseline_add_32" />
 
+
+    <!--  fragment -->
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainer"
+        android:id="@+id/newTaskContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="198dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_height="match_parent"/>
+
 
 
 </RelativeLayout>
