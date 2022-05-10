@@ -8,13 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ado.MyAdapter
-import com.example.lista.Task
 import com.example.todogruppo.R
 import com.example.todogruppo.databinding.FragmentAddTaskBinding
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -52,29 +48,11 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-    /* FIREBASE BASE
-        val db = Firebase.firestore
-        // Create a new user with a first and last name
-        val task  = hashMapOf(
-            "name" to "Task 1",
-        )
-
-// Add a new document with a generated ID
-        db.collection("task")
-            .add(task)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-*/
-
         addBtn = view.findViewById(R.id.newTaskButton)
         inputText = view.findViewById(R.id.newTaskText)
 
         addBtn.setOnClickListener {
-            //saveTaskDb()
+            saveTask()
 
             //torna indietro di un fragment
             parentFragmentManager.popBackStackImmediate()
@@ -102,36 +80,28 @@ class AddTaskFragment : Fragment() {
 
     }
 
-/*
-    private fun saveTaskDb() {
+
+
+
+    private fun saveTask(){
+        //FIREBASE
         val db = Firebase.firestore
+        // Create a new user with a first and last name
+        val task  = hashMapOf(
+            "name" to inputText.text.toString(),
+            "data" to selectedDate.text.toString()
+        )
 
+      // Add a new document with a generated ID
         db.collection("task")
-            .get()
-            .addOnSuccessListener { result ->
-
-
-                var userArray = ArrayList<Task>()
-
-                for (document in result) {
-                    val tasks = Task(
-                        document.data.getValue("heading").toString()
-                       // document.data.getValue("date") as DatePicker
-                    )
-                    userArray.add(tasks)
-                }
-
-                TaskList.apply {
-                    adapter = MyAdapter(userArray)
-                   // layoutManager = LinearLayoutManager(LinearLayoutManager.VERTICAL, false)
-                }
+            .add(task)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
-            .addOnFailureListener { exception ->
-                Log.w("FirestoreExample", "Error getting documents.", exception)
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
             }
-
     }
-*/
 }
 
 
