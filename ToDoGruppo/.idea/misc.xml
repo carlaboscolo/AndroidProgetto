@@ -5,6 +5,8 @@
       <map>
         <entry key="app/src/main/res/drawable/back_icon.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/button_note.xml" value="0.1035" />
+        <entry key="app/src/main/res/drawable/calendar_btn.xml" value="0.1035" />
         <entry key="app/src/main/res/drawable/card_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/card_list.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/edit_text_background.xml" value="0.1" />
@@ -14,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_edit_note_24.xml" value="0.1115" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1075" />
+        <entry key="app/src/main/res/drawable/note.xml" value="0.1035" />
         <entry key="app/src/main/res/font/se.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/button_add.xml" value="0.1" />
@@ -23,15 +26,17 @@
         <entry key="app/src/main/res/layout/fragment_diary.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_focus.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2092010498046875" />
-        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.20908355712890625" />
         <entry key="app/src/main/res/layout/fragment_no_deadline.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_note.xml" value="0.11550151975683891" />
         <entry key="app/src/main/res/layout/fragment_oggi.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/fragment_today.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_top_bar.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/fragment_topbar.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login.xml" value="0.1598731884057971" />
-        <entry key="app/src/main/res/layout/new_task.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/menu_note.xml" value="0.11550151975683891" />
+        <entry key="app/src/main/res/layout/new_task.xml" value="0.3536331176757813" />
         <entry key="app/src/main/res/layout/ss.xml" value="0.1" />
         <entry key="app/src/main/res/layout/task_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_pager.xml" value="0.21448822021484376" />

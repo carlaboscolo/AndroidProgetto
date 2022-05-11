@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">BOTTOM</string>
-    <string name="home">home</string>
-    <string name="checklist">checklist</string>
-    <string name="note">note</string>
-    <string name="diario">diario</string>
-    <string name="calendario">calendario</string>
-    <string name="focus">focus</string>
-
+    <string name="home">Home</string>
+    <string name="checklist">Checklist</string>
+    <string name="note">Note</string>
+    <string name="diario">Diario</string>
+    <string name="calendario">Calendario</string>
+    <string name="focus">Focus</string>
+    <string name="task">Task</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

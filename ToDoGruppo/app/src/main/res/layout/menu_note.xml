@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/defaultBackground"
+    android:orientation="horizontal"
+     >
+
+    <!-- BUTTON TASK E NOTE -->
+
+        <Button
+            android:id="@+id/task"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/Button"
+            android:focusableInTouchMode="true"
+            android:text="@string/task"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp" />
+
+        <Button
+            android:id="@+id/note"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/defaultBackground"
+            android:text="@string/note"
+            app:cornerRadius="0dp" />
+
+</LinearLayout>
