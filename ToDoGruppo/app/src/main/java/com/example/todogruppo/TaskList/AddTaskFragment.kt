@@ -53,6 +53,7 @@ class AddTaskFragment : Fragment() {
 
         addBtn.setOnClickListener {
             saveTask()
+           TodayFragment.istance?.showButton()
 
             //torna indietro di un fragment
             parentFragmentManager.popBackStackImmediate()

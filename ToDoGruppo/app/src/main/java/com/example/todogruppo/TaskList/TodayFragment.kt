@@ -20,10 +20,20 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 open class TodayFragment : Fragment() {
-    
+
     private lateinit var binding: FragmentTodayBinding
     private lateinit var TaskRecyclerView: RecyclerView
     private lateinit var aggiungiTask: FloatingActionButton
+
+
+
+    companion object{
+        var istance: TodayFragment? = null
+    }
+
+    init{
+        istance = this
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,10 +52,12 @@ open class TodayFragment : Fragment() {
         val task = AddTaskFragment()
 
         aggiungiTask = view.findViewById(R.id.addTask)
-        //aggiungiTask.visibility = View.VISIBLE
+
 
 
         aggiungiTask.setOnClickListener {
+            aggiungiTask.visibility = View.GONE
+
             //aggiungere task
             childFragmentManager.beginTransaction()
                 .replace(R.id.newTaskContainer, task)
@@ -56,6 +68,9 @@ open class TodayFragment : Fragment() {
         getTask()
     }
 
+    fun showButton(){
+        aggiungiTask.visibility = View.VISIBLE
+    }
 
     private fun getTask(){
         val db = Firebase.firestore
@@ -68,8 +83,8 @@ open class TodayFragment : Fragment() {
 
                 for (document in result) {
                     val task = Task(
-                        document.data.getValue("_heading").toString(),
-                        document.data.getValue("_data").toString()
+                        document.data.getValue("name").toString(),
+                        document.data.getValue("data").toString()
                     )
                     taskArray.add(task)
                 }
@@ -79,7 +94,7 @@ open class TodayFragment : Fragment() {
 
                 TaskRecyclerView.apply {
                   TaskRecyclerView.adapter = TaskAdapter(taskArray)
-                  //TaskRecyclerView.layoutManager = LinearLayoutManager(context)
+                   TaskRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
                 }
 
             }

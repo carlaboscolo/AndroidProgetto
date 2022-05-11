@@ -15,6 +15,9 @@
         app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true" />
 
+    <include
+        android:id = "@+id/include"
+        layout = "@layout/button_add" />
 
     <!--  fragment -->
     <androidx.fragment.app.FragmentContainerView
@@ -24,8 +27,6 @@
 
         />
 
-    <include
-        android:id = "@+id/include"
-        layout = "@layout/button_add" />
+
 
 </RelativeLayout>
