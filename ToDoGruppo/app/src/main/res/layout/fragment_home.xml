@@ -24,7 +24,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Da fare"
+            android:text="@string/da_fare"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Vuoi aggiungere una task?"
+            android:text="@string/vuoi_aggiungere_una_task"
             android:textColor="@color/white"
             android:textSize="15dp" />
 
@@ -52,7 +52,7 @@
             android:layout_toEndOf="@+id/label"
             android:backgroundTint="@color/Button"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Aggiungi"
+            android:text="@string/aggiungi"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="13dp" />
@@ -78,7 +78,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Oggi"
+                android:text="@string/oggi"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -103,7 +103,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="In scadenza"
+                android:text="@string/in_scadenza"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -117,7 +117,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Diario"
+            android:text="@string/diario"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -143,7 +143,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Oggi non hai scritto ancora nulla"
+                android:text="@string/oggi_non_hai_scritto_ancora_nulla"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -156,7 +156,7 @@
                 android:layout_marginTop="32dp"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Aggiungi la tua giornata"
+                android:text="@string/aggiungi_la_tua_giornata"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="13dp" />
@@ -172,7 +172,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Note"
+            android:text="@string/note"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -187,7 +187,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Vuoi aggiungere una nota?"
+            android:text="@string/vuoi_aggiungere_una_nota"
             android:textColor="@color/white"
             android:textSize="15dp" />
 
@@ -201,7 +201,7 @@
             android:layout_toEndOf="@+id/label2"
             android:backgroundTint="@color/Button"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Aggiungi"
+            android:text="@string/aggiungi"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="13dp" />
@@ -225,7 +225,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Note"
+                android:text="@string/note"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -238,7 +238,7 @@
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Info"
+                android:text="@string/info"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10dp" />
@@ -263,7 +263,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Note"
+                android:text="@string/note"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -276,7 +276,7 @@
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Info"
+                android:text="@string/info"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10dp" />
@@ -291,7 +291,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Focus"
+            android:text="@string/focus"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -305,7 +305,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Vuoi aggiungere un focus?"
+            android:text="@string/vuoi_aggiungere_un_focus"
             android:textColor="@color/white"
             android:textSize="15dp" />
 
@@ -319,7 +319,7 @@
             android:layout_toEndOf="@+id/label2"
             android:backgroundTint="@color/Button"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="Aggiungi"
+            android:text="@string/aggiungi"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="13dp" />
@@ -343,7 +343,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Studio"
+                android:text="@string/studio"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -355,7 +355,7 @@
                 android:layout_marginTop="13dp"
                 android:layout_toEndOf="@+id/labelfocus"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="1h 25"
+                android:text="@string/_1h_25"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="10dp" />
 
@@ -368,7 +368,7 @@
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Avvia"
+                android:text="@string/avvia"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10dp" />
@@ -393,7 +393,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Lettura"
+                android:text="@string/lettura"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -405,7 +405,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_toEndOf="@+id/labelfocus2"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="1h"
+                android:text="@string/_1h"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="10dp" />
 
@@ -418,7 +418,7 @@
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Avvia"
+                android:text="@string/avvia"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10dp" />

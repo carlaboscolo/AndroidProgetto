@@ -20,7 +20,7 @@
             android:id="@+id/todoCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tool:text = "This is an Sample Task inside tha app"
+            tool:text = "@string/esempio_task"
             android:paddingStart="8dp"
             android:buttonTint="@android:color/holo_green_dark" />
 

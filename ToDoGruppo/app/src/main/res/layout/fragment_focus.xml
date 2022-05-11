@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
-        android:text="Focus"
+        android:text="@string/focus"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold" />

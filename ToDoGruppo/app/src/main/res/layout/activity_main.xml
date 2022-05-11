@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:text="Benvenuto"
+                android:text="@string/benvenuto"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:textColor="@color/colorTextWhite"/>
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="Loggati per iniziare ad usare l'app"
+                android:text="@string/loggati_per_iniziare_ad_usare_l_app"
                 android:fontFamily="@font/seg_ui_semibold"
                 android:textColor="@color/colorTextWhite"/>
         </LinearLayout>
@@ -59,7 +59,7 @@
             android:layout_marginLeft="48dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/seg_ui_semibold"
-            android:text="LOGIN"
+            android:text="@string/login"
             android:textColor="@color/colorTextWhite"
             android:textSize="26dp" />
         <LinearLayout
@@ -72,7 +72,7 @@
                 android:textColorHint="@color/colorPlaceholder"
                 android:drawableEnd="@drawable/user_icon"
                 android:drawableTint="@color/colorTextBlack"
-                android:hint="someone@gmail.com"
+                android:hint="@string/someone_gmail_com"
                 android:textColor="@color/colorTextBlack"
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="24dp"
                 android:drawableEnd="@drawable/lock_icon"
                 android:drawableTint="@color/colorTextBlack"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:textColor="@color/colorTextBlack"
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp"
@@ -108,7 +108,7 @@
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Ricorda"
+                android:text="@string/ricorda"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorTextWhite"
                     android:textSize="12dp"
-                    android:text="Hai bisogno di aiuto?"
+                    android:text="@string/hai_bisogno_di_aiuto"
                     android:fontFamily="@font/seg_ui_semibold"
                     android:layout_marginLeft="12dp"
                     android:layout_weight="1" />
@@ -134,7 +134,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sign In"
+                    android:text="@string/sign_in"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="16dp"
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="Non hai un account?"
+                android:text="@string/non_hai_un_account"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:fontFamily="@font/segoe_ui_bold"
-                android:text="Registrati"
+                android:text="@string/registrati"
                 android:textColor="@color/Button"
                 android:textSize="15dp" />
         </LinearLayout>
