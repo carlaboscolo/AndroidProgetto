@@ -238,7 +238,7 @@
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="@string/info"
+                android:text="@string/info_nota"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10dp" />
@@ -276,7 +276,7 @@
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="@string/info"
+                android:text="@string/info_nota"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10dp" />

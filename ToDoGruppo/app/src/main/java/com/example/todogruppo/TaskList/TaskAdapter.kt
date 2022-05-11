@@ -7,8 +7,9 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lista.Task
 import com.example.todogruppo.R
+import com.example.todogruppo.TaskList.ItemTouchHelperAdapter
 
-class TaskAdapter(private val taskList: ArrayList<Task>) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
+class TaskAdapter(private val taskList: ArrayList<Task>) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(), ItemTouchHelperAdapter{
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.task_layout, parent, false)
@@ -28,7 +29,14 @@ class TaskAdapter(private val taskList: ArrayList<Task>) : RecyclerView.Adapter<
         val textView = itemView.findViewById<CheckBox>(R.id.todoCheckBox)
     }
 
+    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
+        return false
+    }
 
+    override fun onItemDismiss(position: Int) {
+        taskList.removeAt(position)
+        notifyItemRemoved(position)
+    }
 
 
 

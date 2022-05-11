@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ado.TaskAdapter
 import com.example.lista.Task
 import com.example.todogruppo.R
+import com.example.todogruppo.ViewModel
 import com.example.todogruppo.databinding.FragmentTodayBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.ktx.firestore
@@ -20,12 +22,14 @@ import com.google.firebase.ktx.Firebase
 
 open class TodayFragment : Fragment() {
 
+    //view model
+    val viewModel: ViewModel by viewModels()
+
     private lateinit var binding: FragmentTodayBinding
     private lateinit var TaskRecyclerView: RecyclerView
     private lateinit var aggiungiTask: FloatingActionButton
 
-
-
+    //togliere il bottone dal fragment figlio
     companion object{
         var istance: TodayFragment? = null
     }
@@ -64,44 +68,28 @@ open class TodayFragment : Fragment() {
                 .commit()
         }
 
-        getTask()
+        viewModel.getTask()
+
+        viewModel.taskList.observe(viewLifecycleOwner){
+            TaskRecyclerView = binding.taskRecyclerView
+            TaskRecyclerView.setHasFixedSize(true)
+
+            TaskRecyclerView.apply {
+                TaskRecyclerView.adapter = TaskAdapter(it)
+                TaskRecyclerView.layoutManager = LinearLayoutManager(context,
+                    LinearLayoutManager.VERTICAL, false)
+            }
+
+
+            val callback: ItemTouchHelper.Callback = SwipeHelperCallback(TaskAdapter(it))
+            var mItemTouchHelper = ItemTouchHelper(callback)
+            mItemTouchHelper?.attachToRecyclerView(TaskRecyclerView)
+        }
+
     }
 
     fun showButton(){
         aggiungiTask.visibility = View.VISIBLE
-    }
-
-    private fun getTask(){
-        val db = Firebase.firestore
-
-        db.collection("task")
-            .get()
-            .addOnSuccessListener { result ->
-
-                var taskArray = ArrayList<Task>()
-
-                for (document in result) {
-                    val task = Task(
-                        document.data.getValue("name").toString(),
-                        document.data.getValue("data").toString()
-                    )
-                    taskArray.add(task)
-                }
-
-
-
-                TaskRecyclerView = binding.taskRecyclerView
-                TaskRecyclerView.setHasFixedSize(true)
-
-                TaskRecyclerView.apply {
-                  TaskRecyclerView.adapter = TaskAdapter(taskArray)
-                   TaskRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
-                }
-
-            }
-            .addOnFailureListener { exception ->
-                Log.w("FirestoreExample", "Error getting documents.", exception)
-            }
     }
 
 

@@ -18,9 +18,7 @@
     <string name="da_fare">Da fare</string>
     <string name="vuoi_aggiungere_una_task">Vuoi aggiungere una task?</string>
     <string name="aggiungi">Aggiungi</string>
-    <string name="diario">diario</string>
     <string name="in_scadenza">In scadenza</string>
-    <string name="calendario">calendario</string>
     <string name="data">Data</string>
     <string name="benvenuto">Benvenuto</string>
     <string name="loggati_per_iniziare_ad_usare_l_app">Loggati per iniziare ad usare l\'app</string>
@@ -34,25 +32,15 @@
     <string name="password">Password</string>
     <string name="new_task">New Task</string>
     <string name="seleziona_una_data">Seleziona una data</string>
-    <string name="oggi">Oggi</string>
-    <string name="in_scadenza">In scadenza</string>
-    <string name="diario">diario</string>
     <string name="oggi_non_hai_scritto_ancora_nulla">Oggi non hai scritto ancora nulla</string>
     <string name="aggiungi_la_tua_giornata">Aggiungi la tua giornata</string>
-    <string name="note">note</string>
     <string name="vuoi_aggiungere_una_nota">Vuoi aggiungere una nota?</string>
-    <string name="aggiungi">Aggiungi</string>
-    <string name="note">note</string>
-    <string name="info">Info</string>
-    <string name="note">note</string>
-    <string name="info">Info</string>
-    <string name="focus">focus</string>
     <string name="vuoi_aggiungere_un_focus">Vuoi aggiungere un focus?</string>
-    <string name="aggiungi">Aggiungi</string>
     <string name="studio">Studio</string>
     <string name="_1h_25">1h 25</string>
     <string name="avvia">Avvia</string>
     <string name="lettura">Lettura</string>
     <string name="_1h">1h</string>
-    <string name="avvia">Avvia</string>
+    <string name="oggi">Oggi</string>
+    <string name="info_nota">Info</string>
 </resources>
