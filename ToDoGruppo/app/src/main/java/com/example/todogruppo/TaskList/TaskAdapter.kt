@@ -28,4 +28,8 @@ class TaskAdapter(private val taskList: ArrayList<Task>) : RecyclerView.Adapter<
         val textView = itemView.findViewById<CheckBox>(R.id.todoCheckBox)
     }
 
+
+
+
+
 }
