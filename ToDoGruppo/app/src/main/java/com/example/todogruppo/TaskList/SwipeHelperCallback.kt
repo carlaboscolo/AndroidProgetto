@@ -1,10 +1,20 @@
 package com.example.todogruppo.TaskList
 
+import android.content.DialogInterface
+import android.util.Log
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ado.TaskAdapter
+import com.example.lista.Task
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class SwipeHelperCallback(val adapter : TaskAdapter): ItemTouchHelper.Callback() {
+
+
+
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
@@ -25,5 +35,10 @@ class SwipeHelperCallback(val adapter : TaskAdapter): ItemTouchHelper.Callback()
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         adapter.onItemDismiss(viewHolder.adapterPosition)
+        val Position =viewHolder.adapterPosition
+        Log.d("ciao", Position.toString())
+
     }
+
+
 }

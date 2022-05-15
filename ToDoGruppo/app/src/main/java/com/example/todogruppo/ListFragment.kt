@@ -1,11 +1,12 @@
 package com.example.todogruppo
 
-import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.example.todogruppo.Note.NoteFragment
 import com.example.todogruppo.TaskList.SlidePageAdapter
@@ -33,6 +34,7 @@ class ListFragment : Fragment() {
         return binding.getRoot()
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,21 +55,34 @@ class ListFragment : Fragment() {
             }
 
         }.attach()
+
+
+
+        setColorButton()
+
         val note = NoteFragment()
 
-        binding.includeNote.note.setOnClickListener{
-/*
+        val notebtn = view.findViewById<Button>(R.id.note)
+
+        notebtn.setOnClickListener{
+
             childFragmentManager.beginTransaction()
-                .replace(binding.fragmentNote, note)
+                .replace(R.id.fragmentNote, note)
                 .addToBackStack(null)
                 .commit()
-*/
-
         }
 
 
     }
 
+    private fun setColorButton(){
+        val notebtn = binding.includeNote.note
+        notebtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.defaultBackground))
+        notebtn.setTextColor(getResources().getColor(R.color.white))
 
+        val taskbtn2 = binding.includeNote.task
+        taskbtn2.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.Button))
+        taskbtn2.setTextColor(getResources().getColor(R.color.black))
+    }
 }
 

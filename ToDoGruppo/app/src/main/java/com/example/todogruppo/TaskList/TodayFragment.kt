@@ -1,10 +1,12 @@
 package com.example.todogruppo.TaskList
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -84,6 +86,7 @@ open class TodayFragment : Fragment() {
             val callback: ItemTouchHelper.Callback = SwipeHelperCallback(TaskAdapter(it))
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(TaskRecyclerView)
+
         }
 
     }
@@ -91,7 +94,6 @@ open class TodayFragment : Fragment() {
     fun showButton(){
         aggiungiTask.visibility = View.VISIBLE
     }
-
 
 
 }

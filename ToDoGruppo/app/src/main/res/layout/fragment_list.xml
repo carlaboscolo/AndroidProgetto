@@ -33,10 +33,11 @@
 
 
     <!--  fragment note-->
- <!--   <androidx.fragment.app.FragmentContainerView
+ <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentNote"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
--->
+        android:layout_height="match_parent"
+    />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout >
