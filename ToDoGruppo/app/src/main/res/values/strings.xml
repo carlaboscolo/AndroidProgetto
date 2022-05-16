@@ -13,7 +13,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="salva">Save</string>
     <string name="nuova_task">New Task</string>
-    <string name="esempio_task">This is an Sample Task inside tha app</string>
+    <string name="esempio_task"> Task </string>
     <string name="nessuna_scadenza">Nessuna Scadenza</string>
     <string name="da_fare">Da fare</string>
     <string name="vuoi_aggiungere_una_task">Vuoi aggiungere una task?</string>

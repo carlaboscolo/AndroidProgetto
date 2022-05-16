@@ -33,6 +33,7 @@ class ViewModel: ViewModel() {
             .addOnFailureListener { e ->
                 Log.w(ContentValues.TAG, "Error adding document", e)
             }
+
     }
 
     //funzione carica i dati nell'applicazione
@@ -54,12 +55,28 @@ class ViewModel: ViewModel() {
                 }
 
                 taskList.value = taskArray
+
+
             }
             .addOnFailureListener { exception ->
                 Log.w("FirestoreExample", "Error getting documents.", exception)
             }
     }
 
+
+
+    /*
+    fun delete(){
+
+        val db = Firebase.firestore
+
+        db.collection("task").document("")
+            .delete()
+            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w( "Error deleting document", e) }
+
+    }
+*/
 
 
 

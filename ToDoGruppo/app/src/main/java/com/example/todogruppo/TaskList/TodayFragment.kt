@@ -86,7 +86,6 @@ open class TodayFragment : Fragment() {
             val callback: ItemTouchHelper.Callback = SwipeHelperCallback(TaskAdapter(it))
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(TaskRecyclerView)
-
         }
 
     }

@@ -58,14 +58,13 @@ class ListFragment : Fragment() {
 
 
 
-        setColorButton()
+       // setColorButton()
 
         val note = NoteFragment()
 
         val notebtn = view.findViewById<Button>(R.id.note)
 
         notebtn.setOnClickListener{
-
             childFragmentManager.beginTransaction()
                 .replace(R.id.fragmentNote, note)
                 .addToBackStack(null)
@@ -75,6 +74,7 @@ class ListFragment : Fragment() {
 
     }
 
+    /*
     private fun setColorButton(){
         val notebtn = binding.includeNote.note
         notebtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.defaultBackground))
@@ -84,5 +84,8 @@ class ListFragment : Fragment() {
         taskbtn2.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.Button))
         taskbtn2.setTextColor(getResources().getColor(R.color.black))
     }
+
+
+     */
 }
 

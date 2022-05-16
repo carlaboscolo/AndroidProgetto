@@ -4,9 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/defaultBackground" >
 
+    <!--
     <include
         android:id = "@+id/includeNote"
         layout = "@layout/menu_note" />
+-->
 
     <TextView
         android:layout_width="wrap_content"
