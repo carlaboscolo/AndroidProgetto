@@ -36,16 +36,16 @@ open class NoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*
-        setColorButton()
 
-        val taskbtn = view.findViewById<Button>(R.id.task)
+      //  setColorButton()
+
+     /*   val taskbtn = view.findViewById<Button>(R.id.task)
 
         taskbtn.setOnClickListener {
             parentFragmentManager.popBackStackImmediate()
         }
-
 */
+
     }
 
 

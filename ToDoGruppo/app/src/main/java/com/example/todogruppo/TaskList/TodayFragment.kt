@@ -75,17 +75,20 @@ open class TodayFragment : Fragment() {
         viewModel.taskList.observe(viewLifecycleOwner){
             TaskRecyclerView = binding.taskRecyclerView
             TaskRecyclerView.setHasFixedSize(true)
+            val adapter = TaskAdapter(it, viewModel, view.getContext())
 
             TaskRecyclerView.apply {
-                TaskRecyclerView.adapter = TaskAdapter(it)
+                TaskRecyclerView.adapter = adapter
+
                 TaskRecyclerView.layoutManager = LinearLayoutManager(context,
                     LinearLayoutManager.VERTICAL, false)
             }
 
 
-            val callback: ItemTouchHelper.Callback = SwipeHelperCallback(TaskAdapter(it))
+            val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(TaskRecyclerView)
+
         }
 
     }

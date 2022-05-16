@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.example.todogruppo.Note.NoteFragment
 import com.example.todogruppo.TaskList.SlidePageAdapter
+import com.example.todogruppo.TaskList.TodayFragment
 import com.example.todogruppo.databinding.FragmentListBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -58,13 +59,14 @@ class ListFragment : Fragment() {
 
 
 
-       // setColorButton()
 
         val note = NoteFragment()
 
         val notebtn = view.findViewById<Button>(R.id.note)
 
         notebtn.setOnClickListener{
+            setColorButton()
+
             childFragmentManager.beginTransaction()
                 .replace(R.id.fragmentNote, note)
                 .addToBackStack(null)
@@ -72,9 +74,21 @@ class ListFragment : Fragment() {
         }
 
 
+        val taskbtn = view.findViewById<Button>(R.id.task)
+
+        val task = TodayFragment()
+
+        taskbtn.setOnClickListener {
+            childFragmentManager.beginTransaction()
+                .replace(R.id.fragmentNote, task)
+                .addToBackStack(null)
+                .commit()
+        }
+
+
     }
 
-    /*
+
     private fun setColorButton(){
         val notebtn = binding.includeNote.note
         notebtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.defaultBackground))
@@ -86,6 +100,6 @@ class ListFragment : Fragment() {
     }
 
 
-     */
+
 }
 

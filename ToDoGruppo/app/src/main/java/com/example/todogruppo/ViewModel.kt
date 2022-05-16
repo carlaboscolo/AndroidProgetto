@@ -49,11 +49,12 @@ class ViewModel: ViewModel() {
                 for (document in result) {
                     val task = Task(
                         document.data.getValue("name").toString(),
-                        document.data.getValue("data").toString()
+                        document.data.getValue("data").toString(),
+                        document.id
                     )
+
                     taskArray.add(task)
                 }
-
                 taskList.value = taskArray
 
 
@@ -64,21 +65,20 @@ class ViewModel: ViewModel() {
     }
 
 
-
-    /*
-    fun delete(){
+    fun delete(id:String){
 
         val db = Firebase.firestore
 
-        db.collection("task").document("")
+        db.collection("task").document(id)
             .delete()
             .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully deleted!") }
             .addOnFailureListener { e -> Log.w( "Error deleting document", e) }
 
     }
-*/
+
 
 
 
 
 }
+

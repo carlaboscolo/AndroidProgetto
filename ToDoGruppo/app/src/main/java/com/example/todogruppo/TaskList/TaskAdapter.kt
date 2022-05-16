@@ -1,16 +1,22 @@
 package com.example.ado
 
+import android.content.Context
+import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lista.Task
 import com.example.todogruppo.R
 import com.example.todogruppo.TaskList.ItemTouchHelperAdapter
+import com.example.todogruppo.ViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class TaskAdapter(private val taskList: ArrayList<Task>) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(), ItemTouchHelperAdapter{
+class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel,  private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(), ItemTouchHelperAdapter{
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.task_layout, parent, false)
@@ -37,9 +43,24 @@ class TaskAdapter(private val taskList: ArrayList<Task>) : RecyclerView.Adapter<
     }
 
     override fun onItemDismiss(position: Int) {
-        taskList.removeAt(position)
-        notifyItemRemoved(position)
+
+        Log.d("prova","onItemDismiss")
+       //taskList.removeAt(position)
+       //notifyItemRemoved(position)
+
+        MaterialAlertDialogBuilder(context)
+            .setTitle("Conferma")
+            .setMessage("Vuoi eliminare questo elemento?")
+            .setNegativeButton("No"){ dialog, which -> }
+            .setPositiveButton("Si"){dialog, which ->
+                viewModel.delete(taskList[position].id)
+                taskList.removeAt(position)
+                notifyDataSetChanged()
+            }
+
+            .show()
     }
+
 
 
 

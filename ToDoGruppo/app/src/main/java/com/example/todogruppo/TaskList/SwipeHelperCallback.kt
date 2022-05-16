@@ -14,6 +14,7 @@ import com.example.todogruppo.ViewModel
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.FieldPosition
 
 class SwipeHelperCallback(val adapter : TaskAdapter): ItemTouchHelper.Callback() {
 
@@ -38,10 +39,12 @@ class SwipeHelperCallback(val adapter : TaskAdapter): ItemTouchHelper.Callback()
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         adapter.onItemDismiss(viewHolder.adapterPosition)
 
-        // val Position =viewHolder.adapterPosition
+        val position = viewHolder.adapterPosition
+
         // Log.d("ciao", Position.toString())
-
-
     }
+
+
+
 }
 
