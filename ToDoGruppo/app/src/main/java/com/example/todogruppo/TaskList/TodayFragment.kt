@@ -27,6 +27,8 @@ open class TodayFragment : Fragment() {
     //view model
     val viewModel: ViewModel by viewModels()
 
+    private var type = TYPE_TODAY
+
     private lateinit var binding: FragmentTodayBinding
     private lateinit var TaskRecyclerView: RecyclerView
     private lateinit var aggiungiTask: FloatingActionButton
@@ -34,6 +36,10 @@ open class TodayFragment : Fragment() {
     //togliere il bottone dal fragment figlio
     companion object{
         var istance: TodayFragment? = null
+
+        const val TYPE_TODAY = 0
+        const val TYPE_DEADLINE = 1
+        const val TYPE_NO_DEADLINE = 2
     }
 
     init{
@@ -53,6 +59,8 @@ open class TodayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        type = arguments?.getInt("type", TYPE_DEADLINE) ?: TYPE_DEADLINE
 
         val task = AddTaskFragment()
 

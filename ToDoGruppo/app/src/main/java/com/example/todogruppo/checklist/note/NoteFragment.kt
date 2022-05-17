@@ -1,15 +1,10 @@
-package com.example.todogruppo.Note
+package com.example.todogruppo.checklist.note
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import com.example.todogruppo.ListFragment
-import com.example.todogruppo.R
-import com.example.todogruppo.databinding.FragmentListBinding
 import com.example.todogruppo.databinding.FragmentNoteBinding
 
 open class NoteFragment : Fragment() {

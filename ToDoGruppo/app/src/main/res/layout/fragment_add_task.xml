@@ -27,20 +27,23 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:hint="@string/seleziona_una_data"
-            android:textSize="20sp"
-            android:textColorHint="@android:color/darker_gray" />
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="20sp" />
 
 
         <TextView
             android:id="@+id/selected_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="7dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_toStartOf="@+id/addDataBtn"
             android:layout_toEndOf="@+id/textData"
-            android:textSize="20sp"
-            android:text="@string/data" />
-
+            android:text="@string/nessuna_scadenza"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/addDataBtn"
@@ -49,7 +52,8 @@
             android:layout_alignBaseline="@+id/selected_data"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="48dp"
             android:background="@drawable/calendar_btn" />
 
     </RelativeLayout>
@@ -67,6 +71,7 @@
         android:textAllCaps="false"
         android:background="@android:color/transparent"
         android:textColor="@android:color/darker_gray" />
+
 
 
 </RelativeLayout>

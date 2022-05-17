@@ -1,4 +1,4 @@
-package com.example.todogruppo
+package com.example.todogruppo.checklist
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.viewpager2.widget.ViewPager2
-import com.example.todogruppo.Note.NoteFragment
-import com.example.todogruppo.TaskList.SlidePageAdapter
+import com.example.todogruppo.checklist.note.NoteFragment
+import com.example.todogruppo.R
 import com.example.todogruppo.TaskList.TodayFragment
+import com.example.todogruppo.checklist.task.TaskFragment
 import com.example.todogruppo.databinding.FragmentListBinding
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 
 class ListFragment : Fragment() {
@@ -39,57 +37,51 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPager = view.findViewById<ViewPager2>(R.id.viewPager)
-        val adapter = SlidePageAdapter(requireActivity())
-        viewPager.adapter = adapter
+        showTask()
 
-        val tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
-
-        TabLayoutMediator(tabLayout, viewPager){ tab, position ->
-
-            if(position == 0){
-                tab.text = "Oggi"
-            }else if(position == 1){
-                tab.text = "In scadenza"
-            }else  if(position == 2){
-                tab.text = "Nessuna scadenza"
-            }
-
-        }.attach()
-
-
-
-
-        val note = NoteFragment()
-
+        //Note
         val notebtn = view.findViewById<Button>(R.id.note)
-
         notebtn.setOnClickListener{
-            setColorButton()
-
-            childFragmentManager.beginTransaction()
-                .replace(R.id.fragmentNote, note)
-                .addToBackStack(null)
-                .commit()
+            selectBtnNote()
+            showNote()
         }
 
-
+        //Task
         val taskbtn = view.findViewById<Button>(R.id.task)
-
-        val task = TodayFragment()
-
         taskbtn.setOnClickListener {
-            childFragmentManager.beginTransaction()
-                .replace(R.id.fragmentNote, task)
-                .addToBackStack(null)
-                .commit()
+            selectBtnTask()
+            showTask()
         }
+    }
 
+    private fun showNote(){
+        val note = NoteFragment()
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragmentNote, note)
+            .addToBackStack(null)
+            .commit()
+    }
 
+    private fun showTask(){
+        val task = TaskFragment()
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragmentNote, task)
+            .addToBackStack(null)
+            .commit()
     }
 
 
-    private fun setColorButton(){
+    private fun selectBtnNote(){
+        val notebtn = binding.includeNote.note
+        notebtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.Button))
+        notebtn.setTextColor(getResources().getColor(R.color.black))
+
+        val taskbtn2 = binding.includeNote.task
+        taskbtn2.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.defaultBackground))
+        taskbtn2.setTextColor(getResources().getColor(R.color.white))
+    }
+
+    private fun selectBtnTask(){
         val notebtn = binding.includeNote.note
         notebtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.defaultBackground))
         notebtn.setTextColor(getResources().getColor(R.color.white))
@@ -98,7 +90,6 @@ class ListFragment : Fragment() {
         taskbtn2.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.Button))
         taskbtn2.setTextColor(getResources().getColor(R.color.black))
     }
-
 
 
 }
