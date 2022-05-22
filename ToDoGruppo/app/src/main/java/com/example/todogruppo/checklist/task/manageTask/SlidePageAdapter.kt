@@ -1,10 +1,11 @@
-package com.example.todogruppo.TaskList
+package com.example.todogruppo.checklist.task.manageTask
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.todogruppo.R
+import com.example.todogruppo.checklist.task.taskFragment.TodayFragment
+import java.util.*
 
 class SlidePageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa){
     override fun getItemCount(): Int {
@@ -21,12 +22,10 @@ class SlidePageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa){
                 })
             }
         }
-        /* return if(position == 0) TodayFragment()
-       else if(position == 1) DeadlineFragment()
+    /* return if(position == 0) TodayFragment()
+   else if(position == 1) DeadlineFragment()
         else NoDeadlineFragment()*/
     }
 
 
 }
-
-

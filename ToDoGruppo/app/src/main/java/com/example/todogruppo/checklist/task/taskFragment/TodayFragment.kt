@@ -1,25 +1,21 @@
-package com.example.todogruppo.TaskList
+package com.example.todogruppo.checklist.task.taskFragment
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ado.TaskAdapter
-import com.example.lista.Task
+import com.example.todogruppo.checklist.task.manageTask.TaskAdapter
 import com.example.todogruppo.R
-import com.example.todogruppo.ViewModel
+import com.example.todogruppo.checklist.task.manageTask.deleteTask.SwipeHelperCallback
+import com.example.todogruppo.checklist.task.manageTask.ViewModel
 import com.example.todogruppo.databinding.FragmentTodayBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 
 open class TodayFragment : Fragment() {
@@ -66,6 +62,18 @@ open class TodayFragment : Fragment() {
 
         aggiungiTask = view.findViewById(R.id.addTask)
 
+
+         val scaduta = view.findViewById<RecyclerView>(R.id.taskRecyclerView2)
+
+        if(type == TYPE_TODAY){
+            Log.d("prova" , "oggi")
+        }else if(type == TYPE_DEADLINE){
+            Log.d("prova" , "in scadenza")
+        }else if(type == TYPE_NO_DEADLINE){
+            Log.d("prova" , "non in scadenza")
+        }else {
+
+        }
 
 
         aggiungiTask.setOnClickListener {

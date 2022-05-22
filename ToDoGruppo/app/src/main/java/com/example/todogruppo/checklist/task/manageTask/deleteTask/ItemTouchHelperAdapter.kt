@@ -1,6 +1,4 @@
-package com.example.todogruppo.TaskList
-
-import android.content.Context
+package com.example.todogruppo.checklist.task.manageTask.deleteTask
 
 interface ItemTouchHelperAdapter {
 

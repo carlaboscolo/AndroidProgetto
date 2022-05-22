@@ -2,18 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defaultBackground"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/defaultBackground">
 
     <EditText
         android:id="@+id/newTaskText"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:hint="@string/nuova_task"
         android:layout_marginLeft="10dp"
-        android:textSize="20sp"
+        android:hint="@string/nuova_task"
         android:textColor="@color/white"
-        android:textColorHint="@android:color/darker_gray" />
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/calendar"
@@ -56,9 +56,22 @@
             android:layout_marginBottom="48dp"
             android:background="@drawable/calendar_btn" />
 
+
+
     </RelativeLayout>
 
 
+    <ProgressBar
+        android:id="@+id/loadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginBottom="283dp"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/newTaskButton"
@@ -66,12 +79,38 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/calendar"
         android:layout_alignParentEnd="true"
-        android:textSize="25sp"
+        android:background="@android:color/transparent"
         android:text="@string/salva"
         android:textAllCaps="false"
-        android:background="@android:color/transparent"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@android:color/darker_gray"
+        android:textSize="25sp" />
 
+    <Button
+        android:id="@+id/closeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newTaskButton"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/errorSave"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="223dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="24dp"
+        android:text="Compila questo campo"
+        android:visibility="gone"
+        android:textColor="@color/red" />
 
 
 </RelativeLayout>
+

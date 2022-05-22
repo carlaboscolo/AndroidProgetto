@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.example.todogruppo.checklist.note.NoteFragment
 import com.example.todogruppo.R
-import com.example.todogruppo.TaskList.TodayFragment
 import com.example.todogruppo.checklist.task.TaskFragment
 import com.example.todogruppo.databinding.FragmentListBinding
 

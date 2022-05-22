@@ -1,23 +1,19 @@
-package com.example.todogruppo.TaskList
+package com.example.todogruppo.checklist.task.taskFragment
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
-import com.example.todogruppo.ViewModel
+import com.example.todogruppo.checklist.task.manageTask.ViewModel
 import com.example.todogruppo.databinding.FragmentAddTaskBinding
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.protobuf.Empty
 
 class AddTaskFragment : Fragment() {
 
@@ -32,6 +28,10 @@ class AddTaskFragment : Fragment() {
 
     private lateinit var inputText: EditText
     private lateinit var addBtn: Button
+    private lateinit var loadingView : ProgressBar
+    private lateinit var errorSave : TextView
+
+    private lateinit var closeBtn : Button
 
     private lateinit var TaskList: RecyclerView
 
@@ -53,19 +53,38 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        addBtn = view.findViewById(R.id.newTaskButton)
-        inputText = view.findViewById(R.id.newTaskText)
+        addBtn = binding.newTaskButton
+        inputText = binding.newTaskText
+        loadingView = binding.loadingView
+        errorSave = binding.errorSave
 
+        //salva la task inserita
         addBtn.setOnClickListener {
 
-            viewModel.saveTask(inputText.text.toString(), selectedDate.text.toString())
+            loadingView.visibility = View.VISIBLE
 
-           TodayFragment.istance?.showButton()
+            if (inputText.text.toString().isEmpty()){
+                errorSave.visibility = View.VISIBLE
+                Log.d("error", "campo vuoto")
 
-            //torna indietro di un fragment
-            parentFragmentManager.popBackStackImmediate()
+            }else{
+                viewModel.saveTask(inputText.text.toString(), selectedDate.text.toString())
+
+                //torna indietro di un fragment
+                parentFragmentManager.popBackStackImmediate()
+            }
+
+            TodayFragment.istance?.showButton()
+
         }
 
+        //torna indietro senza salvare
+        closeBtn = binding.closeBtn
+        closeBtn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
+        //aggiungere una data alla task
         CalendarBtn = view.findViewById(R.id.addDataBtn)
         selectedDate = view.findViewById(R.id.selected_data)
 
