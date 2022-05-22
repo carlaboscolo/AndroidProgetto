@@ -29,7 +29,7 @@ class SwipeHelperCallback(val adapter : TaskAdapter): ItemTouchHelper.Callback()
 
         val position = viewHolder.adapterPosition
 
-        // Log.d("ciao", Position.toString())
+        // Log.d("position", Position.toString())
     }
 
 

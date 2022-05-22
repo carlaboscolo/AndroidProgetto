@@ -15,6 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
     ItemTouchHelperAdapter {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.task_layout, parent, false)
         return MyViewHolder(itemView)
@@ -60,3 +61,4 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
 
 
 }
+

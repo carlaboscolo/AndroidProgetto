@@ -105,6 +105,7 @@ open class TodayFragment : Fragment() {
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(TaskRecyclerView)
 
+
         }
 
     }

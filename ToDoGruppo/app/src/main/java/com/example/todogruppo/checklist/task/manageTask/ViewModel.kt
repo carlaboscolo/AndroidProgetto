@@ -16,13 +16,13 @@ class ViewModel: ViewModel() {
      fun saveTask(nomeTask : String, data: String){
         //FIREBASE
         val db = Firebase.firestore
-        // Create a new user with a first and last name
+        // crea una nuova task con nome e data
         val task  = hashMapOf(
             "name" to nomeTask,
             "data" to data
         )
 
-        // Add a new document with a generated ID
+        // aggiungi un nuovo documenti
         db.collection("task")
             .add(task)
             .addOnSuccessListener { documentReference ->
@@ -34,7 +34,7 @@ class ViewModel: ViewModel() {
 
     }
 
-    //funzione carica i dati nell'applicazione
+    //funzione che carica i dati nell'applicazione
      fun getTask(){
         val db = Firebase.firestore
 
@@ -63,6 +63,7 @@ class ViewModel: ViewModel() {
     }
 
 
+    //cancella un dato con uno swipe
     fun delete(id:String){
 
         val db = Firebase.firestore
@@ -73,6 +74,27 @@ class ViewModel: ViewModel() {
             .addOnFailureListener { e -> Log.w( "Error deleting document", e) }
 
     }
+
+  //funzione per cambiare i dati
+    fun change(id: String, nomeTask : String, data: String){
+
+      val db = Firebase.firestore
+
+      // aggiorna una task con nome e data
+      db.collection("task").document(id)
+          .update(mapOf(
+              "name" to nomeTask,
+              "data" to data
+          ))
+          .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
+          .addOnFailureListener { e -> Log.w( "Error not change document", e) }
+
+    }
+
+//DA SPOSTARE
+    //Cambiare
+    // viewModel.change("BiHOZHsvn8HIBVtUMBKq", "task1", "May 30,2023")
+
 
 
     /*
