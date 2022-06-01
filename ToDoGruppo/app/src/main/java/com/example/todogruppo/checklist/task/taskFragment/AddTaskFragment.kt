@@ -10,12 +10,17 @@ import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
-import com.example.todogruppo.checklist.task.manageTask.ViewModel
+import com.example.todogruppo.checklist.task.ViewModel
+import com.example.todogruppo.checklist.task.manageTask.Task
 import com.example.todogruppo.databinding.FragmentAddTaskBinding
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.protobuf.Empty
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddTaskFragment : Fragment() {
+
+    //task null -> nuovo task, altrimenti serve per la modifica
+    private var task: Task? = null
 
     //lateinit -> inizializza variabile più tardi
     private lateinit var binding: FragmentAddTaskBinding
@@ -53,6 +58,9 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //se passo dei parametri la variabile task sarà valorizzata, altrimenti sarà nullo
+        task = arguments?.getSerializable("task") as Task?
+
         addBtn = binding.newTaskButton
         inputText = binding.newTaskText
         loadingView = binding.loadingView
@@ -63,12 +71,17 @@ class AddTaskFragment : Fragment() {
 
             loadingView.visibility = View.VISIBLE
 
-            if (inputText.text.toString().isEmpty()){
+            if (inputText.text.toString().isEmpty()) {
                 errorSave.visibility = View.VISIBLE
                 Log.d("error", "campo vuoto")
 
-            }else{
-                viewModel.saveTask(inputText.text.toString(), selectedDate.text.toString())
+            } else {
+
+                if(task == null){
+                    viewModel.saveTask(inputText.text.toString(), selectedDate.text.toString())
+                }else{
+                    viewModel.change( task!!._id, inputText.text.toString(), selectedDate.text.toString())
+                }
 
                 //torna indietro di un fragment
                 parentFragmentManager.popBackStackImmediate()
@@ -100,13 +113,22 @@ class AddTaskFragment : Fragment() {
 
             datePicker.addOnPositiveButtonClickListener {
                 // Respond to positive button click.
-                selectedDate.setText(datePicker.headerText)
+                //selectedDate.setText(datePicker.headerText)
+                val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                utc.timeInMillis = it
+                val format = SimpleDateFormat("dd-MM-yyyy")
+                selectedDate.setText(format.format(utc.time))
             }
 
         }
 
-    }
 
+        task?.let {
+            inputText.setText(it._heading)
+            selectedDate.setText(it._data)
+        }
+
+    }
 }
 
 

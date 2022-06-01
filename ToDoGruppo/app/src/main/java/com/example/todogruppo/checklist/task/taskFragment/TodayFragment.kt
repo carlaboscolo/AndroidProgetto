@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -13,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.checklist.task.manageTask.TaskAdapter
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.manageTask.deleteTask.SwipeHelperCallback
-import com.example.todogruppo.checklist.task.manageTask.ViewModel
+import com.example.todogruppo.checklist.task.ViewModel
 import com.example.todogruppo.databinding.FragmentTodayBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -28,6 +31,7 @@ open class TodayFragment : Fragment() {
     private lateinit var binding: FragmentTodayBinding
     private lateinit var TaskRecyclerView: RecyclerView
     private lateinit var aggiungiTask: FloatingActionButton
+    private lateinit var checkTask : CheckBox
 
     //togliere il bottone dal fragment figlio
     companion object{
@@ -58,12 +62,9 @@ open class TodayFragment : Fragment() {
 
         type = arguments?.getInt("type", TYPE_DEADLINE) ?: TYPE_DEADLINE
 
-        val task = AddTaskFragment()
-
-        aggiungiTask = view.findViewById(R.id.addTask)
 
 
-         val scaduta = view.findViewById<RecyclerView>(R.id.taskRecyclerView2)
+        val scaduta = view.findViewById<RecyclerView>(R.id.taskRecyclerView2)
 
         if(type == TYPE_TODAY){
             Log.d("prova" , "oggi")
@@ -75,9 +76,13 @@ open class TodayFragment : Fragment() {
 
         }
 
+        //aggiungi una task
+        aggiungiTask = view.findViewById(R.id.addTask)
 
         aggiungiTask.setOnClickListener {
             aggiungiTask.visibility = View.GONE
+
+            val task = AddTaskFragment()
 
             //aggiungere task
             childFragmentManager.beginTransaction()
@@ -86,12 +91,34 @@ open class TodayFragment : Fragment() {
                 .commit()
         }
 
-        viewModel.getTask()
+        viewModel.getTask(type)
 
         viewModel.taskList.observe(viewLifecycleOwner){
             TaskRecyclerView = binding.taskRecyclerView
             TaskRecyclerView.setHasFixedSize(true)
             val adapter = TaskAdapter(it, viewModel, view.getContext())
+
+
+            adapter.setOnCallback(object : TaskAdapter.AdapterCallback{
+                override fun selectItem(position: Int) {
+                    aggiungiTask.visibility = View.GONE
+
+                    val task = AddTaskFragment()
+
+                    val bundle = Bundle()
+
+                    //bundle serve per passare i parametri nei fragment
+                    bundle.putSerializable("task", it[position])
+
+                    task.arguments = bundle
+
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.newTaskContainer, task)
+                        .addToBackStack(null)
+                        .commit()
+                }
+
+            })
 
             TaskRecyclerView.apply {
                 TaskRecyclerView.adapter = adapter
@@ -104,15 +131,11 @@ open class TodayFragment : Fragment() {
             val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(TaskRecyclerView)
-
-
         }
-
     }
 
     fun showButton(){
         aggiungiTask.visibility = View.VISIBLE
     }
-
 
 }

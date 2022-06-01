@@ -32,27 +32,7 @@ open class NoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-      //  setColorButton()
-
-     /*   val taskbtn = view.findViewById<Button>(R.id.task)
-
-        taskbtn.setOnClickListener {
-            parentFragmentManager.popBackStackImmediate()
-        }
-*/
-
     }
 
 
-/*
-    private fun setColorButton(){
-        val notebtn = binding.includeNote.note
-        notebtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.Button))
-        notebtn.setTextColor(getResources().getColor(R.color.black));
-
-        val taskbtn = binding.includeNote.task
-        taskbtn.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.defaultBackground))
-        taskbtn.setTextColor(getResources().getColor(R.color.white));
-    }
-*/
 }
