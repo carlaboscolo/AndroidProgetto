@@ -26,7 +26,7 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
         holder.textView.text = currentItem._heading
         holder.dataView.text = currentItem._data
 
-        holder.textView.isChecked = currentItem.check
+       holder.checkTask.isChecked = currentItem.check
 
         //selezionare una task
         holder.itemView.setOnClickListener{
@@ -35,8 +35,8 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
             mListener?.selectItem(position)
         }
 
-        holder.textView.setOnClickListener{
-            currentItem.check = holder.textView.isChecked
+       holder.checkTask.setOnClickListener{
+            currentItem.check = holder.checkTask.isChecked
 
             taskList.sortBy(Task::check)
             notifyDataSetChanged()
@@ -49,8 +49,10 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        val textView = itemView.findViewById<CheckBox>(R.id.todoCheckBox)
+        val textView = itemView.findViewById<TextView>(R.id.task)
         val dataView = itemView.findViewById<TextView>(R.id.data)
+        val checkTask = itemView.findViewById<CheckBox>(R.id.todoCheckBox)
+
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {

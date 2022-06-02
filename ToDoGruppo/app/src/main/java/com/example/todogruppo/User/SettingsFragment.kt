@@ -1,13 +1,23 @@
 package com.example.todogruppo.User
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.viewModels
+import com.example.todogruppo.HomePage
 import com.example.todogruppo.R
+import com.example.todogruppo.checklist.task.ViewModel
+import com.example.todogruppo.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
+
+    private lateinit var binding : FragmentSettingsBinding
+
+    private lateinit var logout : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +29,22 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        //return inflater.inflate(R.layout.fragment_settings, container, false)
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        return binding.getRoot()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        logout = binding.logout
+
+        logout.setOnClickListener {
+           // parentFragmentManager.popBackStack()
+          //parentFragmentManager.popBackStackImmediate()
+        }
+
+
+    }
 
 }

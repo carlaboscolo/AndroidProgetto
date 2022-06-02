@@ -31,7 +31,6 @@ open class TodayFragment : Fragment() {
     private lateinit var binding: FragmentTodayBinding
     private lateinit var TaskRecyclerView: RecyclerView
     private lateinit var aggiungiTask: FloatingActionButton
-    private lateinit var checkTask : CheckBox
 
     //togliere il bottone dal fragment figlio
     companion object{

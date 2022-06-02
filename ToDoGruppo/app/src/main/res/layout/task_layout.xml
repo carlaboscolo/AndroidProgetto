@@ -20,10 +20,19 @@
             android:id="@+id/todoCheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="0.3"
             android:buttonTint="@android:color/holo_green_dark"
-            android:paddingStart="8dp"
-            tool:text="@string/esempio_task" />
+            android:paddingStart="2dp"
+           />
+
+        <TextView
+            android:id="@+id/task"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/esempio_task"
+            />
+
 
         <TextView
             android:id="@+id/data"
