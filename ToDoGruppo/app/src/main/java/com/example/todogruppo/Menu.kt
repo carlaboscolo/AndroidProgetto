@@ -4,13 +4,15 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.fragment.CalendarFragment
 import com.example.fragment.HomeFragment
+import com.example.todogruppo.User.SettingsFragment
+import com.example.todogruppo.User.UserFragment
 import com.example.todogruppo.checklist.ListFragment
+import com.example.todogruppo.databinding.FragmentListBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationBarView
 
 open class HomePage : MainActivity() {
     val name = "HOME"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,8 @@ open class HomePage : MainActivity() {
         val listFragment = ListFragment()
         val diaryFragment = DiaryFragment()
         val focusFragment = FocusFragment()
+        val userProfile = UserFragment()
+        val settings = SettingsFragment()
 
         //serve per impostare come default il fragment della home
         setCurrentFragment(homeFragment)
@@ -33,6 +37,26 @@ open class HomePage : MainActivity() {
 
         //barra sopra -> titolo
         var titleUp = findViewById<MaterialToolbar>(R.id.main_toolbar)
+
+
+        titleUp.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.settings -> {
+                    titleUp.title = "Impostazioni"
+                    // Handle favorite icon press
+                    setCurrentFragment(settings)
+                    true
+                }
+                R.id.profile -> {
+                    titleUp.title = "Profilo"
+                    // Handle favorite icon press
+                    setCurrentFragment(userProfile)
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         bottom_navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {

@@ -106,11 +106,6 @@ class ViewModel: ViewModel() {
     }
 
 //DA SPOSTARE
-    //Cambiare
-    // viewModel.change("BiHOZHsvn8HIBVtUMBKq", "task1", "May 30,2023")
-
-
-
     /*
 
 
