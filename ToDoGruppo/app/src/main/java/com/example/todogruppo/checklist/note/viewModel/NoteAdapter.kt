@@ -1,45 +1,38 @@
-package com.example.todogruppo.checklist.task.viewModel
+package com.example.todogruppo.checklist.note.viewModel
 
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.NoteItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
+class NoteAdapter(private val noteList: ArrayList<Note>,
+    private val noteModel: NoteModel,
+    private val context: Context
+) : RecyclerView.Adapter<NoteAdapter.MyViewHolder>(),
     NoteItemTouchHelper {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.task_layout, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.note_layout, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      //posizione corrente della task
+        //posizione corrente della task
         val currentItem = noteList[position]
-        //titolo, data e se la task è "check" o no
+        //titolo
         holder.textView.text = currentItem._heading
-        holder.dataView.text = currentItem._data
-        holder.checkTask.isChecked = currentItem.check
 
-        //selezionare una task
+        //selezionare una nota
         holder.itemView.setOnClickListener {
-            Log.d("taskSelezionato", currentItem.toString())
+            Log.d("noteSelezionato", currentItem.toString())
             mListener?.selectItem(position)
-        }
-
-        //inserire il check nella task
-        holder.checkTask.setOnClickListener {
-            currentItem.check = holder.checkTask.isChecked
-            noteList.sortBy(Task::check)
-            notifyDataSetChanged()
         }
 
     }
@@ -50,10 +43,8 @@ class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-       //dove verranno visualizzate in TodayFragment
-        val textView = itemView.findViewById<TextView>(R.id.task)
-        val dataView = itemView.findViewById<TextView>(R.id.data)
-        val checkTask = itemView.findViewById<CheckBox>(R.id.todoCheckBox)
+        //dove verranno visualizzate in TodayFragment
+        val textView = itemView.findViewById<TextView>(R.id.noteText)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -62,8 +53,6 @@ class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: 
 
     //eliminare la task
     override fun onItemDismiss(position: Int) {
-        //stampa 'oggi', 'in scadenza' o 'non in scadenza'
-        Log.d("prova", "onItemDismiss")
 
         //Avviso se si vuole eliminare o no la task
         MaterialAlertDialogBuilder(context)
@@ -71,7 +60,7 @@ class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: 
             .setMessage("Vuoi eliminare questo elemento?")
             .setNegativeButton("No") { dialog, which -> }
             .setPositiveButton("Si") { dialog, which ->
-                viewModel.delete(noteList[position].id)
+                noteModel.deleteNote(noteList[position].id)
                 noteList.removeAt(position)
                 notifyDataSetChanged()
             }

@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import com.example.todogruppo.checklist.note.NoteFragment
+import com.example.todogruppo.checklist.note.noteFragment.NoteFragment
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.TaskFragment
 import com.example.todogruppo.databinding.FragmentListBinding

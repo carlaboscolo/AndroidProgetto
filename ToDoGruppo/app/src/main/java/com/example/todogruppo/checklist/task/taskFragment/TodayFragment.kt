@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 import com.example.todogruppo.R
+import com.example.todogruppo.checklist.task.deleteTask.NoteSwipeHelperCallback
 import com.example.todogruppo.checklist.task.deleteTask.SwipeHelperCallback
 import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.databinding.FragmentTodayBinding
@@ -61,7 +62,7 @@ open class TodayFragment : Fragment() {
 
 
         //bottone che serve ad aggiungere una task
-        aggiungiTask = binding.includeBtn.addTask
+        aggiungiTask = binding.includeBtn.addNewBtn
 
         aggiungiTask.setOnClickListener {
             //quando viene cliccato, il bottone "+" scompare perchè non si deve vedere in "addTask"

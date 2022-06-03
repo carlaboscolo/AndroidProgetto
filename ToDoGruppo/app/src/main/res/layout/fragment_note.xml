@@ -2,22 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defaultBackground" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/defaultBackground"
+    >
 
-    <!--
-    <include
-        android:id = "@+id/includeNote"
-        layout = "@layout/menu_note" />
--->
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/noteRecyclerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text = "@string/note"
-        android:textSize="30dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/white" />
+        app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+        android:nestedScrollingEnabled="true" />
+
+    <include
+        android:id = "@+id/includeBtn"
+        layout = "@layout/button_add" />
+
+    <!--  fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/newNoteContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </RelativeLayout>

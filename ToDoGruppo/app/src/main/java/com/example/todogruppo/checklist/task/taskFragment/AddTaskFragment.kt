@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
-import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.checklist.task.viewModel.Task
+import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.databinding.FragmentAddTaskBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
