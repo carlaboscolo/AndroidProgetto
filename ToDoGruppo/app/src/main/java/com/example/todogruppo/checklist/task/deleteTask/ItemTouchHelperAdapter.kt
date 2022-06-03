@@ -1,4 +1,4 @@
-package com.example.todogruppo.checklist.task.manageTask.deleteTask
+package com.example.todogruppo.checklist.task.deleteTask
 
 interface ItemTouchHelperAdapter {
 

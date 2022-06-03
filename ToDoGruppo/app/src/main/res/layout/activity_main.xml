@@ -4,54 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:background="@color/black"
     android:orientation="vertical"
     android:weightSum="4"
-    android:background="@color/black">
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-      <!--
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/back_icon"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="14dp"/>
--->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="48dp"
             android:layout_marginRight="48dp"
-            android:layout_centerVertical="true">
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="36dp"
-                android:text="@string/benvenuto"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/segoe_ui_bold"
-                android:textColor="@color/colorTextWhite"/>
+                android:text="@string/benvenuto"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="36dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:text="@string/loggati_per_iniziare_ad_usare_l_app"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:textColor="@color/colorTextWhite"/>
+                android:text="@string/loggati_per_iniziare_ad_usare_l_app"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="15dp" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:elevation="36dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:background="@drawable/card_background">
+        android:background="@drawable/card_background"
+        android:elevation="36dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,51 +57,54 @@
             android:text="@string/login"
             android:textColor="@color/colorTextWhite"
             android:textSize="26dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
             <EditText
                 android:id="@+id/username"
-                android:textColorHint="@color/colorPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:background="@drawable/edit_text_background"
                 android:drawableEnd="@drawable/user_icon"
                 android:drawableTint="@color/colorTextBlack"
+                android:fontFamily="@font/seg_ui_semibold"
                 android:hint="@string/someone_gmail_com"
-                android:textColor="@color/colorTextBlack"
+                android:inputType="textEmailAddress"
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp"
-                android:inputType="textEmailAddress"
-                android:fontFamily="@font/seg_ui_semibold"
-                android:background="@drawable/edit_text_background"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginLeft="48dp"
-                android:layout_marginRight="48dp"/>
+                android:textColor="@color/colorTextBlack"
+                android:textColorHint="@color/colorPlaceholder" />
+
             <EditText
                 android:id="@+id/password"
-                android:textColorHint="@color/colorPlaceholder"
-                android:layout_marginTop="24dp"
-                android:drawableEnd="@drawable/lock_icon"
-                android:drawableTint="@color/colorTextBlack"
-                android:hint="@string/password"
-                android:textColor="@color/colorTextBlack"
-                android:paddingLeft="26dp"
-                android:paddingRight="26dp"
-                android:inputType="textPassword"
-                android:fontFamily="@font/seg_ui_semibold"
-                android:background="@drawable/edit_text_background"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginLeft="48dp"
-                android:layout_marginRight="48dp"/>
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="48dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/lock_icon"
+                android:drawableTint="@color/colorTextBlack"
+                android:fontFamily="@font/seg_ui_semibold"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
+                android:textColor="@color/colorTextBlack"
+                android:textColorHint="@color/colorPlaceholder" />
 
             <CheckBox
-                android:buttonTint="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="18dp"
+                android:buttonTint="@color/white"
                 android:fontFamily="@font/seg_ui_semibold"
                 android:text="@string/ricorda"
                 android:textColor="@color/colorTextWhite"
@@ -115,32 +113,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_marginTop="24dp"
                 android:layout_marginLeft="48dp"
-                android:layout_marginRight="48dp">
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="48dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorTextWhite"
-                    android:textSize="12dp"
-                    android:text="@string/hai_bisogno_di_aiuto"
-                    android:fontFamily="@font/seg_ui_semibold"
                     android:layout_marginLeft="12dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:fontFamily="@font/seg_ui_semibold"
+                    android:text="@string/hai_bisogno_di_aiuto"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="12dp" />
+
                 <Button
                     android:id="@+id/button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/Button"
+                    android:fontFamily="@font/seg_ui_semibold"
                     android:text="@string/sign_in"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/seg_ui_semibold"
-                    android:backgroundTint="@color/Button"
-                    />
+                    android:textSize="16dp" />
             </LinearLayout>
         </LinearLayout>
 

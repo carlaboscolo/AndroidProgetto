@@ -22,8 +22,6 @@
         android:title="@string/home"
         />
 
-
-
     <item
             android:id="@+id/calendario"
             android:enabled="true"

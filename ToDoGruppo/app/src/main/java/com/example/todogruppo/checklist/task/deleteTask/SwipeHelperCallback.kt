@@ -1,8 +1,8 @@
-package com.example.todogruppo.checklist.task.manageTask.deleteTask
+package com.example.todogruppo.checklist.task.deleteTask
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todogruppo.checklist.task.manageTask.TaskAdapter
+import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 
 class SwipeHelperCallback(val adapter : TaskAdapter): ItemTouchHelper.Callback() {
 

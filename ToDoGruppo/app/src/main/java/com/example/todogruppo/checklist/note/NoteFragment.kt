@@ -11,10 +11,11 @@ open class NoteFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteBinding
 
+    //variabili
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(

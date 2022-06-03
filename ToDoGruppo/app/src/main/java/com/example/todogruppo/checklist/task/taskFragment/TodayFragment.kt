@@ -1,22 +1,18 @@
 package com.example.todogruppo.checklist.task.taskFragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todogruppo.checklist.task.manageTask.TaskAdapter
+import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 import com.example.todogruppo.R
-import com.example.todogruppo.checklist.task.manageTask.deleteTask.SwipeHelperCallback
-import com.example.todogruppo.checklist.task.ViewModel
+import com.example.todogruppo.checklist.task.deleteTask.SwipeHelperCallback
+import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.databinding.FragmentTodayBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -26,14 +22,16 @@ open class TodayFragment : Fragment() {
     //view model
     val viewModel: ViewModel by viewModels()
 
+    //setta oggi come default
     private var type = TYPE_TODAY
 
+    //variabili
     private lateinit var binding: FragmentTodayBinding
     private lateinit var TaskRecyclerView: RecyclerView
     private lateinit var aggiungiTask: FloatingActionButton
 
-    //togliere il bottone dal fragment figlio
-    companion object{
+    //TodayFragment gestirà "oggi", "in scadenza" e "nessuna scadenza"
+    companion object {
         var istance: TodayFragment? = null
 
         const val TYPE_TODAY = 0
@@ -41,7 +39,7 @@ open class TodayFragment : Fragment() {
         const val TYPE_NO_DEADLINE = 2
     }
 
-    init{
+    init {
         istance = this
     }
 
@@ -51,7 +49,6 @@ open class TodayFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_today, container, false)
-
         binding = FragmentTodayBinding.inflate(inflater, container, false)
         return binding.getRoot()
     }
@@ -59,51 +56,44 @@ open class TodayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //type -> settata ad "oggi"
         type = arguments?.getInt("type", TYPE_DEADLINE) ?: TYPE_DEADLINE
 
 
-
-        val scaduta = view.findViewById<RecyclerView>(R.id.taskRecyclerView2)
-
-        if(type == TYPE_TODAY){
-            Log.d("prova" , "oggi")
-        }else if(type == TYPE_DEADLINE){
-            Log.d("prova" , "in scadenza")
-        }else if(type == TYPE_NO_DEADLINE){
-            Log.d("prova" , "non in scadenza")
-        }else {
-
-        }
-
-        //aggiungi una task
-        aggiungiTask = view.findViewById(R.id.addTask)
+        //bottone che serve ad aggiungere una task
+        aggiungiTask = binding.includeBtn.addTask
 
         aggiungiTask.setOnClickListener {
+            //quando viene cliccato, il bottone "+" scompare perchè non si deve vedere in "addTask"
             aggiungiTask.visibility = View.GONE
 
             val task = AddTaskFragment()
 
-            //aggiungere task
+            //aprire il fragment per la nuova task
             childFragmentManager.beginTransaction()
                 .replace(R.id.newTaskContainer, task)
                 .addToBackStack(null)
                 .commit()
         }
 
+        //view model -> ottieni i dati
         viewModel.getTask(type)
 
-        viewModel.taskList.observe(viewLifecycleOwner){
+        //esegui operazioni sulla lista delle task
+        viewModel.taskList.observe(viewLifecycleOwner) {
             TaskRecyclerView = binding.taskRecyclerView
             TaskRecyclerView.setHasFixedSize(true)
+
             val adapter = TaskAdapter(it, viewModel, view.getContext())
 
+            adapter.setOnCallback(object : TaskAdapter.AdapterCallback {
 
-            adapter.setOnCallback(object : TaskAdapter.AdapterCallback{
+                //cliccare per modificare
                 override fun selectItem(position: Int) {
+                    //nasconde il pulsante "+" quando apro "addTask"
                     aggiungiTask.visibility = View.GONE
 
                     val task = AddTaskFragment()
-
                     val bundle = Bundle()
 
                     //bundle serve per passare i parametri nei fragment
@@ -111,6 +101,7 @@ open class TodayFragment : Fragment() {
 
                     task.arguments = bundle
 
+                    //aprire il fragment new task
                     childFragmentManager.beginTransaction()
                         .replace(R.id.newTaskContainer, task)
                         .addToBackStack(null)
@@ -119,21 +110,25 @@ open class TodayFragment : Fragment() {
 
             })
 
+            //carica la lista delle task
             TaskRecyclerView.apply {
                 TaskRecyclerView.adapter = adapter
 
-                TaskRecyclerView.layoutManager = LinearLayoutManager(context,
-                    LinearLayoutManager.VERTICAL, false)
+                TaskRecyclerView.layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayoutManager.VERTICAL, false
+                )
             }
 
-
+            //eliminare una task
             val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(TaskRecyclerView)
         }
     }
 
-    fun showButton(){
+    //togliere il bottone dal fragment figlio
+    fun showButton() {
         aggiungiTask.visibility = View.VISIBLE
     }
 

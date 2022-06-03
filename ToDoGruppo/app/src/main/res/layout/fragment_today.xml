@@ -15,29 +15,8 @@
         app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true" />
 
-
-    <!-- testo completato invisibile -->
-    <TextView
-        android:id="@+id/completato"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:text="@string/completato" />
-
-
-<!-- 2 recycler view non visibile -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/taskRecyclerView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-        android:nestedScrollingEnabled="true" />
-
-
-
     <include
-        android:id = "@+id/include"
+        android:id = "@+id/includeBtn"
         layout = "@layout/button_add" />
 
     <!--  fragment -->

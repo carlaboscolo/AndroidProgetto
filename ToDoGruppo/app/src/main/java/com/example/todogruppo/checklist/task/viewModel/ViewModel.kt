@@ -1,10 +1,9 @@
-package com.example.todogruppo.checklist.task
+package com.example.todogruppo.checklist.task.viewModel
 
 import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.todogruppo.checklist.task.manageTask.Task
 import com.example.todogruppo.checklist.task.taskFragment.TodayFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -59,11 +58,11 @@ class ViewModel: ViewModel() {
                     }else if(type == TodayFragment.TYPE_TODAY && task.data == calendar()){
                         taskArray.add(task)
                     }else{
-
-                        if(task.data != "Nessuna scadenza" && task.data != calendar()){
+                       /*
+                        if(task.data != "Nessuna Scadenza" && task.data != calendar()){
                             taskArray.add(task)
                         }
-
+                       */
                     }
 
                 }

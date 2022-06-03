@@ -1,16 +1,11 @@
 package com.example.todogruppo.User
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.viewModels
-import com.example.todogruppo.HomePage
-import com.example.todogruppo.R
-import com.example.todogruppo.checklist.task.ViewModel
 import com.example.todogruppo.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -40,7 +35,7 @@ class SettingsFragment : Fragment() {
         logout = binding.logout
 
         logout.setOnClickListener {
-           // parentFragmentManager.popBackStack()
+          // parentFragmentManager.popBackStack()
           //parentFragmentManager.popBackStackImmediate()
         }
 

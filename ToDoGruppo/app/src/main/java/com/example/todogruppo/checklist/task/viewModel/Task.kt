@@ -1,4 +1,4 @@
-package com.example.todogruppo.checklist.task.manageTask
+package com.example.todogruppo.checklist.task.viewModel
 
 import android.widget.DatePicker
 import android.widget.EditText

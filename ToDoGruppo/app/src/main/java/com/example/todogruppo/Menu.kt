@@ -1,18 +1,22 @@
 package com.example.todogruppo
 
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.fragment.CalendarFragment
 import com.example.fragment.HomeFragment
 import com.example.todogruppo.User.SettingsFragment
 import com.example.todogruppo.User.UserFragment
 import com.example.todogruppo.checklist.ListFragment
-import com.example.todogruppo.databinding.FragmentListBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationBarView
 
 open class HomePage : MainActivity() {
     val name = "HOME"
+
+    //variabili
+    private lateinit var titleUp: MaterialToolbar
+    private lateinit var bottom_navigation: NavigationBarView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,29 +31,29 @@ open class HomePage : MainActivity() {
         val userProfile = UserFragment()
         val settings = SettingsFragment()
 
-        //serve per impostare come default il fragment della home
-        setCurrentFragment(homeFragment)
+        //inizializza varibili
+        titleUp = findViewById(R.id.main_toolbar)
+        bottom_navigation = findViewById(R.id.bottom_navigation)
 
-        val bottom_navigation = findViewById<NavigationBarView>(R.id.bottom_navigation)
+        //SETTARE LA HOME COME DEFAULT
 
         //serve per selezionare il pulsante home, appena apro il codice
         bottom_navigation.selectedItemId = R.id.home
+        //serve per impostare come default il fragment della home
+        setCurrentFragment(homeFragment)
+        titleUp.title = "Home"
 
-        //barra sopra -> titolo
-        var titleUp = findViewById<MaterialToolbar>(R.id.main_toolbar)
 
-
+        //TOP BAR -> apre le impostazioni o il profilo utente
         titleUp.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.settings -> {
                     titleUp.title = "Impostazioni"
-                    // Handle favorite icon press
                     setCurrentFragment(settings)
                     true
                 }
                 R.id.profile -> {
                     titleUp.title = "Profilo"
-                    // Handle favorite icon press
                     setCurrentFragment(userProfile)
                     true
                 }
@@ -57,12 +61,12 @@ open class HomePage : MainActivity() {
             }
         }
 
-
+        //BOTTOM BAR -> apre fragment task, diario, home, calendario, focus
         bottom_navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.checklist -> {
                     titleUp.title = "Checklist"
-                   setCurrentFragment(listFragment)
+                    setCurrentFragment(listFragment)
                     true
                 }
                 R.id.diario -> {
@@ -89,20 +93,18 @@ open class HomePage : MainActivity() {
                     false
                 }
             }
-
-
         }
 
 
     }
 
 
-     private fun setCurrentFragment(fragment: Fragment ) =
+    //funzione per selezionare il fragment da aprire
+    private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
-
 
 
 }
