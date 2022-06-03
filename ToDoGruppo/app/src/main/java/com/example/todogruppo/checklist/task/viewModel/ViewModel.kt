@@ -53,6 +53,7 @@ class ViewModel: ViewModel() {
                         document.id
                     )
 
+                    //suddivisione delle date
                     if(type == TodayFragment.TYPE_NO_DEADLINE && task.data == "Nessuna Scadenza"){
                         taskArray.add(task)
                     }else if(type == TodayFragment.TYPE_TODAY && task.data == calendar()){
@@ -104,25 +105,7 @@ class ViewModel: ViewModel() {
 
     }
 
-//DA SPOSTARE
-    /*
-
-
-                    val data = calendar()
-                    if(task._data == data){
-                    Log.d("uguale", task._data)
-                    }else if(task._data >= data-7){
-                        Log.d("in scadenza", task._data)
-                    }else if(task._data > data+1){
-                        Log.d("scaduto", task._data)
-                    }else{
-                        Log.d("nessuna scadenza", task._data)
-                    }
-
-
-
-
-*/
+    //selezionare la data di oggi
     fun calendar(): String {
         val calendar = Calendar.getInstance()
         val year = calendar[Calendar.YEAR]

@@ -12,7 +12,8 @@ import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.ItemTouchHelperAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(), ItemTouchHelperAdapter {
+class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
+    ItemTouchHelperAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =

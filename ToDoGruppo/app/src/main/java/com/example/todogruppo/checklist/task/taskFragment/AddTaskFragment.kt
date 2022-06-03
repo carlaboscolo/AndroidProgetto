@@ -86,7 +86,7 @@ class AddTaskFragment : Fragment() {
                 val format = SimpleDateFormat("dd-MM-yyyy")
                 selectedDate.setText(format.format(utc.time))
             }
-
+        }
 
             //salva la task inserita
             addBtn.setOnClickListener {
@@ -128,7 +128,7 @@ class AddTaskFragment : Fragment() {
                 TodayFragment.istance?.showButton()
             }
 
-        }
+
 
         //settare le variabili per modificarle
         task?.let {
