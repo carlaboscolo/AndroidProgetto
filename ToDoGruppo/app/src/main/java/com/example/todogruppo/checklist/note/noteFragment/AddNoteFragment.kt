@@ -29,6 +29,7 @@ class AddNoteFragment : Fragment() {
     private var note: Note? = null
 
     //varibili
+    private lateinit var titletext : EditText
     private lateinit var inputText: EditText
     private lateinit var addBtn: Button
     private lateinit var loadingView: ProgressBar
@@ -57,6 +58,8 @@ class AddNoteFragment : Fragment() {
 
         //inizializza variabili
         addBtn = binding.newNoteButton
+
+        titletext = binding.newNoteTitle
         inputText = binding.newNoteText
         loadingView = binding.loadingView
         errorSave = binding.errorSave
@@ -73,11 +76,12 @@ class AddNoteFragment : Fragment() {
 
                 if (note == null) {
                     //salva la nuova task
-                    noteModel.saveNote(inputText.text.toString())
+                    noteModel.saveNote(titletext.text.toString(), inputText.text.toString())
                 } else {
                     //modifica la task
                     noteModel.changeNote(
                         note!!._id,
+                        titletext.text.toString(),
                         inputText.text.toString()
                     )
                 }
@@ -104,7 +108,8 @@ class AddNoteFragment : Fragment() {
 
         //settare le variabili per modificarle
         note?.let {
-            inputText.setText(it._heading)
+            titletext.setText(it._heading)
+            inputText.setText(it._description)
         }
 
     }

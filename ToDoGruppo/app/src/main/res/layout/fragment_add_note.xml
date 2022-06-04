@@ -6,11 +6,22 @@
     android:background="@color/defaultBackground">
 
     <EditText
-        android:id="@+id/newNoteText"
+        android:id="@+id/newNoteTitle"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginLeft="10dp"
-        android:hint="@string/nuova_task"
+        android:hint="@string/titolo_nota"
+        android:textColor="@color/white"
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/newNoteText"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/newNoteTitle"
+        android:layout_marginLeft="10dp"
+        android:hint="@string/new_note"
         android:textColor="@color/white"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20sp" />

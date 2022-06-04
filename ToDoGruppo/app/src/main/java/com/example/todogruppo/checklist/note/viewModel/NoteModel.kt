@@ -13,12 +13,13 @@ class NoteModel: ViewModel() {
     var noteList = MutableLiveData<ArrayList<Note>>()
 
     //funzione salva note
-    fun saveNote(nomeNote : String){
+    fun saveNote(title: String, textNote : String){
         //FIREBASE
         val db = Firebase.firestore
         // crea una nuova task con nome e data
         val note  = hashMapOf(
-            "name" to nomeNote
+            "title" to title,
+            "textNote" to textNote
         )
 
         // aggiungi un nuovo documenti
@@ -45,7 +46,8 @@ class NoteModel: ViewModel() {
 
                 for (document in result) {
                     val note = Note(
-                        document.data.getValue("name").toString(),
+                        document.data.getValue("title").toString(),
+                        document.data.getValue("textNote").toString(),
                         document.id
                     )
 
@@ -73,14 +75,15 @@ class NoteModel: ViewModel() {
     }
 
     //funzione per cambiare i dati
-    fun changeNote(id: String, nomeTask : String){
+    fun changeNote(id: String, title: String, textNote : String){
 
         val db = Firebase.firestore
 
         // aggiorna una task con nome e data
         db.collection("note").document(id)
             .update(mapOf(
-                "name" to nomeTask
+                "title" to title,
+                "textNote" to textNote
             ))
             .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
             .addOnFailureListener { e -> Log.w( "Error not change document", e) }

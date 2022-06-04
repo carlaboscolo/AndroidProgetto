@@ -67,5 +67,7 @@
     <string name="informazioni">Informazioni</string>
     <string name="sicurezza">Sicurezza</string>
     <string name="log_out">Log out</string>
+    <string name="titolo_nota">Titolo Nota</string>
     <string name="esempio_note">Note</string>
+    <string name="new_note">New Note</string>>
 </resources>

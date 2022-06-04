@@ -27,7 +27,8 @@ class NoteAdapter(private val noteList: ArrayList<Note>,
         //posizione corrente della task
         val currentItem = noteList[position]
         //titolo
-        holder.textView.text = currentItem._heading
+        holder.title.text = currentItem._heading
+        holder.textNote.text = currentItem._description
 
         //selezionare una nota
         holder.itemView.setOnClickListener {
@@ -44,7 +45,8 @@ class NoteAdapter(private val noteList: ArrayList<Note>,
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         //dove verranno visualizzate in TodayFragment
-        val textView = itemView.findViewById<TextView>(R.id.noteText)
+        val title = itemView.findViewById<TextView>(R.id.titleText)
+        val textNote = itemView.findViewById<TextView>(R.id.noteText)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
