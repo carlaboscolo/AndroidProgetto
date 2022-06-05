@@ -12,7 +12,7 @@ import com.example.todogruppo.checklist.task.deleteTask.DiaryItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class DiaryAdapter(private val diaryList: ArrayList<Diary>,
-                   private val noteModel: DiaryModel,
+                   private val diaryModel: DiaryModel,
                    private val context: Context
 ) : RecyclerView.Adapter<DiaryAdapter.MyViewHolder>(),
     DiaryItemTouchHelper {
@@ -29,11 +29,11 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>,
         //data, titolo, testo
         holder.dataView.text = currentItem._data
         holder.title.text = currentItem._heading
-
+        holder.description.text = currentItem._description
 
         //selezionare una nota
         holder.itemView.setOnClickListener {
-            Log.d("noteSelezionato", currentItem.toString())
+            Log.d("Selezionato", currentItem.toString())
             mListener?.selectItem(position)
         }
 
@@ -48,6 +48,7 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>,
         //dove verranno visualizzate in DiaryFragment
         val dataView = itemView.findViewById<TextView>(R.id.data)
         val title = itemView.findViewById<TextView>(R.id.Heading)
+        val description = itemView.findViewById<TextView>(R.id.description)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -63,7 +64,7 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>,
             .setMessage("Vuoi eliminare questo elemento?")
             .setNegativeButton("No") { dialog, which -> }
             .setPositiveButton("Si") { dialog, which ->
-                noteModel.deleteDiary(diaryList[position].id)
+                diaryModel.deleteDiary(diaryList[position].id)
                 diaryList.removeAt(position)
                 notifyDataSetChanged()
             }

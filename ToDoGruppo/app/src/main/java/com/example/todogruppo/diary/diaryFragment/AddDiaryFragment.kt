@@ -1,6 +1,7 @@
 package com.example.todogruppo.diary.diaryFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,7 @@ class AddDiaryFragment : Fragment() {
     private lateinit var loadingView: ProgressBar
     private lateinit var errorSave: TextView
     private lateinit var errorSave2: TextView
+    private lateinit var errorSaveDate : TextView
     private lateinit var closeBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +53,7 @@ class AddDiaryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-       // return inflater.inflate(R.layout.fragment_add_diary, container, false)
+        // return inflater.inflate(R.layout.fragment_add_diary, container, false)
         binding = FragmentAddDiaryBinding.inflate(inflater, container, false)
         return binding.getRoot()
     }
@@ -60,7 +62,7 @@ class AddDiaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //se passo dei parametri la variabile note sarà valorizzata, altrimenti sarà nullo
-        diary = arguments?.getSerializable("note") as Diary?
+        diary = arguments?.getSerializable("diary") as Diary?
 
         //inizializza variabili
         addBtn = binding.newDiaryButton
@@ -69,6 +71,8 @@ class AddDiaryFragment : Fragment() {
         inputText = binding.newDiaryText
         loadingView = binding.loadingView
         errorSave = binding.errorSave
+        errorSave2 = binding.errorSave2
+        errorSaveDate = binding.errorSaveData
 
         //aggiungere una data alla task
         CalendarBtn = binding.addDataBtn
@@ -92,8 +96,77 @@ class AddDiaryFragment : Fragment() {
             }
         }
 
+        //salva la task inserita
+        addBtn.setOnClickListener {
+
+            loadingView.visibility = View.VISIBLE
+
+            if (inputText.text.toString().isEmpty()  && titletext.text.toString().isEmpty()) {
+                errorSave.visibility = View.VISIBLE
+                errorSave2.visibility = View.VISIBLE
+                Log.d("error", "campo vuoto")
+            } else if (inputText.text.toString().isEmpty() ) {
+                errorSave.visibility = View.GONE
+                errorSave2.visibility = View.VISIBLE
+                Log.d("error", "campo vuoto")
+            }else if (titletext.text.toString().isEmpty() ) {
+                errorSave.visibility = View.VISIBLE
+                errorSave2.visibility = View.GONE
+                Log.d("error", "campo vuoto")
+            } else {
+
+                if (selectedDate.text.toString() == "Nessuna data") {
+                    errorSaveDate.visibility = View.VISIBLE
+                    errorSave.visibility = View.GONE
+                    errorSave2.visibility = View.GONE
+                    Log.d("error", "campo data vuoto")
+                }else{
+                    if (diary == null) {
+                        //salva la nuova task
+                        diaryModel.saveNote(titletext.text.toString(), inputText.text.toString(), selectedDate.text.toString())
+                    } else {
+                        //modifica la task
+                        diaryModel.changeDiary(
+                            diary!!._id,
+                            titletext.text.toString(),
+                            inputText.text.toString(),
+                            selectedDate.text.toString()
+                        )
+                    }
+
+                    //torna indietro di un fragment
+                    parentFragmentManager.popBackStack()
+                }
+
+            }
+
+            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            DiaryFragment.istance?.showButton()
+        }
 
 
+
+        //torna indietro senza salvare
+        closeBtn = binding.closeBtn
+
+        closeBtn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            DiaryFragment.istance?.showButton()
+        }
+
+
+
+        //settare le variabili per modificarle
+        diary?.let {
+            titletext.setText(it._heading)
+            inputText.setText(it._description)
+            selectedDate.setText(it._data)
+        }
     }
 
+
 }
+
+
+

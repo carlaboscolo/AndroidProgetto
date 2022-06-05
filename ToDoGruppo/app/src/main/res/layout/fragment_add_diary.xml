@@ -8,7 +8,7 @@
     <EditText
         android:id="@+id/titleDiary"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_marginStart="3dp"
         android:hint="@string/titolo_example"
@@ -19,7 +19,7 @@
     <EditText
         android:id="@+id/newDiaryText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/titleDiary"
         android:layout_marginStart="3dp"
         android:hint="@string/scrivi_qualcosa"
@@ -54,7 +54,7 @@
             android:layout_marginEnd="1dp"
             android:layout_toStartOf="@+id/addDataBtn"
             android:layout_toEndOf="@+id/textData"
-            android:text="@string/nessuna_scadenza"
+            android:text="@string/nessuna_data"
             android:textSize="20sp" />
 
         <Button
@@ -68,7 +68,19 @@
             android:layout_marginBottom="48dp"
             android:background="@drawable/calendar_btn" />
 
-
+        <TextView
+            android:id="@+id/errorSaveData"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="228dp"
+            android:text="Compila questo campo"
+            android:textColor="@color/red"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -116,13 +128,29 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="223dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="22dp"
         android:text="Compila questo campo"
-        android:visibility="gone"
-        android:textColor="@color/red" />
+        android:textColor="@color/red"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/errorSave2"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="221dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="25dp"
+        android:text="Compila questo campo"
+        android:textColor="@color/red"
+        android:visibility="gone" />
 
 
 </RelativeLayout>
+
+
 

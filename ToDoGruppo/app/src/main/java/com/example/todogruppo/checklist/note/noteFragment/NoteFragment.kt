@@ -29,13 +29,9 @@ open class NoteFragment : Fragment() {
     private lateinit var NoteRecyclerView: RecyclerView
     private lateinit var aggiungiNote: FloatingActionButton
 
-    //TodayFragment gestirà "oggi", "in scadenza" e "nessuna scadenza"
+    //NoteFragment per gestire '+'
     companion object {
         var istance: NoteFragment? = null
-
-        const val TYPE_TODAY = 0
-        const val TYPE_DEADLINE = 1
-        const val TYPE_NO_DEADLINE = 2
     }
 
     init {
@@ -71,7 +67,7 @@ open class NoteFragment : Fragment() {
 
             val note = AddNoteFragment()
 
-            //aprire il fragment per la nuova task
+            //aprire il fragment per la nuova nota
             childFragmentManager.beginTransaction()
                 .replace(R.id.newNoteContainer, note)
                 .addToBackStack(null)
@@ -81,7 +77,7 @@ open class NoteFragment : Fragment() {
         //note model -> ottieni i dati
         noteModel.getNote()
 
-        //esegui operazioni sulla lista delle task
+        //esegui operazioni sulla lista delle note
         noteModel.noteList.observe(viewLifecycleOwner) {
             NoteRecyclerView = binding.noteRecyclerView
             NoteRecyclerView.setHasFixedSize(true)
@@ -103,7 +99,7 @@ open class NoteFragment : Fragment() {
 
                     note.arguments = bundle
 
-                    //aprire il fragment new task
+                    //aprire il fragment new note
                     childFragmentManager.beginTransaction()
                         .replace(R.id.newNoteContainer, note)
                         .addToBackStack(null)

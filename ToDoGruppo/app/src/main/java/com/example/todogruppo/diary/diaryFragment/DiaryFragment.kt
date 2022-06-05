@@ -1,14 +1,13 @@
 package com.example.todogruppo.diary.diaryFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.DiarySwipeHelperCallback
@@ -17,7 +16,7 @@ import com.example.todogruppo.diary.viewModel.DiaryAdapter
 import com.example.todogruppo.diary.viewModel.DiaryModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class DiaryFragment : Fragment() {
+open class DiaryFragment : Fragment() {
 
     //view model
     val diaryModel: DiaryModel by viewModels()
@@ -26,6 +25,15 @@ class DiaryFragment : Fragment() {
     private lateinit var binding: FragmentDiaryBinding
     private lateinit var DiaryRecyclerView: RecyclerView
     private lateinit var aggiungiDiario : FloatingActionButton
+
+    //DiaryFragment per gestire '+'
+    companion object {
+        var istance: DiaryFragment? = null
+    }
+
+    init {
+        istance = this
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,17 +54,17 @@ class DiaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //bottone che serve ad aggiungere una pagina di diario
-        aggiungiDiario = binding.includeBtn.addNewBtn
+        aggiungiDiario = binding.includeBtnDiary.addNewBtn
 
         aggiungiDiario.setOnClickListener {
             //quando viene cliccato, il bottone "+" scompare perchè non si deve vedere in "addNote"
             aggiungiDiario.visibility = View.GONE
 
-            val note = AddDiaryFragment()
+            val diary = AddDiaryFragment()
 
-            //aprire il fragment per la nuova task
+            //aprire il fragment per la nuova pagina di diario
             childFragmentManager.beginTransaction()
-                .replace(R.id.newDiaryContainer, note)
+                .replace(R.id.newDiaryContainer, diary)
                 .addToBackStack(null)
                 .commit()
         }
@@ -69,26 +77,26 @@ class DiaryFragment : Fragment() {
             DiaryRecyclerView = binding.diaryRecyclerView
             DiaryRecyclerView.setHasFixedSize(true)
 
-            val adapterNote = DiaryAdapter(it, diaryModel, view.getContext())
+            val adapterDiary = DiaryAdapter(it, diaryModel, view.getContext())
 
-            adapterNote.setOnCallback(object : DiaryAdapter.AdapterCallback {
+            adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
 
                 //cliccare per modificare
                 override fun selectItem(position: Int) {
-                    //nasconde il pulsante "+" quando apro "addNote"
+                    //nasconde il pulsante "+" quando apro "addDiary"
                     aggiungiDiario.visibility = View.GONE
 
-                    val note = AddDiaryFragment()
+                    val diary = AddDiaryFragment()
                     val bundle = Bundle()
 
                     //bundle serve per passare i parametri nei fragment
-                    bundle.putSerializable("note", it[position])
+                    bundle.putSerializable("diary", it[position])
 
-                    note.arguments = bundle
+                    diary.arguments = bundle
 
-                    //aprire il fragment new task
+                    //aprire il fragment new diary
                     childFragmentManager.beginTransaction()
-                        .replace(R.id.newDiaryContainer, note)
+                        .replace(R.id.newDiaryContainer, diary)
                         .addToBackStack(null)
                         .commit()
                 }
@@ -98,7 +106,7 @@ class DiaryFragment : Fragment() {
 
             //carica la lista delle pagine di diario
             DiaryRecyclerView.apply {
-                DiaryRecyclerView.adapter = adapterNote
+                DiaryRecyclerView.adapter = adapterDiary
 
                 DiaryRecyclerView.layoutManager = LinearLayoutManager(
                     context,
@@ -107,7 +115,7 @@ class DiaryFragment : Fragment() {
             }
 
             //eliminare una nota
-            val callback: ItemTouchHelper.Callback = DiarySwipeHelperCallback(adapterNote)
+            val callback: ItemTouchHelper.Callback = DiarySwipeHelperCallback(adapterDiary)
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(DiaryRecyclerView)
         }
@@ -119,3 +127,4 @@ class DiaryFragment : Fragment() {
     }
 
 }
+

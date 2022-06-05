@@ -15,8 +15,8 @@
         android:nestedScrollingEnabled="true" />
 
     <include
-        android:id = "@+id/includeBtn"
-        layout = "@layout/button_add" />
+        android:id="@+id/includeBtnDiary"
+        layout="@layout/button_add" />
 
     <!--  fragment -->
     <androidx.fragment.app.FragmentContainerView

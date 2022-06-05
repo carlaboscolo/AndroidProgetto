@@ -45,14 +45,14 @@ class DiaryModel : ViewModel(){
                 var diaryArray = ArrayList<Diary>()
 
                 for (document in result) {
-                    val note = Diary(
+                    val diary = Diary(
                         document.data.getValue("title").toString(),
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
                         document.id
                     )
 
-                    diaryArray.add(note)
+                    diaryArray.add(diary)
                 }
                 diaryList.value = diaryArray
 

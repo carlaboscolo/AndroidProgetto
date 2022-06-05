@@ -8,6 +8,7 @@ import com.example.fragment.HomeFragment
 import com.example.todogruppo.User.SettingsFragment
 import com.example.todogruppo.User.UserFragment
 import com.example.todogruppo.checklist.ListFragment
+import com.example.todogruppo.diary.diaryFragment.DiaryFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationBarView
 
