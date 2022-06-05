@@ -6,46 +6,91 @@
     android:background="@color/defaultBackground">
 
     <EditText
-        android:id="@+id/newNoteTitle"
+        android:id="@+id/titleDiary"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginLeft="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="3dp"
         android:hint="@string/titolo_example"
         android:textColor="@color/white"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/newNoteText"
+        android:id="@+id/newDiaryText"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_below="@+id/newNoteTitle"
-        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/titleDiary"
+        android:layout_marginStart="3dp"
         android:hint="@string/scrivi_qualcosa"
         android:textColor="@color/white"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20sp" />
 
+    <RelativeLayout
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/newDiaryText">
+
+        <TextView
+            android:id="@+id/textData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="@string/seleziona_una_data"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/selected_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="7dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_toStartOf="@+id/addDataBtn"
+            android:layout_toEndOf="@+id/textData"
+            android:text="@string/nessuna_scadenza"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/addDataBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/selected_data"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="48dp"
+            android:background="@drawable/calendar_btn" />
+
+
+
+    </RelativeLayout>
+
+
     <ProgressBar
         android:id="@+id/loadingView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newNoteText"
+        android:layout_below="@+id/calendar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="369dp"
-        android:layout_marginBottom="154dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginBottom="283dp"
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/newNoteButton"
+        android:id="@+id/newDiaryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newNoteText"
+        android:layout_below="@+id/calendar"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="2dp"
         android:background="@android:color/transparent"
         android:text="@string/salva"
         android:textAllCaps="false"
@@ -56,7 +101,7 @@
         android:id="@+id/closeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newNoteButton"
+        android:layout_below="@+id/newDiaryButton"
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:text="@string/back"
@@ -75,22 +120,8 @@
         android:layout_marginTop="26dp"
         android:layout_marginEnd="24dp"
         android:text="Compila questo campo"
-        android:textColor="@color/red"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/errorSave2"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="114dp"
-        android:layout_marginEnd="22dp"
-        android:text="Compila questo campo"
-        android:textColor="@color/red"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:textColor="@color/red" />
 
 
 </RelativeLayout>

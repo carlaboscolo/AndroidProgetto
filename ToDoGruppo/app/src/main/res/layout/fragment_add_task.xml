@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginLeft="10dp"
-        android:hint="@string/nuova_task"
+        android:hint="@string/scrivi_qualcosa"
         android:textColor="@color/white"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20sp" />

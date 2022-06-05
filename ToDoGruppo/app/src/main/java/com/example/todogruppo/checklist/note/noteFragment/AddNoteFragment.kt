@@ -34,6 +34,7 @@ class AddNoteFragment : Fragment() {
     private lateinit var addBtn: Button
     private lateinit var loadingView: ProgressBar
     private lateinit var errorSave: TextView
+    private lateinit var errorSave2: TextView
     private lateinit var closeBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,7 @@ class AddNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //se passo dei parametri la variabile task sarà valorizzata, altrimenti sarà nullo
+        //se passo dei parametri la variabile note sarà valorizzata, altrimenti sarà nullo
         note = arguments?.getSerializable("note") as Note?
 
         //inizializza variabili
@@ -63,14 +64,24 @@ class AddNoteFragment : Fragment() {
         inputText = binding.newNoteText
         loadingView = binding.loadingView
         errorSave = binding.errorSave
+        errorSave2 = binding.errorSave2
 
         //salva la task inserita
         addBtn.setOnClickListener {
 
             loadingView.visibility = View.VISIBLE
 
-            if (inputText.text.toString().isEmpty()) {
+            if (inputText.text.toString().isEmpty() && titletext.text.toString().isEmpty()) {
                 errorSave.visibility = View.VISIBLE
+                errorSave2.visibility = View.VISIBLE
+                Log.d("error", "campo vuoto")
+            } else if (inputText.text.toString().isEmpty() ) {
+                errorSave.visibility = View.GONE
+                errorSave2.visibility = View.VISIBLE
+                Log.d("error", "campo vuoto")
+            }else if (titletext.text.toString().isEmpty() ) {
+                errorSave.visibility = View.VISIBLE
+                errorSave2.visibility = View.GONE
                 Log.d("error", "campo vuoto")
             } else {
 
@@ -91,7 +102,7 @@ class AddNoteFragment : Fragment() {
             }
 
             //serve per mostrare il pulsante "+" tornando a Today Fragment
-            TodayFragment.istance?.showButton()
+            NoteFragment.istance?.showButton()
         }
 
 
@@ -101,7 +112,7 @@ class AddNoteFragment : Fragment() {
         closeBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
             //serve per mostrare il pulsante "+" tornando a Today Fragment
-            TodayFragment.istance?.showButton()
+            NoteFragment.istance?.showButton()
         }
 
 

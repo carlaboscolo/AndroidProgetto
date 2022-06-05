@@ -15,6 +15,7 @@ import com.example.todogruppo.checklist.note.viewModel.NoteModel
 import com.example.todogruppo.checklist.task.deleteTask.NoteItemTouchHelper
 import com.example.todogruppo.checklist.task.deleteTask.NoteSwipeHelperCallback
 import com.example.todogruppo.checklist.task.deleteTask.SwipeHelperCallback
+import com.example.todogruppo.checklist.task.taskFragment.TodayFragment
 import com.example.todogruppo.databinding.FragmentNoteBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -27,6 +28,20 @@ open class NoteFragment : Fragment() {
     private lateinit var binding: FragmentNoteBinding
     private lateinit var NoteRecyclerView: RecyclerView
     private lateinit var aggiungiNote: FloatingActionButton
+
+    //TodayFragment gestirà "oggi", "in scadenza" e "nessuna scadenza"
+    companion object {
+        var istance: NoteFragment? = null
+
+        const val TYPE_TODAY = 0
+        const val TYPE_DEADLINE = 1
+        const val TYPE_NO_DEADLINE = 2
+    }
+
+    init {
+        istance = this
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

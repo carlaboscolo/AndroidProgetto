@@ -1,4 +1,4 @@
-package com.example.todogruppo.checklist.note.viewModel
+package com.example.todogruppo.diary.viewModel
 
 import android.content.Context
 import android.util.Log
@@ -8,27 +8,28 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
-import com.example.todogruppo.checklist.task.deleteTask.NoteItemTouchHelper
+import com.example.todogruppo.checklist.task.deleteTask.DiaryItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class NoteAdapter(private val noteList: ArrayList<Note>,
-    private val noteModel: NoteModel,
-    private val context: Context
-) : RecyclerView.Adapter<NoteAdapter.MyViewHolder>(),
-    NoteItemTouchHelper {
+class DiaryAdapter(private val diaryList: ArrayList<Diary>,
+                   private val noteModel: DiaryModel,
+                   private val context: Context
+) : RecyclerView.Adapter<DiaryAdapter.MyViewHolder>(),
+    DiaryItemTouchHelper {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.note_layout, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.diary_layout, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //posizione corrente della task
-        val currentItem = noteList[position]
-        //titolo
+        val currentItem = diaryList[position]
+        //data, titolo, testo
+        holder.dataView.text = currentItem._data
         holder.title.text = currentItem._heading
-        holder.textNote.text = currentItem._description
+
 
         //selezionare una nota
         holder.itemView.setOnClickListener {
@@ -40,13 +41,13 @@ class NoteAdapter(private val noteList: ArrayList<Note>,
 
     override fun getItemCount(): Int {
         //ritorna la lunghezza dell'array delle task
-        return noteList.size
+        return diaryList.size
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //dove verranno visualizzate in NoteFragment
-        val title = itemView.findViewById<TextView>(R.id.titleText)
-        val textNote = itemView.findViewById<TextView>(R.id.noteText)
+        //dove verranno visualizzate in DiaryFragment
+        val dataView = itemView.findViewById<TextView>(R.id.data)
+        val title = itemView.findViewById<TextView>(R.id.Heading)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -62,8 +63,8 @@ class NoteAdapter(private val noteList: ArrayList<Note>,
             .setMessage("Vuoi eliminare questo elemento?")
             .setNegativeButton("No") { dialog, which -> }
             .setPositiveButton("Si") { dialog, which ->
-                noteModel.deleteNote(noteList[position].id)
-                noteList.removeAt(position)
+                noteModel.deleteDiary(diaryList[position].id)
+                diaryList.removeAt(position)
                 notifyDataSetChanged()
             }
             .show()
@@ -86,4 +87,5 @@ class NoteAdapter(private val noteList: ArrayList<Note>,
         this.mListener = mItemClickListener
     }
 }
+
 
