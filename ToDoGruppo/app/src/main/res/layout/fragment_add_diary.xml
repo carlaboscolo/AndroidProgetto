@@ -5,6 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/defaultBackground">
 
+    <ImageView
+        android:id="@+id/firebaseImage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/imgprova" />
+
     <EditText
         android:id="@+id/titleDiary"
         android:layout_width="match_parent"
@@ -13,6 +20,7 @@
         android:layout_marginStart="3dp"
         android:hint="@string/titolo_example"
         android:textColor="@color/white"
+        android:layout_below="@+id/firebaseImage"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20sp" />
 
@@ -98,10 +106,22 @@
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/newDiaryButton"
+        android:id="@+id/selectImageBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/calendar"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:text="@string/carica_immagine"
+        android:textAllCaps="false"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/newDiaryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectImageBtn"
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:text="@string/salva"

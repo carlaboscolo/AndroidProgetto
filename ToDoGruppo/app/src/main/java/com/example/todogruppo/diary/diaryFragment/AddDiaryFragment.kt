@@ -1,21 +1,26 @@
 package com.example.todogruppo.diary.diaryFragment
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
+import androidx.core.content.contentValuesOf
 import androidx.fragment.app.viewModels
 import com.example.todogruppo.R
 import com.example.todogruppo.databinding.FragmentAddDiaryBinding
 import com.example.todogruppo.diary.viewModel.Diary
 import com.example.todogruppo.diary.viewModel.DiaryModel
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,20 +33,28 @@ class AddDiaryFragment : Fragment() {
     //view model
     val diaryModel: DiaryModel by viewModels()
 
-    //task null -> nuovo task, altrimenti serve per la modifica
-    private var diary : Diary? = null
+    //diary null -> nuovo task, altrimenti serve per la modifica
+    private var diary: Diary? = null
 
     //varibili
     private lateinit var CalendarBtn: Button
     private lateinit var selectedDate: TextView
-    private lateinit var titletext : EditText
+    private lateinit var titletext: EditText
     private lateinit var inputText: EditText
     private lateinit var addBtn: Button
     private lateinit var loadingView: ProgressBar
     private lateinit var errorSave: TextView
     private lateinit var errorSave2: TextView
-    private lateinit var errorSaveDate : TextView
+    private lateinit var errorSaveDate: TextView
     private lateinit var closeBtn: Button
+
+    //carica immagine
+    private val PICK_IMAGE_REQUEST = 71
+    private var filePath: Uri? = null
+    private var firebaseStore: FirebaseStorage? = null
+    private var storageReference: StorageReference? = null
+    lateinit var imagePreview: ImageView
+    lateinit var btn_choose_image: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +76,17 @@ class AddDiaryFragment : Fragment() {
 
         //se passo dei parametri la variabile note sarà valorizzata, altrimenti sarà nullo
         diary = arguments?.getSerializable("diary") as Diary?
+
+        //carica immagine
+        btn_choose_image = binding.selectImageBtn
+        imagePreview = binding.firebaseImage
+        firebaseStore = FirebaseStorage.getInstance()
+        storageReference = FirebaseStorage.getInstance().reference
+
+        btn_choose_image.setOnClickListener {
+            // launchGallery()
+        }
+
 
         //inizializza variabili
         addBtn = binding.newDiaryButton
@@ -101,15 +125,15 @@ class AddDiaryFragment : Fragment() {
 
             loadingView.visibility = View.VISIBLE
 
-            if (inputText.text.toString().isEmpty()  && titletext.text.toString().isEmpty()) {
+            if (inputText.text.toString().isEmpty() && titletext.text.toString().isEmpty()) {
                 errorSave.visibility = View.VISIBLE
                 errorSave2.visibility = View.VISIBLE
                 Log.d("error", "campo vuoto")
-            } else if (inputText.text.toString().isEmpty() ) {
+            } else if (inputText.text.toString().isEmpty()) {
                 errorSave.visibility = View.GONE
                 errorSave2.visibility = View.VISIBLE
                 Log.d("error", "campo vuoto")
-            }else if (titletext.text.toString().isEmpty() ) {
+            } else if (titletext.text.toString().isEmpty()) {
                 errorSave.visibility = View.VISIBLE
                 errorSave2.visibility = View.GONE
                 Log.d("error", "campo vuoto")
@@ -120,10 +144,14 @@ class AddDiaryFragment : Fragment() {
                     errorSave.visibility = View.GONE
                     errorSave2.visibility = View.GONE
                     Log.d("error", "campo data vuoto")
-                }else{
+                } else {
                     if (diary == null) {
                         //salva la nuova task
-                        diaryModel.saveNote(titletext.text.toString(), inputText.text.toString(), selectedDate.text.toString())
+                        diaryModel.saveNote(
+                            titletext.text.toString(),
+                            inputText.text.toString(),
+                            selectedDate.text.toString()
+                        )
                     } else {
                         //modifica la task
                         diaryModel.changeDiary(
@@ -145,7 +173,6 @@ class AddDiaryFragment : Fragment() {
         }
 
 
-
         //torna indietro senza salvare
         closeBtn = binding.closeBtn
 
@@ -156,7 +183,6 @@ class AddDiaryFragment : Fragment() {
         }
 
 
-
         //settare le variabili per modificarle
         diary?.let {
             titletext.setText(it._heading)
@@ -164,9 +190,4 @@ class AddDiaryFragment : Fragment() {
             selectedDate.setText(it._data)
         }
     }
-
-
 }
-
-
-
