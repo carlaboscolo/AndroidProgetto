@@ -7,8 +7,10 @@ import androidx.lifecycle.ViewModel
 import com.example.todogruppo.checklist.task.taskFragment.TodayFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.log
 
 class ViewModel: ViewModel() {
 
@@ -59,6 +61,31 @@ class ViewModel: ViewModel() {
                     }else if(type == TodayFragment.TYPE_TODAY && task.data == calendar()){           //data di oggi
                         taskArray.add(task)
                     }else if(type == TodayFragment.TYPE_DEADLINE && task.data != "Nessuna Scadenza" && task.data != calendar()){     //con una scadenza                                              //con una scadenza
+                        val sdf = SimpleDateFormat("dd-MM-yyyy")
+                        val dateDb = sdf.parse(task.data)
+                        val today = Date()
+                        val diff = dateDb.time - today.time
+                        val days = diff / 1000 / 60 / 60 / 24
+                       // Log.d("days", task.data + " " +days.toString())
+
+                        //scaduti (-1 da oggi)
+                        if(days < 0){
+                           Log.d("days ", "scaduto da " + days.toString() + " giorni dal " + task.data)
+                        }  else if(days >= 0 && days <= 7 ){
+                            Log.d("days ", "in scadenza nella settimana, mancano " + days.toString() + " giorni al " + task.data)
+                        } else if(days > 7 ){
+                            Log.d("days ", "in scadenza oltre la settimana, mancano " + days.toString() + " giorni al " + task.data)
+                        }
+
+                        /*var dt = selectedDate  //la tua data
+                        val sdf = SimpleDateFormat("dd-MM-yyyy")
+                        23-06-2022
+                        val c = Calendar.getInstance()
+                        c.time = sdf.parse(dt.toString())
+                        c.add(Calendar.DATE, 1)
+
+                        dt = sdf.format(c)*/
+
                         taskArray.add(task)
                        /*
                         if(task.data != "Nessuna Scadenza" && task.data != calendar()){
