@@ -54,11 +54,12 @@ class ViewModel: ViewModel() {
                     )
 
                     //suddivisione delle date
-                    if(type == TodayFragment.TYPE_NO_DEADLINE && task.data == "Nessuna Scadenza"){
+                    if(type == TodayFragment.TYPE_NO_DEADLINE && task.data == "Nessuna Scadenza"){   //Nessuna scadenza
                         taskArray.add(task)
-                    }else if(type == TodayFragment.TYPE_TODAY && task.data == calendar()){
+                    }else if(type == TodayFragment.TYPE_TODAY && task.data == calendar()){           //data di oggi
                         taskArray.add(task)
-                    }else{
+                    }else if(task.data != "Nessuna Scadenza" && task.data != calendar()) {           //con una scadenza                                                                //con una scadenza
+                        taskArray.add(task)
                        /*
                         if(task.data != "Nessuna Scadenza" && task.data != calendar()){
                             taskArray.add(task)
