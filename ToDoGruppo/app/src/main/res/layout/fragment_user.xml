@@ -183,7 +183,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/saveBtn"
         android:layout_width="91dp"
         android:layout_height="39dp"
         android:layout_marginBottom="32dp"

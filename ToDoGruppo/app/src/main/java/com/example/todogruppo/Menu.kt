@@ -8,6 +8,8 @@ import com.example.fragment.HomeFragment
 import com.example.todogruppo.User.SettingsFragment
 import com.example.todogruppo.User.UserFragment
 import com.example.todogruppo.checklist.ListFragment
+import com.example.todogruppo.databinding.ActivityMainBinding
+import com.example.todogruppo.databinding.HomeBinding
 import com.example.todogruppo.diary.diaryFragment.DiaryFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationBarView
@@ -15,13 +17,17 @@ import com.google.android.material.navigation.NavigationBarView
 open class HomePage : MainActivity() {
     val name = "HOME"
 
+    private lateinit var binding : HomeBinding
+
     //variabili
     private lateinit var titleUp: MaterialToolbar
     private lateinit var bottom_navigation: NavigationBarView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
+       // setContentView(R.layout.home)
+        binding = HomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //fragment
         val homeFragment = HomeFragment()
@@ -33,8 +39,8 @@ open class HomePage : MainActivity() {
         val settings = SettingsFragment()
 
         //inizializza varibili
-        titleUp = findViewById(R.id.main_toolbar)
-        bottom_navigation = findViewById(R.id.bottom_navigation)
+        titleUp = binding.mainToolbar
+        bottom_navigation = binding.bottomNavigation
 
         //SETTARE LA HOME COME DEFAULT
 
