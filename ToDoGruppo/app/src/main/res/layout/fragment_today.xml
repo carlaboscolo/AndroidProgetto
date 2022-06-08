@@ -14,7 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:gravity="left" >
 
             <TextView
                 android:id="@+id/scaduti"
@@ -22,8 +23,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/scaduti"
                 android:textColor="@color/white"
-                android:visibility="gone"
-                />
+                android:textSize="20sp"
+                android:layout_marginStart="15dp"
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/taskRecyclerView"
@@ -39,6 +41,8 @@
                 android:text="@string/scadenza_settimana"
                 android:textColor="@color/white"
                 android:visibility="gone"
+                android:layout_marginStart="15dp"
+                android:textSize="20sp"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -55,6 +59,8 @@
                 android:text="@string/oltre_la_settimana"
                 android:textColor="@color/white"
                 android:visibility="gone"
+                android:layout_marginStart="15dp"
+                android:textSize="20sp"
                 />
 
             <androidx.recyclerview.widget.RecyclerView

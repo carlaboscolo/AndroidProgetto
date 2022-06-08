@@ -1,13 +1,17 @@
 package com.example.todogruppo.diary.diaryFragment
 
+import android.app.Activity
+import android.app.ProgressDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.todogruppo.R
 import com.example.todogruppo.databinding.FragmentAddDiaryBinding
@@ -15,7 +19,10 @@ import com.example.todogruppo.diary.viewModel.Diary
 import com.example.todogruppo.diary.viewModel.DiaryModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.OnProgressListener
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -115,8 +122,18 @@ class AddDiaryFragment : Fragment() {
             }
         }
 
+
+        //inserire l'immagine dal dispositivo
+        btn_choose_image.setOnClickListener {
+            launchGallery()
+        }
+
+
+
         //salva la task inserita
         addBtn.setOnClickListener {
+
+            uploadImage()
 
             loadingView.visibility = View.VISIBLE
 
@@ -185,6 +202,52 @@ class AddDiaryFragment : Fragment() {
     }
 
 
+    private fun launchGallery() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+            if (data == null || data.data == null) {
+                return
+            }
+            filePath = data.data
+
+          try {
+                val bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, filePath)
+                imagePreview.setImageBitmap(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    private fun uploadImage() {
+        if (filePath != null) {
+            val progressDialog = ProgressDialog(requireContext())
+            progressDialog.setTitle("Uploading...")
+            progressDialog.show()
+            val ref = storageReference!!.child("images/" + UUID.randomUUID().toString())
+            ref.putFile(filePath!!)
+                .addOnSuccessListener {
+                    progressDialog.dismiss()
+                }
+                .addOnFailureListener { e ->
+                    progressDialog.dismiss()
+
+                }
+                .addOnProgressListener { taskSnapshot ->
+                    val progress = 100.0 * taskSnapshot.bytesTransferred / taskSnapshot
+                        .totalByteCount
+                    progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
+                }
+        }
+    }
 }
 
 
