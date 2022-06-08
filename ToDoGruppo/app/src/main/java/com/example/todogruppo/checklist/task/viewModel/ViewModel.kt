@@ -58,7 +58,7 @@ class ViewModel: ViewModel() {
                         taskArray.add(task)
                     }else if(type == TodayFragment.TYPE_TODAY && task.data == calendar()){           //data di oggi
                         taskArray.add(task)
-                    }else if(task.data != "Nessuna Scadenza" && task.data != calendar()) {           //con una scadenza                                                                //con una scadenza
+                    }else if(type == TodayFragment.TYPE_DEADLINE && task.data != "Nessuna Scadenza" && task.data != calendar()){     //con una scadenza                                              //con una scadenza
                         taskArray.add(task)
                        /*
                         if(task.data != "Nessuna Scadenza" && task.data != calendar()){

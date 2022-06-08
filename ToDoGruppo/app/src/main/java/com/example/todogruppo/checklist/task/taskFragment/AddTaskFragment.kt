@@ -84,6 +84,13 @@ class AddTaskFragment : Fragment() {
                 utc.timeInMillis = it
                 val format = SimpleDateFormat("dd-MM-yyyy")
                 selectedDate.setText(format.format(utc.time))
+
+                /* var dt = selectedDate  //la tua data
+                val sdf = SimpleDateFormat("dd-MM-yyyy")
+                val c = Calendar.getInstance()
+                c.time = sdf.parse(dt)
+                c.add(Calendar.DATE, 1)
+                dt = sdf.format(c.time) */
             }
         }
 
