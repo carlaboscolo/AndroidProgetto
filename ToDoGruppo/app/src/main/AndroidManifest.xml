@@ -20,9 +20,6 @@
         </activity>
         <activity android:name=".HomePage" />
 
-        <!-- lista -->
-        <activity android:name=".ListTask" />
-
     </application>
 
 </manifest>

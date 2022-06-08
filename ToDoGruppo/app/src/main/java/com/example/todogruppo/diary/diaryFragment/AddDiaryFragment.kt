@@ -1,21 +1,21 @@
 package com.example.todogruppo.diary.diaryFragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.viewModels
 import com.example.todogruppo.R
 import com.example.todogruppo.databinding.FragmentAddDiaryBinding
 import com.example.todogruppo.diary.viewModel.Diary
 import com.example.todogruppo.diary.viewModel.DiaryModel
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -43,6 +43,15 @@ class AddDiaryFragment : Fragment() {
     private lateinit var errorSaveDate : TextView
     private lateinit var closeBtn: Button
 
+    //carica immagine
+    private val PICK_IMAGE_REQUEST = 71
+    private var filePath: Uri? = null
+    private var firebaseStore: FirebaseStorage? = null
+    private var storageReference: StorageReference? = null
+    lateinit var imagePreview: ImageView
+    lateinit var btn_choose_image: Button
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,6 +72,16 @@ class AddDiaryFragment : Fragment() {
 
         //se passo dei parametri la variabile note sarà valorizzata, altrimenti sarà nullo
         diary = arguments?.getSerializable("diary") as Diary?
+
+        //carica immagine
+        btn_choose_image = binding.selectImageBtn
+        imagePreview = binding.firebaseImage
+        firebaseStore = FirebaseStorage.getInstance()
+        storageReference = FirebaseStorage.getInstance().reference
+
+        btn_choose_image.setOnClickListener {
+            // launchGallery()
+        }
 
         //inizializza variabili
         addBtn = binding.newDiaryButton

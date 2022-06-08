@@ -1,5 +1,6 @@
 package com.example.todogruppo
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.todogruppo.databinding.ActivityMainBinding
 import com.example.todogruppo.databinding.FragmentListBinding
+
 
 
 open class MainActivity : AppCompatActivity() {
@@ -57,6 +59,8 @@ open class MainActivity : AppCompatActivity() {
         } else {
             Log.d("log", "error credential")
         } */
+
+
     }
 
 
