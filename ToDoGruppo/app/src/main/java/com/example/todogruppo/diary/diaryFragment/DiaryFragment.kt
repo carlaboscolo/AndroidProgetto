@@ -96,7 +96,7 @@ open class DiaryFragment : Fragment() {
 
                     //aprire il fragment new diary
                     childFragmentManager.beginTransaction()
-                        .add(R.id.newDiaryContainer, diary)
+                        .replace(R.id.newDiaryContainer, diary)
                         .addToBackStack(null)
                         .commit()
                 }
