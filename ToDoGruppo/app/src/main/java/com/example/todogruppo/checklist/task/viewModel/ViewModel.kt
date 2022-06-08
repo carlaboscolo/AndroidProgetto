@@ -15,6 +15,8 @@ import kotlin.math.log
 class ViewModel: ViewModel() {
 
     var taskList = MutableLiveData<ArrayList<Task>>()
+    var weekTaskList = MutableLiveData<ArrayList<Task>>()
+    var otherTaskList = MutableLiveData<ArrayList<Task>>()
 
     //funzione salva task
      fun saveTask(nomeTask : String, data: String){
@@ -47,6 +49,8 @@ class ViewModel: ViewModel() {
             .addOnSuccessListener { result ->
 
                 var taskArray = ArrayList<Task>()
+                var weekTaskArray = ArrayList<Task>()
+                var otherTaskArray = ArrayList<Task>()
 
                 for (document in result) {
                     val task = Task(
@@ -71,32 +75,28 @@ class ViewModel: ViewModel() {
                         //scaduti (-1 da oggi)
                         if(days < 0){
                            Log.d("days ", "scaduto da " + days.toString() + " giorni dal " + task.data)
-                        }  else if(days >= 0 && days <= 7 ){
-                            Log.d("days ", "in scadenza nella settimana, mancano " + days.toString() + " giorni al " + task.data)
-                        } else if(days > 7 ){
-                            Log.d("days ", "in scadenza oltre la settimana, mancano " + days.toString() + " giorni al " + task.data)
-                        }
 
-                        /*var dt = selectedDate  //la tua data
-                        val sdf = SimpleDateFormat("dd-MM-yyyy")
-                        23-06-2022
-                        val c = Calendar.getInstance()
-                        c.time = sdf.parse(dt.toString())
-                        c.add(Calendar.DATE, 1)
-
-                        dt = sdf.format(c)*/
-
-                        taskArray.add(task)
-                       /*
-                        if(task.data != "Nessuna Scadenza" && task.data != calendar()){
                             taskArray.add(task)
+                        }  else if(days >= 0 && days <= 7 ){ //scadenza nella settimana
+                            Log.d("days ", "in scadenza nella settimana, mancano " + days.toString() + " giorni al " + task.data)
+
+                            weekTaskArray.add(task)
+
+
+                        } else if(days > 7 ){ //scadenza  oltre la settimana
+                            Log.d("days ", "in scadenza oltre la settimana, mancano " + days.toString() + " giorni al " + task.data)
+
+                            otherTaskArray.add(task)
+
                         }
-                       */
+
+
                     }
 
                 }
                 taskList.value = taskArray
-
+                weekTaskList.value = weekTaskArray
+                otherTaskList.value = otherTaskArray
 
             }
             .addOnFailureListener { exception ->

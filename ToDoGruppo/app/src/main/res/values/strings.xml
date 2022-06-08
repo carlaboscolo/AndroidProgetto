@@ -71,6 +71,9 @@
     <string name="scrivi_qualcosa">Scrivi qualcosa</string>
     <string name="nessuna_data">Nessuna data</string>
     <string name="carica_immagine">Carica immagine</string>
+    <string name="oltre_la_settimana">Oltre la settimana</string>
+    <string name="scadenza_settimana">In scadenza nella settimana</string>
+    <string name="scaduti">Scaduti</string>
 
 
 </resources>

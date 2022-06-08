@@ -7,13 +7,68 @@
     android:background="@color/defaultBackground"
     >
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/taskRecyclerView"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-        android:nestedScrollingEnabled="true" />
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/scaduti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/scaduti"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/taskRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="true" />
+
+            <TextView
+                android:id="@+id/scadenzaSettimana"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/scadenza_settimana"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/weekRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="true" />
+
+            <TextView
+                android:id="@+id/oltreSettimana"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/oltre_la_settimana"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/otherWeekRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="true" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
     <include
         android:id = "@+id/includeBtn"

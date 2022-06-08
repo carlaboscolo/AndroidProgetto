@@ -12,7 +12,7 @@ import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.NoteItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
+class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
     NoteItemTouchHelper {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -23,7 +23,7 @@ class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
       //posizione corrente della task
-        val currentItem = noteList[position]
+        val currentItem = taskList[position]
         //titolo, data e se la task è "check" o no
         holder.textView.text = currentItem._heading
         holder.dataView.text = currentItem._data
@@ -38,7 +38,7 @@ class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: 
         //inserire il check nella task
         holder.checkTask.setOnClickListener {
             currentItem.check = holder.checkTask.isChecked
-            noteList.sortBy(Task::check)
+            taskList.sortBy(Task::check)
             notifyDataSetChanged()
         }
 
@@ -46,7 +46,7 @@ class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: 
 
     override fun getItemCount(): Int {
         //ritorna la lunghezza dell'array delle task
-        return noteList.size
+        return taskList.size
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -71,8 +71,8 @@ class TaskAdapter(private val noteList: ArrayList<Task>, private val viewModel: 
             .setMessage("Vuoi eliminare questo elemento?")
             .setNegativeButton("No") { dialog, which -> }
             .setPositiveButton("Si") { dialog, which ->
-                viewModel.delete(noteList[position].id)
-                noteList.removeAt(position)
+                viewModel.delete(taskList[position].id)
+                taskList.removeAt(position)
                 notifyDataSetChanged()
             }
             .show()
