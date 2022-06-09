@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/white">
 
         <androidx.cardview.widget.CardView
@@ -63,13 +63,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
+    <EditText
+        android:id="@+id/insNome"
+        android:layout_width="340dp"
+        android:layout_height="38dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/inserisci_nome"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
 
     <TextView
-        android:id="@+id/cognome"
+        android:id="@+id/cog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -78,9 +89,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/insNome" />
+
+
+    <EditText
+        android:id="@+id/insCog"
+        android:layout_width="340dp"
+        android:layout_height="38dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/inserisci_cognome"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cog" />
 
 
     <TextView
@@ -93,10 +117,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cognome"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/insCog" />
 
+    <EditText
+        android:id="@+id/insEmail"
+        android:layout_width="340dp"
+        android:layout_height="38dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/inserisci_email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/data"
@@ -108,13 +143,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:padding="10dp"
-        android:layout_marginStart="30dp"  />
+        app:layout_constraintTop_toBottomOf="@+id/insEmail" />
 
+    <EditText
+        android:id="@+id/insData"
+        android:layout_width="340dp"
+        android:layout_height="38dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/inserisci_data_nascita"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/data" />
 
     <TextView
-        android:id="@+id/telefono"
+        android:id="@+id/tell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -123,19 +169,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/data"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/insData" />
 
-    <include
-        android:id = "@+id/includeBtnEdit"
-        layout = "@layout/button_edit" />
 
-    <!--  fragment -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/userContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <EditText
+        android:id="@+id/insTel"
+        android:layout_width="340dp"
+        android:layout_height="38dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/inserisci_numero_telefono"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tell" />
+
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="91dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/Button"
+        android:text="@string/salva"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.903"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/insTel"
+        app:layout_constraintVertical_bias="0.058" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

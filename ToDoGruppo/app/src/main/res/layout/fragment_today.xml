@@ -9,66 +9,70 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="left" >
+            android:gravity="left"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/scaduti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:text="@string/scaduti"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:layout_marginStart="15dp"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/taskRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
                 android:id="@+id/scadenzaSettimana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:text="@string/scadenza_settimana"
                 android:textColor="@color/white"
-                android:visibility="gone"
-                android:layout_marginStart="15dp"
                 android:textSize="20sp"
-                />
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/weekRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
                 android:id="@+id/oltreSettimana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:text="@string/oltre_la_settimana"
                 android:textColor="@color/white"
-                android:visibility="gone"
-                android:layout_marginStart="15dp"
                 android:textSize="20sp"
-                />
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/otherWeekRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-                android:nestedScrollingEnabled="true" />
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <!-- fragment -->
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/newTaskContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -80,11 +84,7 @@
         android:id = "@+id/includeBtn"
         layout = "@layout/button_add" />
 
-    <!--  fragment -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/newTaskContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
 
 </RelativeLayout>

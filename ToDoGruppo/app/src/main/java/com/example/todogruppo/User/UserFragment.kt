@@ -6,17 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.example.fragment.HomeFragment
+import androidx.cardview.widget.CardView
 import com.example.todogruppo.R
-import com.example.todogruppo.databinding.FragmentSettingsBinding
 import com.example.todogruppo.databinding.FragmentUserBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class UserFragment : Fragment() {
 
-    private lateinit var binding : FragmentUserBinding
+    private lateinit var binding: FragmentUserBinding
 
     //variabili
-    private lateinit var saveBtn : Button
+    private lateinit var editProfile : FloatingActionButton
+    private lateinit var image : CardView
+
+    //userFragment per gestire bottone 'matita'
+    companion object {
+        var istance: UserFragment? = null
+    }
+
+    init {
+        istance = this
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +46,31 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        editProfile = binding.includeBtnEdit.editBtn
+        image = binding.image
 
-        saveBtn = binding.saveBtn
+        editProfile.setOnClickListener{
+            //quando viene cliccato, il bottone "matita" scompare perchè non si deve vedere in "editUserFragment"
+            editProfile.visibility = View.GONE
+            image.visibility =  View.GONE
 
-        saveBtn.setOnClickListener {
-            //aggiungere profilo base
+
+        val editUserFragment  = EditUserFragment()
+
+            //aprire il fragment per aggiornare i dati del profilo
+            childFragmentManager.beginTransaction()
+                .replace(R.id.userContainer, editUserFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
+
+    }
+
+    //togliere il bottone dal fragment figlio
+    fun showButton() {
+        editProfile.visibility = View.VISIBLE
+        image.visibility =  View.VISIBLE
     }
 
 

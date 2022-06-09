@@ -35,8 +35,7 @@ class SettingsFragment : Fragment() {
         logout = binding.logout
 
         logout.setOnClickListener {
-          // parentFragmentManager.popBackStack()
-          //parentFragmentManager.popBackStackImmediate()
+
         }
 
 
