@@ -10,7 +10,6 @@ import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.log
 
 class ViewModel: ViewModel() {
 
@@ -19,13 +18,14 @@ class ViewModel: ViewModel() {
     var otherTaskList = MutableLiveData<ArrayList<Task>>()
 
     //funzione salva task
-     fun saveTask(nomeTask : String, data: String){
+     fun saveTask(nomeTask : String, data: String, check : Boolean = false){
         //FIREBASE
         val db = Firebase.firestore
         // crea una nuova task con nome e data
         val task  = hashMapOf(
             "name" to nomeTask,
-            "data" to data
+            "data" to data,
+            "check" to check
         )
 
         // aggiungi un nuovo documenti
@@ -132,6 +132,21 @@ class ViewModel: ViewModel() {
           .addOnFailureListener { e -> Log.w( "Error not change document", e) }
 
     }
+
+    //funzione per cambiare i dati
+   /* fun changeCheck(id: String, check: Boolean){
+
+        val db = Firebase.firestore
+
+        // aggiorna una task con nome e data
+        db.collection("task").document(id)
+            .update(mapOf(
+                "check" to check
+            ))
+            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
+            .addOnFailureListener { e -> Log.w( "Error not change document", e) }
+    } */
+
 
     //selezionare la data di oggi
     fun calendar(): String {

@@ -85,7 +85,6 @@ class AddTaskFragment : Fragment() {
                 val format = SimpleDateFormat("dd-MM-yyyy")
                 selectedDate.setText(format.format(utc.time))
 
-
             }
         }
 

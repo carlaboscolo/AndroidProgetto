@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.NoteItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
     NoteItemTouchHelper {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
@@ -94,5 +98,7 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
     fun setOnCallback(mItemClickListener: AdapterCallback) {
         this.mListener = mItemClickListener
     }
-}
 
+
+
+}
