@@ -109,7 +109,7 @@ open class TodayFragment : Fragment() {
         }
     }
 
-    fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView){
+     fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView){
 
         recyclerView.setHasFixedSize(true)
 

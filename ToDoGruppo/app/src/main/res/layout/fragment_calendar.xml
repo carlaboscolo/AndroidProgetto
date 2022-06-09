@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:background="@color/defaultBackground">
 
-    <CalendarView
+        <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,10 +58,10 @@
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/addBtn"
+            android:id="@+id/addTaskBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/label"
             android:backgroundTint="@color/Button"
@@ -70,6 +70,16 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="13dp" />
+
+       <!-- lista tak di oggi -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskRecyclerView"
+            android:layout_below="@+id/addTaskBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -115,7 +125,13 @@
             android:textColor="@color/black"
             android:textSize="13dp" />
 
-    </RelativeLayout>
-    </RelativeLayout>
+      </RelativeLayout>
 
+        <!-- fragment -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/containerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 </ScrollView>
