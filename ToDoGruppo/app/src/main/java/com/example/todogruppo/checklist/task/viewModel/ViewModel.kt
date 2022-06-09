@@ -75,25 +75,19 @@ class ViewModel: ViewModel() {
                         //scaduti (-1 da oggi)
                         if(days < 0){
                            Log.d("days ", "scaduto da " + days.toString() + " giorni dal " + task.data)
-
                             taskArray.add(task)
                         }  else if(days >= 0 && days <= 7 ){ //scadenza nella settimana
                             Log.d("days ", "in scadenza nella settimana, mancano " + days.toString() + " giorni al " + task.data)
-
                             weekTaskArray.add(task)
-
-
                         } else if(days > 7 ){ //scadenza  oltre la settimana
                             Log.d("days ", "in scadenza oltre la settimana, mancano " + days.toString() + " giorni al " + task.data)
-
                             otherTaskArray.add(task)
-
                         }
-
 
                     }
 
                 }
+
                 taskList.value = taskArray
                 weekTaskList.value = weekTaskArray
                 otherTaskList.value = otherTaskArray
@@ -163,8 +157,6 @@ class ViewModel: ViewModel() {
         Log.d("data", data_string)
         return data_string
     }
-
-
 
 }
 

@@ -86,9 +86,6 @@ class AddDiaryFragment : Fragment() {
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
-        btn_choose_image.setOnClickListener {
-            // launchGallery()
-        }
 
         //inizializza variabili
         addBtn = binding.newDiaryButton
@@ -129,11 +126,10 @@ class AddDiaryFragment : Fragment() {
         }
 
 
-
         //salva la task inserita
         addBtn.setOnClickListener {
 
-            uploadImage()
+            val idImg = uploadImage()
 
             loadingView.visibility = View.VISIBLE
 
@@ -159,14 +155,15 @@ class AddDiaryFragment : Fragment() {
                 }else{
                     if (diary == null) {
                         //salva la nuova task
-                        diaryModel.saveNote(titletext.text.toString(), inputText.text.toString(), selectedDate.text.toString())
+                        diaryModel.saveDiary(titletext.text.toString(), inputText.text.toString(), selectedDate.text.toString() /*,  idImg */)
                     } else {
                         //modifica la task
                         diaryModel.changeDiary(
                             diary!!._id,
                             titletext.text.toString(),
                             inputText.text.toString(),
-                            selectedDate.text.toString()
+                            selectedDate.text.toString(),
+                            // idImg
                         )
                     }
 
@@ -227,12 +224,14 @@ class AddDiaryFragment : Fragment() {
     }
 
 
-    private fun uploadImage() {
+    private fun uploadImage(): String {
         if (filePath != null) {
             val progressDialog = ProgressDialog(requireContext())
             progressDialog.setTitle("Uploading...")
             progressDialog.show()
-            val ref = storageReference!!.child("images/" + UUID.randomUUID().toString())
+
+            val id =   UUID.randomUUID().toString()
+            val ref = storageReference!!.child("images/" + id)
             ref.putFile(filePath!!)
                 .addOnSuccessListener {
                     progressDialog.dismiss()
@@ -245,8 +244,11 @@ class AddDiaryFragment : Fragment() {
                     val progress = 100.0 * taskSnapshot.bytesTransferred / taskSnapshot
                         .totalByteCount
                     progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
+
                 }
         }
+
+        return id.toString()
     }
 }
 

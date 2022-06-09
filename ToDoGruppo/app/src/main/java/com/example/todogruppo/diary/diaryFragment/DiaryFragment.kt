@@ -15,6 +15,8 @@ import com.example.todogruppo.databinding.FragmentDiaryBinding
 import com.example.todogruppo.diary.viewModel.DiaryAdapter
 import com.example.todogruppo.diary.viewModel.DiaryModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 open class DiaryFragment : Fragment() {
 

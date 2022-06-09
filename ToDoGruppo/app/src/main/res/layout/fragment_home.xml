@@ -58,62 +58,63 @@
             android:textSize="13dp" />
 
 
-        <RelativeLayout
-            android:id="@+id/oggi"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/listTask"
             android:layout_below="@+id/addBtn"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/card_list">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/seg_ui_semibold"
-                android:text="@string/oggi"
-                android:textColor="@color/colorTextWhite"
-                android:textSize="15dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/scadenza"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="250dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/card_list">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical">
+
+        <!-- task oggi  -->
+        <TextView
+            android:id="@+id/oggi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/oggi"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <!-- task scadenza nella settimana -->
+        <TextView
+            android:id="@+id/scadenzaSettimana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/scadenza_settimana"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/weekRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/seg_ui_semibold"
-                android:text="@string/in_scadenza"
-                android:textColor="@color/colorTextWhite"
-                android:textSize="15dp" />
+                android:nestedScrollingEnabled="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        </RelativeLayout>
+        </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
         <TextView
             android:id="@+id/titleHome2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/scadenza"
+            android:layout_below="@+id/listTask"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/seg_ui_semibold"

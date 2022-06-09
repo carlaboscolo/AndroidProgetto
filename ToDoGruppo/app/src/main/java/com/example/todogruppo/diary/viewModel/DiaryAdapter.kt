@@ -5,17 +5,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.DiaryItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class DiaryAdapter(private val diaryList: ArrayList<Diary>,
                    private val diaryModel: DiaryModel,
                    private val context: Context
 ) : RecyclerView.Adapter<DiaryAdapter.MyViewHolder>(),
     DiaryItemTouchHelper {
+
+    //firebase storage per le foto
+   /* private var firebaseStore: FirebaseStorage? = null
+    private var storageReference: StorageReference? = null
+    */
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
@@ -30,12 +39,27 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>,
         holder.dataView.text = currentItem._data
         holder.title.text = currentItem._heading
         holder.description.text = currentItem._description
+        //currentItem._imageId
 
-        //selezionare una nota
+        //selezionare una pagina di diario
         holder.itemView.setOnClickListener {
             Log.d("Selezionato", currentItem.toString())
             mListener?.selectItem(position)
         }
+
+      /*  var imageReference = storageReference?.child("images/_imageId")
+
+        val ONE_MEGABYTE: Long = 1024 * 1024
+        if (imageReference != null) {
+            imageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                // Data for "images/island.jpg" is returned, use this as needed
+                holder.image
+            }.addOnFailureListener {
+                // Handle any errors
+            }
+        }
+
+       */
 
     }
 
@@ -49,6 +73,7 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>,
         val dataView = itemView.findViewById<TextView>(R.id.data)
         val title = itemView.findViewById<TextView>(R.id.Heading)
         val description = itemView.findViewById<TextView>(R.id.description)
+        val image = itemView.findViewById<ImageView>(R.id.title_image)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {

@@ -29,7 +29,6 @@ open class TodayFragment : Fragment() {
 
     //variabili
     private lateinit var binding: FragmentTodayBinding
-    private lateinit var TaskRecyclerView: RecyclerView
     private lateinit var aggiungiTask: FloatingActionButton
 
     //TodayFragment gestirà "oggi", "in scadenza" e "nessuna scadenza"
@@ -82,6 +81,8 @@ open class TodayFragment : Fragment() {
         viewModel.getTask(type)
 
         //esegui operazioni sulla lista delle task
+
+        //scaduti
         viewModel.taskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.taskRecyclerView)
 
@@ -90,6 +91,8 @@ open class TodayFragment : Fragment() {
                 scaduti.visibility = View.VISIBLE
             }
         }
+
+        //scadenza nella settimana
         viewModel.weekTaskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.weekRecyclerView)
 
@@ -99,6 +102,8 @@ open class TodayFragment : Fragment() {
             }
 
         }
+
+        //scadenza oltre la settimana
         viewModel.otherTaskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.otherWeekRecyclerView)
 

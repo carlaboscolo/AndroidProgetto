@@ -12,14 +12,15 @@ class DiaryModel : ViewModel(){
     var diaryList = MutableLiveData<ArrayList<Diary>>()
 
     //funzione salva note
-    fun saveNote(title: String, textDiary : String ="testo di prova", data : String){
+    fun saveDiary(title: String, textDiary : String ="testo di prova", data : String /*,  imageId  : String */){
         //FIREBASE
         val db = Firebase.firestore
         // crea una nuova  pagina di diario con titolo, testo e data
         val diary  = hashMapOf(
             "title" to title,
             "textDiary" to textDiary,
-            "data" to data
+            "data" to data,
+           // "imageId" to imageId
         )
 
         // aggiungi un nuovo documenti
@@ -50,6 +51,7 @@ class DiaryModel : ViewModel(){
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
                         document.id
+                        //, document.data.getValue("imageId").toString()
                     )
 
                     diaryArray.add(diary)
@@ -76,7 +78,7 @@ class DiaryModel : ViewModel(){
     }
 
     //funzione per cambiare i dati
-    fun changeDiary(id: String, title: String, textDiary : String ="testo di prova", data : String){
+    fun changeDiary(id: String, title: String, textDiary : String ="testo di prova", data : String,/* imageId  : String */){
 
         val db = Firebase.firestore
 
@@ -85,7 +87,8 @@ class DiaryModel : ViewModel(){
             .update(mapOf(
                 "title" to title,
                 "textDiary" to textDiary,
-                "data" to data
+                "data" to data,
+                //"imageId" to imageId
             ))
             .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
             .addOnFailureListener { e -> Log.w( "Error not change document", e) }
