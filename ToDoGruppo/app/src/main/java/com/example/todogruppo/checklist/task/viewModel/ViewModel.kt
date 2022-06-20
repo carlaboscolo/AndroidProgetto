@@ -166,7 +166,7 @@ class ViewModel: ViewModel() {
             .get()
             .addOnSuccessListener { result ->
 
-                var taskArray = ArrayList<Task>()
+                var todayArray = ArrayList<Task>()
 
                 for (document in result) {
                     val task = Task(
@@ -175,14 +175,19 @@ class ViewModel: ViewModel() {
                         document.id
                     )
 
+                    Log.d("controllo", task.data + "  " + date)
+
                     //suddivisione delle date
                     if(task.data == date) {
-                        taskArray.add(task)
+                        todayArray.add(task)
+                        Log.d("okey", todayArray.toString())
+                    }else{
+                        Log.d("error", "le date non sono uguali")
                     }
 
                 }
 
-                taskList.value = taskArray
+                taskList.value = todayArray
 
 
             }

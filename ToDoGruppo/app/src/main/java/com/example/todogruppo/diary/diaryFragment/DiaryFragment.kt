@@ -116,7 +116,7 @@ open class DiaryFragment : Fragment() {
                 )
             }
 
-            //eliminare una nota
+            //eliminare una giornata di diario
             val callback: ItemTouchHelper.Callback = DiarySwipeHelperCallback(adapterDiary)
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(DiaryRecyclerView)

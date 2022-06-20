@@ -124,6 +124,45 @@ class DiaryModel : ViewModel(){
         return data_string
     }
 
+
+
+    //funzione che carica i dati nell'applicazione in base ad una data
+    fun  getDateDiary(date : String){
+        val db = Firebase.firestore
+
+        db.collection("diary")
+            .get()
+            .addOnSuccessListener { result ->
+
+                var diaryArray = ArrayList<Diary>()
+
+                for (document in result) {
+                    val diary = Diary(
+                        document.data.getValue("title").toString(),
+                        document.data.getValue("textDiary").toString(),
+                        document.data.getValue("data").toString(),
+                        document.id
+                        //, document.data.getValue("imageId").toString()
+                    )
+
+
+                    //suddivisione delle date
+                    if(diary.data == date) {
+                        diaryArray.add(diary)
+                        Log.d("okey", diaryArray.toString())
+                    }else{
+                        Log.d("error", "le date non sono uguali")
+                    }
+
+                }
+                diaryList.value = diaryArray
+
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FirestoreExample", "Error getting documents.", exception)
+            }
+    }
+
 }
 
 

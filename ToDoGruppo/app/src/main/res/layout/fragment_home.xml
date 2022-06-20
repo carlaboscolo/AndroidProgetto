@@ -57,7 +57,6 @@
             android:textColor="@color/black"
             android:textSize="13dp" />
 
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/listTask"
             android:layout_below="@+id/addBtn"
@@ -82,7 +81,7 @@
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/taskRecyclerView"
+            android:id="@+id/todayRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="true"

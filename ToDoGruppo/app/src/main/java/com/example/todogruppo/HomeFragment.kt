@@ -1,6 +1,7 @@
 package com.example.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,8 @@ import com.example.todogruppo.checklist.task.viewModel.Task
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.databinding.FragmentHomeBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -23,10 +26,12 @@ class HomeFragment : Fragment() {
     val viewModel: ViewModel by viewModels()
 
     //setta oggi come default
-    private var type = TodayFragment.TYPE_TODAY
+    private var type = TodayFragment.TYPE_DEADLINE
 
     //variabili
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var taskToday: RecyclerView
+    private lateinit var taskWeek : RecyclerView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,56 +51,73 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        type = arguments?.getInt("type", TodayFragment.TYPE_DEADLINE) ?: TodayFragment.TYPE_DEADLINE
+        //setta oggi come default
+        val defaultDay = dateFormat()
+        Log.d("oggiHome", defaultDay)
+
+        viewModel.getDateTask(defaultDay)
+
+        //esegui operazioni sulla lista delle task
+        viewModel.taskList.observe(viewLifecycleOwner) {
+            drawList(view, it, binding.todayRecyclerView)
+
+           if (it.size > 0) {
+                taskToday = binding.todayRecyclerView
+                binding.oggi.visibility = View.VISIBLE
+           }
+        }
 
         //view model -> ottieni i dati
         viewModel.getTask(type)
-
-       /* data di oggi
-        viewModel.taskList.observe(viewLifecycleOwner) {
-            drawList(view, it, binding.taskRecyclerView)
-
-            if (it.size > 0) {
-                val todayTask = binding.oggi
-                todayTask.visibility = View.VISIBLE
-            }
-        } */
 
         //scadenza nella settimana
         viewModel.weekTaskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.weekRecyclerView)
 
             if (it.size > 0) {
-                val settimana = binding.scadenzaSettimana
-                settimana.visibility = View.VISIBLE
+                taskWeek = binding.weekRecyclerView
+                binding.scadenzaSettimana.visibility = View.VISIBLE
             }
-
         }
+
     }
 
+    fun dateFormat(): String {
+        val calendar = Calendar.getInstance()
+        val year = calendar[Calendar.YEAR]
+        val day = calendar[Calendar.DAY_OF_MONTH]
+        val month = calendar[Calendar.MONTH] + 1
 
-fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView){
+        val dayString = if (day < 10) "0$day" else "$day"
+        val monthString = if (month < 10) "0$month" else "$month"
 
-    recyclerView.setHasFixedSize(true)
+        val data_string = "$dayString-$monthString-$year"
 
-    val adapter = TaskAdapter(taskList, viewModel, view.getContext())
-
-    //carica la lista delle task
-    recyclerView.apply {
-        recyclerView.adapter = adapter
-
-        recyclerView.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.VERTICAL, false
-        )
+        Log.d("dataHome", data_string)
+        return data_string
     }
 
-    //eliminare una task
-    val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
-    var mItemTouchHelper = ItemTouchHelper(callback)
-    mItemTouchHelper?.attachToRecyclerView(recyclerView)
-}
+    fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView) {
 
+        recyclerView.setHasFixedSize(true)
+
+        val adapter = TaskAdapter(taskList, viewModel, view.getContext())
+
+        //carica la lista delle task
+        recyclerView.apply {
+            recyclerView.adapter = adapter
+
+            recyclerView.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
+        }
+
+        //eliminare una task
+        val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
+        var mItemTouchHelper = ItemTouchHelper(callback)
+        mItemTouchHelper?.attachToRecyclerView(recyclerView)
+    }
 }
 
 
