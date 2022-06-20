@@ -1,14 +1,12 @@
 package com.example.todogruppo
 
 import android.os.Bundle
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.example.fragment.CalendarFragment
+import com.example.todogruppo.calendar.CalendarFragment
 import com.example.fragment.HomeFragment
 import com.example.todogruppo.User.SettingsFragment
 import com.example.todogruppo.User.UserFragment
 import com.example.todogruppo.checklist.ListFragment
-import com.example.todogruppo.databinding.ActivityMainBinding
 import com.example.todogruppo.databinding.HomeBinding
 import com.example.todogruppo.diary.diaryFragment.DiaryFragment
 import com.google.android.material.appbar.MaterialToolbar

@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DiaryModel : ViewModel(){
 
@@ -13,6 +15,7 @@ class DiaryModel : ViewModel(){
 
     //funzione salva note
     fun saveDiary(title: String, textDiary : String ="testo di prova", data : String /*,  imageId  : String */){
+
         //FIREBASE
         val db = Firebase.firestore
         // crea una nuova  pagina di diario con titolo, testo e data
@@ -36,7 +39,7 @@ class DiaryModel : ViewModel(){
     }
 
     //funzione che carica i dati nell'applicazione
-    fun getDiary(){
+    fun getDiary(/*date : String*/){
         val db = Firebase.firestore
 
         db.collection("diary")
@@ -53,6 +56,15 @@ class DiaryModel : ViewModel(){
                         document.id
                         //, document.data.getValue("imageId").toString()
                     )
+
+                    //controllo che la data di oggi non sia già stata inserita
+                  /*  if(diary.data == date){
+                        Log.d("error", "La data di oggi è già stata inserita")
+                    }else if(date > calendar()){
+                        Log.d("error", "Non puoi inserire una data del futuro")
+                    }else{
+                        Log.d("success", "Data accettata")
+                    } */
 
                     diaryArray.add(diary)
                 }
@@ -96,6 +108,21 @@ class DiaryModel : ViewModel(){
     }
 
 
+    //selezionare la data di oggi
+    fun calendar(): String {
+        val calendar = Calendar.getInstance()
+        val year = calendar[Calendar.YEAR]
+        val day = calendar[Calendar.DAY_OF_MONTH]
+        val month = calendar[Calendar.MONTH]+1
+
+        val dayString = if(day<10) "0$day" else "$day"
+        val monthString = if(month<10) "0$month" else "$month"
+
+        val data_string = "$dayString-$monthString-$year"
+
+        Log.d("data", data_string)
+        return data_string
+    }
 
 }
 

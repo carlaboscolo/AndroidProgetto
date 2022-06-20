@@ -1,4 +1,4 @@
-package com.example.fragment
+package com.example.todogruppo.calendar
 
 import android.os.Bundle
 import android.util.Log
@@ -14,23 +14,20 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.SwipeHelperCallback
-import com.example.todogruppo.checklist.task.taskFragment.AddTaskFragment
 import com.example.todogruppo.checklist.task.taskFragment.TodayFragment
 import com.example.todogruppo.checklist.task.viewModel.Task
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.databinding.FragmentCalendarBinding
-import java.lang.String.format
-import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CalendarFragment : Fragment() {
 
     //view model
-    val viewModel: ViewModel by viewModels()
+    val viewModel : ViewModel by viewModels()
 
     private lateinit var binding: FragmentCalendarBinding
 
@@ -39,9 +36,6 @@ class CalendarFragment : Fragment() {
     private lateinit var selectedDate : TextView
     private lateinit var addTask : Button
     private lateinit var taskToday : RecyclerView
-
-    //setta oggi come default
-    private var type = TodayFragment.TYPE_TODAY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,84 +58,96 @@ class CalendarFragment : Fragment() {
         selectedDate = binding.outputDay
         day = binding.calendarView
 
-        //data di default
-        val defaultDay = viewModel.calendar()
+        //setta oggi come default
+        val defaultDay = dateFormat()
         selectedDate.setText(defaultDay)
+        Log.d("oggi", defaultDay)
+
 
         day.setOnDateChangeListener(OnDateChangeListener { view, year, month, dayOfMonth ->
             val day = dayOfMonth.toString()
             val year = year.toString()
-            val month = month.toString()
+            val month = month + 1
+            month.toString()
 
+            //inserisci uno 0 se è una data < 10 di giorno o mese
             val dayString = if(day.toInt() < 10) "0$day" else "$day"
-            val monthString = if(month.toInt() < 10) "0$month" else "$month"
+            val monthString = if(month.toInt() < 10) "0$month"  else "$month"
 
+            //formato di stampa a schermo della data
             val data_string = "$dayString/$monthString/$year"
+            Log.d("data", data_string)
 
-            //Log.d("data", data_string)
-
+            //inserisci data selezionata come titolo
             selectedDate.setText(data_string)
 
+            //formato data uguale al db
             val checkData = "$dayString-$monthString-$year"
 
-            if(checkData == defaultDay){
+           //view model -> ottieni i dati in base ad una data
+            viewModel.getDateTask(checkData)
 
-            }else{
+            //esegui operazioni sulla lista delle task
+            viewModel.taskList.observe(viewLifecycleOwner) {
+                drawList(view, it, binding.taskRecyclerView)
 
+                taskToday = binding.taskRecyclerView
+                taskToday.visibility = View.VISIBLE
             }
 
-        })
+ })
 
-        //apri il fragment task per aggiungere una nuova task
-        addTask = binding.addTaskBtn
+ //apri il fragment task per aggiungere una nuova task
+ /* addTask = binding.addTaskBtn
 
-        addTask.setOnClickListener{
-            /*   val task = AddTaskFragment()
+ addTask.setOnClickListener{
+     /*   val task = AddTaskFragment()
 
-            //aprire il fragment per la nuova task
-            childFragmentManager.beginTransaction()
-                .replace(R.id.containerFragment, task)
-                .addToBackStack(null)
-                .commit()  */
-        }
-
-        //view model -> ottieni i dati
-        viewModel.getTask(type)
-
-        //esegui operazioni sulla lista delle task
-        viewModel.taskList.observe(viewLifecycleOwner) {
-            drawList(view, it, binding.taskRecyclerView)
-
-            if(it.size > 0 && type == TodayFragment.TYPE_TODAY) {
-            //  taskToday = binding.taskRecyclerView
-            //  taskToday.visibility = View.VISIBLE
-            }
-
-        }
+     //aprire il fragment per la nuova task
+     childFragmentManager.beginTransaction()
+         .replace(R.id.containerFragment, task)
+         .addToBackStack(null)
+         .commit()  */
+ } */
 
 
+}
+
+    fun dateFormat(): String {
+        val calendar = Calendar.getInstance()
+        val year = calendar[Calendar.YEAR]
+        val day = calendar[Calendar.DAY_OF_MONTH]
+        val month = calendar[Calendar.MONTH]+1
+
+        val dayString = if(day<10) "0$day" else "$day"
+        val monthString = if(month<10) "0$month" else "$month"
+
+        val data_string = "$dayString/$monthString/$year"
+
+        Log.d("data", data_string)
+        return data_string
     }
 
-    fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView){
+ fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView){
 
-        recyclerView.setHasFixedSize(true)
+ recyclerView.setHasFixedSize(true)
 
-        val adapter = TaskAdapter(taskList, viewModel, view.getContext())
+ val adapter = TaskAdapter(taskList, viewModel, view.getContext())
 
-        //carica la lista delle task
-        recyclerView.apply {
-            recyclerView.adapter = adapter
+ //carica la lista delle task
+ recyclerView.apply {
+     recyclerView.adapter = adapter
 
-            recyclerView.layoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.VERTICAL, false
-            )
-        }
+     recyclerView.layoutManager = LinearLayoutManager(
+         context,
+         LinearLayoutManager.VERTICAL, false
+     )
+ }
 
-        //eliminare una task
-        val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
-        var mItemTouchHelper = ItemTouchHelper(callback)
-        mItemTouchHelper?.attachToRecyclerView(recyclerView)
-    }
+  //eliminare una task
+  val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
+  var mItemTouchHelper = ItemTouchHelper(callback)
+  mItemTouchHelper?.attachToRecyclerView(recyclerView)
+  }
 }
 

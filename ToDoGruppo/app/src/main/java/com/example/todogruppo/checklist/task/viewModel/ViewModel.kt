@@ -158,5 +158,39 @@ class ViewModel: ViewModel() {
         return data_string
     }
 
+    //funzione che carica i dati nell'applicazione in base ad una data
+    fun getDateTask(date : String){
+        val db = Firebase.firestore
+
+        db.collection("task")
+            .get()
+            .addOnSuccessListener { result ->
+
+                var taskArray = ArrayList<Task>()
+
+                for (document in result) {
+                    val task = Task(
+                        document.data.getValue("name").toString(),
+                        document.data.getValue("data").toString(),
+                        document.id
+                    )
+
+                    //suddivisione delle date
+                    if(task.data == date) {
+                        taskArray.add(task)
+                    }
+
+                }
+
+                taskList.value = taskArray
+
+
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FirestoreExample", "Error getting documents.", exception)
+            }
+    }
+
+
 }
 
