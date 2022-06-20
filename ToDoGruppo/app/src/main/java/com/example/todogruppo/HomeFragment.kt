@@ -5,18 +5,24 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
+import com.example.todogruppo.checklist.task.deleteTask.DiarySwipeHelperCallback
 import com.example.todogruppo.checklist.task.deleteTask.SwipeHelperCallback
+import com.example.todogruppo.checklist.task.taskFragment.AddTaskFragment
 import com.example.todogruppo.checklist.task.taskFragment.TodayFragment
 import com.example.todogruppo.checklist.task.viewModel.Task
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.databinding.FragmentHomeBinding
+import com.example.todogruppo.diary.viewModel.Diary
+import com.example.todogruppo.diary.viewModel.DiaryAdapter
+import com.example.todogruppo.diary.viewModel.DiaryModel
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -24,6 +30,7 @@ class HomeFragment : Fragment() {
 
     //view model
     val viewModel: ViewModel by viewModels()
+    val diaryModel: DiaryModel by viewModels()
 
     //setta oggi come default
     private var type = TodayFragment.TYPE_DEADLINE
@@ -32,6 +39,9 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var taskToday: RecyclerView
     private lateinit var taskWeek : RecyclerView
+    private lateinit var DiaryRecyclerView: RecyclerView
+    private lateinit var diaryDate: RecyclerView
+    private lateinit var addTask: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,10 +71,10 @@ class HomeFragment : Fragment() {
         viewModel.taskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.todayRecyclerView)
 
-           if (it.size > 0) {
+            if (it.size > 0) {
                 taskToday = binding.todayRecyclerView
                 binding.oggi.visibility = View.VISIBLE
-           }
+            }
         }
 
         //view model -> ottieni i dati
@@ -80,6 +90,39 @@ class HomeFragment : Fragment() {
             }
         }
 
+
+        //DIARIO
+        //diary model -> ottieni i dati
+        diaryModel.getDateDiary(defaultDay)
+
+        //esegui operazioni sulla lista delle task
+        diaryModel.diaryList.observe(viewLifecycleOwner) {
+            drawDiary(view, it, binding.diaryRecyclerView)
+
+            if (it.size > 0) {
+                diaryDate = binding.diaryRecyclerView
+                diaryDate.visibility = View.VISIBLE
+                binding.avvisoDiario.visibility = View.GONE
+                binding.diarioBtn.visibility = View.GONE
+            } else {
+                binding.avvisoDiario.visibility = View.VISIBLE
+                binding.diarioBtn.visibility = View.VISIBLE
+            }
+        }
+
+
+        //apri il fragment task per aggiungere una nuova task
+       /* addTask = binding.addBtn
+
+        addTask.setOnClickListener{
+            val task = AddTaskFragment()
+
+            //aprire il fragment per la nuova task
+            childFragmentManager.beginTransaction()
+                .replace(R.id.containerFragment, task)
+                .addToBackStack(null)
+                .commit()
+        } */
     }
 
     fun dateFormat(): String {
@@ -118,6 +161,52 @@ class HomeFragment : Fragment() {
         var mItemTouchHelper = ItemTouchHelper(callback)
         mItemTouchHelper?.attachToRecyclerView(recyclerView)
     }
-}
 
+
+
+fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: RecyclerView){
+
+    DiaryRecyclerView.setHasFixedSize(true)
+
+    val adapterDiary = DiaryAdapter(diaryList, diaryModel, view.getContext())
+
+/*  adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
+
+     //cliccare per modificare
+    override fun selectItem(position: Int) {
+
+         val diary = AddDiaryFragment()
+         val bundle = Bundle()
+
+         //bundle serve per passare i parametri nei fragment
+         bundle.putSerializable("diary", diaryList[position])
+
+         diary.arguments = bundle
+
+         //aprire il fragment new diary
+         childFragmentManager.beginTransaction()
+             .replace(R.id.newDiaryContainer, diary)
+             .addToBackStack(null)
+             .commit()
+     }
+
+ }) */
+
+
+    //carica la lista delle pagine di diario
+    DiaryRecyclerView.apply {
+        DiaryRecyclerView.adapter = adapterDiary
+
+        DiaryRecyclerView.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL, false
+        )
+    }
+
+    //eliminare una giornata di diario
+    val callback: ItemTouchHelper.Callback = DiarySwipeHelperCallback(adapterDiary)
+    var mItemTouchHelper = ItemTouchHelper(callback)
+    mItemTouchHelper?.attachToRecyclerView(DiaryRecyclerView)
+}
+}
 

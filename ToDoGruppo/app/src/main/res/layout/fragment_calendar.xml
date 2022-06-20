@@ -15,16 +15,16 @@
         android:background="@color/defaultBackground">
 
         <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+        <TextView
         android:id="@+id/outputDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,6 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
-
 
     <RelativeLayout
         android:id="@+id/taskToday"
@@ -82,8 +81,6 @@
             android:visibility="gone" />
 
     </RelativeLayout>
-
-
 
         <RelativeLayout
         android:id="@+id/diario"
@@ -136,8 +133,8 @@
                 android:nestedScrollingEnabled="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+        </RelativeLayout>
 
-      </RelativeLayout>
 
 
         <!-- fragment -->
@@ -146,5 +143,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        
     </RelativeLayout>
 </ScrollView>

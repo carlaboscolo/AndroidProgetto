@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.DiarySwipeHelperCallback
 import com.example.todogruppo.checklist.task.deleteTask.SwipeHelperCallback
+import com.example.todogruppo.checklist.task.taskFragment.AddTaskFragment
 import com.example.todogruppo.checklist.task.taskFragment.TodayFragment
 import com.example.todogruppo.checklist.task.viewModel.Task
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
@@ -45,6 +46,7 @@ class CalendarFragment : Fragment() {
     private lateinit var taskToday: RecyclerView
     private lateinit var DiaryRecyclerView: RecyclerView
     private lateinit var diaryDate: RecyclerView
+    private var data_string = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,24 +76,24 @@ class CalendarFragment : Fragment() {
 
         //selezionare una data nel calendario
         day.setOnDateChangeListener(OnDateChangeListener { view, year, month, dayOfMonth ->
-            val day = dayOfMonth.toString()
-            val year = year.toString()
-            val month = month + 1
-            month.toString()
+             val day = dayOfMonth.toString()
+             val year = year.toString()
+             val month = month + 1
+             month.toString()
 
-            //inserisci uno 0 se è una data < 10 di giorno o mese
-            val dayString = if (day.toInt() < 10) "0$day" else "$day"
-            val monthString = if (month.toInt() < 10) "0$month" else "$month"
+             //inserisci uno 0 se è una data < 10 di giorno o mese
+             val dayString = if (day.toInt() < 10) "0$day" else "$day"
+             val monthString = if (month.toInt() < 10) "0$month" else "$month"
 
-            //formato di stampa a schermo della data
-            val data_string = "$dayString/$monthString/$year"
-            Log.d("data", data_string)
+             //formato di stampa a schermo della data
+             data_string = "$dayString/$monthString/$year"
+             Log.d("data", data_string)
 
-            //inserisci data selezionata come titolo
-            selectedDate.setText(data_string)
+             //inserisci data selezionata come titolo
+             selectedDate.setText(data_string)
 
-            //formato data uguale al db
-            val checkData = "$dayString-$monthString-$year"
+             //formato data uguale al db
+             val checkData = "$dayString-$monthString-$year"
 
             //view model -> ottieni i dati in base ad una data
             viewModel.getDateTask(checkData)
@@ -123,18 +125,20 @@ class CalendarFragment : Fragment() {
                 }
             }
         })
+
+
             //apri il fragment task per aggiungere una nuova task
-            /* addTask = binding.addTaskBtn
+            addTask = binding.addTaskBtn
 
- addTask.setOnClickListener{
-     /*   val task = AddTaskFragment()
+           addTask.setOnClickListener{
+            val task = AddTaskFragment()
 
-     //aprire il fragment per la nuova task
-     childFragmentManager.beginTransaction()
-         .replace(R.id.containerFragment, task)
-         .addToBackStack(null)
-         .commit()  */
- } */
+             //aprire il fragment per la nuova task
+             childFragmentManager.beginTransaction()
+              .replace(R.id.containerFragment, task)
+              .addToBackStack(null)
+              .commit()
+            }
     }
 
     fun dateFormat(): String {
