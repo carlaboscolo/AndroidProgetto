@@ -20,6 +20,7 @@ import com.example.todogruppo.checklist.task.viewModel.Task
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 import com.example.todogruppo.checklist.task.viewModel.ViewModel
 import com.example.todogruppo.databinding.FragmentHomeBinding
+import com.example.todogruppo.diary.diaryFragment.AddDiaryFragment
 import com.example.todogruppo.diary.viewModel.Diary
 import com.example.todogruppo.diary.viewModel.DiaryAdapter
 import com.example.todogruppo.diary.viewModel.DiaryModel
@@ -39,10 +40,9 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var taskToday: RecyclerView
     private lateinit var taskWeek : RecyclerView
-    private lateinit var DiaryRecyclerView: RecyclerView
     private lateinit var diaryDate: RecyclerView
     private lateinit var addTask: Button
-
+    private lateinit var addDiary : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,17 +112,30 @@ class HomeFragment : Fragment() {
 
 
         //apri il fragment task per aggiungere una nuova task
-       /* addTask = binding.addBtn
+        addTask = binding.addBtn
 
         addTask.setOnClickListener{
             val task = AddTaskFragment()
 
-            //aprire il fragment per la nuova task
+            //aprire il fragment
             childFragmentManager.beginTransaction()
                 .replace(R.id.containerFragment, task)
                 .addToBackStack(null)
                 .commit()
-        } */
+        }
+
+        //apri il fragment task per aggiungere una nuova pagina di diario
+        addDiary = binding.diarioBtn
+
+        addDiary.setOnClickListener{
+            val diary = AddDiaryFragment()
+
+            //aprire il fragment
+            childFragmentManager.beginTransaction()
+                .replace(R.id.containerFragment, diary)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     fun dateFormat(): String {
@@ -145,6 +158,30 @@ class HomeFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
 
         val adapter = TaskAdapter(taskList, viewModel, view.getContext())
+
+        adapter.setOnCallback(object : TaskAdapter.AdapterCallback {
+
+            //cliccare per modificare
+            override fun selectItem(position: Int) {
+                val task = AddTaskFragment()
+                val bundle = Bundle()
+
+                //bundle serve per passare i parametri nei fragment
+                bundle.putSerializable("task", taskList[position])
+
+                task.arguments = bundle
+
+                //aprire il fragment new task
+                childFragmentManager.beginTransaction()
+                    .replace(R.id.containerFragment, task)
+                    .addToBackStack(null)
+                    .commit()
+            }
+
+            override fun check(position: Int, check: Boolean) {
+                viewModel.changeCheck(taskList.get(position).id,check)
+            }
+        })
 
         //carica la lista delle task
         recyclerView.apply {
@@ -170,28 +207,27 @@ fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: Recycl
 
     val adapterDiary = DiaryAdapter(diaryList, diaryModel, view.getContext())
 
-/*  adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
+    adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
 
-     //cliccare per modificare
-    override fun selectItem(position: Int) {
+        //cliccare per modificare
+        override fun selectItem(position: Int) {
 
-         val diary = AddDiaryFragment()
-         val bundle = Bundle()
+            val diary = AddDiaryFragment()
+            val bundle = Bundle()
 
-         //bundle serve per passare i parametri nei fragment
-         bundle.putSerializable("diary", diaryList[position])
+            //bundle serve per passare i parametri nei fragment
+            bundle.putSerializable("diary", diaryList[position])
 
-         diary.arguments = bundle
+            diary.arguments = bundle
 
-         //aprire il fragment new diary
-         childFragmentManager.beginTransaction()
-             .replace(R.id.newDiaryContainer, diary)
-             .addToBackStack(null)
-             .commit()
-     }
+            //aprire il fragment new diary
+            childFragmentManager.beginTransaction()
+                .replace(R.id.containerFragment, diary)
+                .addToBackStack(null)
+                .commit()
+        }
 
- }) */
-
+    })
 
     //carica la lista delle pagine di diario
     DiaryRecyclerView.apply {

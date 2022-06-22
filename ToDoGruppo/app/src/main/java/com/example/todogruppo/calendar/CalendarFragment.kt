@@ -45,7 +45,6 @@ class CalendarFragment : Fragment() {
     private lateinit var addTask: Button
     private lateinit var addDiary : Button
     private lateinit var taskToday: RecyclerView
-    private lateinit var DiaryRecyclerView: RecyclerView
     private lateinit var diaryDate: RecyclerView
     private var data_string = " "
 
@@ -142,7 +141,6 @@ class CalendarFragment : Fragment() {
 
         //apri il fragment task per aggiungere una nuova pagina di diario
         addDiary = binding.diarioBtn
-
 
         addDiary.setOnClickListener{
             val diary = AddDiaryFragment()
