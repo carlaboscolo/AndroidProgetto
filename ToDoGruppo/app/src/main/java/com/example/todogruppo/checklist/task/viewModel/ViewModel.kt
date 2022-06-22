@@ -16,6 +16,7 @@ class ViewModel: ViewModel() {
     var taskList = MutableLiveData<ArrayList<Task>>()
     var weekTaskList = MutableLiveData<ArrayList<Task>>()
     var otherTaskList = MutableLiveData<ArrayList<Task>>()
+    var todayList = MutableLiveData<ArrayList<Task>>()
 
     //funzione salva task
      fun saveTask(nomeTask : String, data: String, check : Boolean = false){
@@ -187,7 +188,7 @@ class ViewModel: ViewModel() {
 
                 }
 
-                taskList.value = todayArray
+                todayList.value = todayArray
 
 
             }

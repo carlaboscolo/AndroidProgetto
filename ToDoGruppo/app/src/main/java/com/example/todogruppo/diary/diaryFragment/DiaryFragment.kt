@@ -74,6 +74,13 @@ open class DiaryFragment : Fragment() {
         //diary model -> ottieni i dati
         diaryModel.getDiary()
 
+        diaryModel.duplicateDate.observe(viewLifecycleOwner){
+
+            if(it){
+
+            }
+        }
+
         //esegui operazioni sulla lista delle task
         diaryModel.diaryList.observe(viewLifecycleOwner) {
             DiaryRecyclerView = binding.diaryRecyclerView

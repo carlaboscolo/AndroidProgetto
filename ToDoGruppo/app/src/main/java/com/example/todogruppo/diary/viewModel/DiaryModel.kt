@@ -13,6 +13,7 @@ import kotlin.collections.ArrayList
 class DiaryModel : ViewModel(){
 
     var diaryList = MutableLiveData<ArrayList<Diary>>()
+    var duplicateDate = MutableLiveData<Boolean>()
 
     //funzione salva note
     fun saveDiary(title: String, textDiary : String ="testo di prova", data : String /*,  imageId  : String */){
@@ -20,38 +21,65 @@ class DiaryModel : ViewModel(){
         //FIREBASE
         val db = Firebase.firestore
 
-        var checkData =  checkData()
-        Log.d("checkData", checkData.toString())
+        db.collection("diary")
+            .get()
+            .addOnSuccessListener { result ->
 
-        //controllo che la data di oggi non sia già stata inserita
-          if(data == checkData.toString()){
-              Log.d("error", "La data di oggi è già stata inserita")
-          }else if(data > calendar()){
-              Log.d("error", "Non puoi inserire una data del futuro")
-          }else{
-              Log.d("success", "Data accettata")
-
-            // crea una nuova  pagina di diario con titolo, testo e data
-            val diary = hashMapOf(
-                "title" to title,
-                "textDiary" to textDiary,
-                "data" to data,
-                // "imageId" to imageId
-            )
-
-            // aggiungi un nuovo documenti
-            db.collection("diary")
-                .add(diary)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(
-                        ContentValues.TAG,
-                        "DocumentSnapshot added with ID: ${documentReference.id}"
+                var find = false
+                for (document in result) {
+                    val diary = Diary(
+                        document.data.getValue("title").toString(),
+                        document.data.getValue("textDiary").toString(),
+                        document.data.getValue("data").toString(),
+                        document.id
+                        //, document.data.getValue("imageId").toString()
                     )
+
+                    //val dataDb =  diary.data
+                    if(data == diary.data){
+                        find = true
+                    }
+                    //Log.d("checkData", dataDb.toString())
                 }
-                .addOnFailureListener { e ->
-                    Log.w(ContentValues.TAG, "Error adding document", e)
+
+                if(find){
+                    duplicateDate.value = true
+                }else{
+                    if(data > calendar()){
+                        Log.d("error", "Non puoi inserire una data del futuro")
+                    }else{
+                        Log.d("success", "Data accettata")
+
+                        // crea una nuova  pagina di diario con titolo, testo e data
+                        val diary = hashMapOf(
+                            "title" to title,
+                            "textDiary" to textDiary,
+                            "data" to data,
+                            // "imageId" to imageId
+                        )
+
+                        // aggiungi un nuovo documenti
+                        db.collection("diary")
+                            .add(diary)
+                            .addOnSuccessListener { documentReference ->
+                                Log.d(
+                                    ContentValues.TAG,
+                                    "DocumentSnapshot added with ID: ${documentReference.id}"
+                                )
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(ContentValues.TAG, "Error adding document", e)
+                            }
+                    }
                 }
-        }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FirestoreExample", "Error getting documents.", exception)
+            }
+
+
+
+
     }
 
     //funzione che carica i dati nell'applicazione
@@ -172,32 +200,6 @@ class DiaryModel : ViewModel(){
 
 
 
-    fun checkData(){
-        val db = Firebase.firestore
-
-        db.collection("diary")
-            .get()
-            .addOnSuccessListener { result ->
-
-                for (document in result) {
-                    val diary = Diary(
-                        document.data.getValue("title").toString(),
-                        document.data.getValue("textDiary").toString(),
-                        document.data.getValue("data").toString(),
-                        document.id
-                        //, document.data.getValue("imageId").toString()
-                    )
-
-                   val dataDb =  diary.data
-                    Log.d("checkData", dataDb.toString())
-                  }
-                }
-            .addOnFailureListener { exception ->
-                Log.w("FirestoreExample", "Error getting documents.", exception)
-            }
-
-        //return dataDb
-     }
 
 
 }

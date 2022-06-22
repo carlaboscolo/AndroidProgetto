@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
         viewModel.getDateTask(defaultDay)
 
         //esegui operazioni sulla lista delle task
-        viewModel.taskList.observe(viewLifecycleOwner) {
+        viewModel.todayList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.todayRecyclerView)
 
             if (it.size > 0) {
@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
                 taskWeek = binding.weekRecyclerView
                 binding.scadenzaSettimana.visibility = View.VISIBLE
             }
-        }
+        } 
 
 
         //DIARIO
