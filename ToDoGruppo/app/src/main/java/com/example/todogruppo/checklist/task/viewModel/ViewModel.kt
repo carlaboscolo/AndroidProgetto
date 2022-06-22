@@ -57,7 +57,8 @@ class ViewModel: ViewModel() {
                     val task = Task(
                         document.data.getValue("name").toString(),
                         document.data.getValue("data").toString(),
-                        document.id
+                        document.id,
+                        document.data.getValue("check") as Boolean
                     )
 
                     //suddivisione delle date
@@ -173,7 +174,8 @@ class ViewModel: ViewModel() {
                     val task = Task(
                         document.data.getValue("name").toString(),
                         document.data.getValue("data").toString(),
-                        document.id
+                        document.id,
+                        document.data.getValue("check") as Boolean
                     )
 
                     Log.d("controllo", task.data + "  " + date)

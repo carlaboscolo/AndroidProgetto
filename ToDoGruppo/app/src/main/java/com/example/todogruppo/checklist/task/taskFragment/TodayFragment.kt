@@ -1,6 +1,7 @@
 package com.example.todogruppo.checklist.task.taskFragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -144,6 +145,7 @@ open class TodayFragment : Fragment() {
 
             override fun check(position: Int, check : Boolean) {
                 viewModel.changeCheck(taskList.get(position).id,check)
+                Log.d("check", check.toString())
             }
 
         })
