@@ -1,6 +1,7 @@
 package com.example.todogruppo.diary.viewModel
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,28 +19,43 @@ class DiaryModel : ViewModel(){
 
         //FIREBASE
         val db = Firebase.firestore
-        // crea una nuova  pagina di diario con titolo, testo e data
-        val diary  = hashMapOf(
-            "title" to title,
-            "textDiary" to textDiary,
-            "data" to data,
-           // "imageId" to imageId
-        )
 
-        // aggiungi un nuovo documenti
-        db.collection("diary")
-            .add(diary)
-            .addOnSuccessListener { documentReference ->
-                Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(ContentValues.TAG, "Error adding document", e)
-            }
+        var checkData =  checkData()
+        Log.d("checkData", checkData.toString())
 
+        //controllo che la data di oggi non sia già stata inserita
+          if(data == checkData.toString()){
+              Log.d("error", "La data di oggi è già stata inserita")
+          }else if(data > calendar()){
+              Log.d("error", "Non puoi inserire una data del futuro")
+          }else{
+              Log.d("success", "Data accettata")
+
+            // crea una nuova  pagina di diario con titolo, testo e data
+            val diary = hashMapOf(
+                "title" to title,
+                "textDiary" to textDiary,
+                "data" to data,
+                // "imageId" to imageId
+            )
+
+            // aggiungi un nuovo documenti
+            db.collection("diary")
+                .add(diary)
+                .addOnSuccessListener { documentReference ->
+                    Log.d(
+                        ContentValues.TAG,
+                        "DocumentSnapshot added with ID: ${documentReference.id}"
+                    )
+                }
+                .addOnFailureListener { e ->
+                    Log.w(ContentValues.TAG, "Error adding document", e)
+                }
+        }
     }
 
     //funzione che carica i dati nell'applicazione
-    fun getDiary(/*date : String*/){
+    fun getDiary(/*imageId : String*/){
         val db = Firebase.firestore
 
         db.collection("diary")
@@ -56,15 +72,6 @@ class DiaryModel : ViewModel(){
                         document.id
                         //, document.data.getValue("imageId").toString()
                     )
-
-                    //controllo che la data di oggi non sia già stata inserita
-                  /*  if(diary.data == date){
-                        Log.d("error", "La data di oggi è già stata inserita")
-                    }else if(date > calendar()){
-                        Log.d("error", "Non puoi inserire una data del futuro")
-                    }else{
-                        Log.d("success", "Data accettata")
-                    } */
 
                     diaryArray.add(diary)
                 }
@@ -162,6 +169,36 @@ class DiaryModel : ViewModel(){
                 Log.w("FirestoreExample", "Error getting documents.", exception)
             }
     }
+
+
+
+    fun checkData(){
+        val db = Firebase.firestore
+
+        db.collection("diary")
+            .get()
+            .addOnSuccessListener { result ->
+
+                for (document in result) {
+                    val diary = Diary(
+                        document.data.getValue("title").toString(),
+                        document.data.getValue("textDiary").toString(),
+                        document.data.getValue("data").toString(),
+                        document.id
+                        //, document.data.getValue("imageId").toString()
+                    )
+
+                   val dataDb =  diary.data
+                    Log.d("checkData", dataDb.toString())
+                  }
+                }
+            .addOnFailureListener { exception ->
+                Log.w("FirestoreExample", "Error getting documents.", exception)
+            }
+
+        //return dataDb
+     }
+
 
 }
 
