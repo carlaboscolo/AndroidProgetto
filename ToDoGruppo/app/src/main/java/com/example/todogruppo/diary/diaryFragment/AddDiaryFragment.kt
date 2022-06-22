@@ -155,7 +155,7 @@ class AddDiaryFragment : Fragment() {
                 }else{
                     if (diary == null) {
                         //salva la nuova task
-                        diaryModel.saveDiary(titletext.text.toString(), inputText.text.toString(), selectedDate.text.toString() /*,  idImg */)
+                        diaryModel.saveDiary(titletext.text.toString(), inputText.text.toString(), selectedDate.text.toString(), idImg )
                     } else {
                         //modifica la task
                         diaryModel.changeDiary(
@@ -163,7 +163,7 @@ class AddDiaryFragment : Fragment() {
                             titletext.text.toString(),
                             inputText.text.toString(),
                             selectedDate.text.toString(),
-                            // idImg
+                            idImg
                         )
                     }
 

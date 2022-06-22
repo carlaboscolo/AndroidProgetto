@@ -142,6 +142,10 @@ open class TodayFragment : Fragment() {
                     .commit()
             }
 
+            override fun check(position: Int, check : Boolean) {
+                viewModel.changeCheck(taskList.get(position).id,check)
+            }
+
         })
 
         //carica la lista delle task

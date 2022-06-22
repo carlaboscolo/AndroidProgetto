@@ -29,7 +29,7 @@ class ViewModel: ViewModel() {
             "check" to check
         )
 
-        // aggiungi un nuovo documenti
+        //aggiungi un nuovo documenti
         db.collection("task")
             .add(task)
             .addOnSuccessListener { documentReference ->
@@ -129,7 +129,7 @@ class ViewModel: ViewModel() {
     }
 
     //funzione per cambiare i dati
-   /* fun changeCheck(id: String, check: Boolean){
+    fun changeCheck(id: String, check: Boolean){
 
         val db = Firebase.firestore
 
@@ -140,7 +140,7 @@ class ViewModel: ViewModel() {
             ))
             .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
             .addOnFailureListener { e -> Log.w( "Error not change document", e) }
-    } */
+    }
 
 
     //selezionare la data di oggi

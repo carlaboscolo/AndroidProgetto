@@ -42,6 +42,7 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
         //inserire il check nella task
         holder.checkTask.setOnClickListener {
             currentItem.check = holder.checkTask.isChecked
+            mListener?.check(position, currentItem.check)
             taskList.sortBy(Task::check)
             notifyDataSetChanged()
         }
@@ -91,6 +92,7 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
     //selezionare una task
     interface AdapterCallback {
         fun selectItem(position: Int)
+        fun check(position: Int, check : Boolean)
     }
 
     private var mListener: AdapterCallback? = null

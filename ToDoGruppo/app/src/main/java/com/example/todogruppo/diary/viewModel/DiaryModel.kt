@@ -16,7 +16,7 @@ class DiaryModel : ViewModel(){
     var duplicateDate = MutableLiveData<Boolean>()
 
     //funzione salva note
-    fun saveDiary(title: String, textDiary : String ="testo di prova", data : String /*,  imageId  : String */){
+    fun saveDiary(title: String, textDiary : String ="testo di prova", data : String,  imageId  : String){
 
         //FIREBASE
         val db = Firebase.firestore
@@ -31,8 +31,8 @@ class DiaryModel : ViewModel(){
                         document.data.getValue("title").toString(),
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
-                        document.id
-                        //, document.data.getValue("imageId").toString()
+                        document.id,
+                        try{document.data.getValue("imageId").toString()}catch (e:Exception){""}
                     )
 
                     //val dataDb =  diary.data
@@ -55,7 +55,7 @@ class DiaryModel : ViewModel(){
                             "title" to title,
                             "textDiary" to textDiary,
                             "data" to data,
-                            // "imageId" to imageId
+                            "imageId" to imageId
                         )
 
                         // aggiungi un nuovo documenti
@@ -97,8 +97,8 @@ class DiaryModel : ViewModel(){
                         document.data.getValue("title").toString(),
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
-                        document.id
-                        //, document.data.getValue("imageId").toString()
+                        document.id,
+                                try{document.data.getValue("imageId").toString()}catch (e: Exception){""}
                     )
 
                     diaryArray.add(diary)
@@ -125,7 +125,7 @@ class DiaryModel : ViewModel(){
     }
 
     //funzione per cambiare i dati
-    fun changeDiary(id: String, title: String, textDiary : String ="testo di prova", data : String,/* imageId  : String */){
+    fun changeDiary(id: String, title: String, textDiary : String ="testo di prova", data : String, imageId  : String ){
 
         val db = Firebase.firestore
 
@@ -176,8 +176,8 @@ class DiaryModel : ViewModel(){
                         document.data.getValue("title").toString(),
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
-                        document.id
-                        //, document.data.getValue("imageId").toString()
+                        document.id,
+                        try{document.data.getValue("imageId").toString()}catch (e:Exception){""}
                     )
 
 
