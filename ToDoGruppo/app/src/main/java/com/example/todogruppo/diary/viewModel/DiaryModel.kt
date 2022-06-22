@@ -35,11 +35,10 @@ class DiaryModel : ViewModel(){
                         try{document.data.getValue("imageId").toString()}catch (e:Exception){""}
                     )
 
-                    //val dataDb =  diary.data
+                   //controllo che la data inserita non sia già presente nel db
                     if(data == diary.data){
                         find = true
                     }
-                    //Log.d("checkData", dataDb.toString())
                 }
 
                 if(find){

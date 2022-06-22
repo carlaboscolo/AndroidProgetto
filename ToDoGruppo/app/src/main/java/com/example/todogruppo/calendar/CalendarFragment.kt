@@ -43,6 +43,7 @@ class CalendarFragment : Fragment() {
     private lateinit var day: CalendarView
     private lateinit var selectedDate: TextView
     private lateinit var addTask: Button
+    private lateinit var addDiary : Button
     private lateinit var taskToday: RecyclerView
     private lateinit var DiaryRecyclerView: RecyclerView
     private lateinit var diaryDate: RecyclerView
@@ -99,9 +100,8 @@ class CalendarFragment : Fragment() {
             viewModel.getDateTask(checkData)
 
             //esegui operazioni sulla lista delle task
-            viewModel.taskList.observe(viewLifecycleOwner) {
+            viewModel.todayList.observe(viewLifecycleOwner) {
                 drawList(view, it, binding.taskRecyclerView)
-
                 taskToday = binding.taskRecyclerView
                 taskToday.visibility = View.VISIBLE
             }
@@ -133,12 +133,27 @@ class CalendarFragment : Fragment() {
            addTask.setOnClickListener{
             val task = AddTaskFragment()
 
-             //aprire il fragment per la nuova task
+             //aprire il fragment
              childFragmentManager.beginTransaction()
               .replace(R.id.containerFragment, task)
               .addToBackStack(null)
               .commit()
             }
+
+        //apri il fragment task per aggiungere una nuova pagina di diario
+        addDiary = binding.diarioBtn
+
+
+        addDiary.setOnClickListener{
+            val diary = AddDiaryFragment()
+
+            //aprire il fragment
+            childFragmentManager.beginTransaction()
+                .replace(R.id.containerFragment, diary)
+                .addToBackStack(null)
+                .commit()
+        }
+
     }
 
     fun dateFormat(): String {
@@ -162,6 +177,30 @@ class CalendarFragment : Fragment() {
 
         val adapter = TaskAdapter(taskList, viewModel, view.getContext())
 
+      adapter.setOnCallback(object : TaskAdapter.AdapterCallback {
+
+            //cliccare per modificare
+            override fun selectItem(position: Int) {
+                val task = AddTaskFragment()
+                val bundle = Bundle()
+
+                //bundle serve per passare i parametri nei fragment
+                bundle.putSerializable("task", taskList[position])
+
+                task.arguments = bundle
+
+                //aprire il fragment new task
+                childFragmentManager.beginTransaction()
+                    .replace(R.id.containerFragment, task)
+                    .addToBackStack(null)
+                    .commit()
+            }
+
+            override fun check(position: Int, check: Boolean) {
+                viewModel.changeCheck(taskList.get(position).id,check)
+            }
+        })
+
         //carica la lista delle task
         recyclerView.apply {
             recyclerView.adapter = adapter
@@ -171,6 +210,7 @@ class CalendarFragment : Fragment() {
                 LinearLayoutManager.VERTICAL, false
             )
         }
+
 
         //eliminare una task
         val callback: ItemTouchHelper.Callback = SwipeHelperCallback(adapter)
@@ -185,7 +225,7 @@ fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: Recycl
 
     val adapterDiary = DiaryAdapter(diaryList, diaryModel, view.getContext())
 
-/*  adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
+    adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
 
      //cliccare per modificare
     override fun selectItem(position: Int) {
@@ -200,12 +240,12 @@ fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: Recycl
 
          //aprire il fragment new diary
          childFragmentManager.beginTransaction()
-             .replace(R.id.newDiaryContainer, diary)
+             .replace(R.id.containerFragment, diary)
              .addToBackStack(null)
              .commit()
      }
 
- }) */
+ })
 
 
  //carica la lista delle pagine di diario
