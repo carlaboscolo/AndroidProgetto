@@ -29,7 +29,7 @@ class AddNoteFragment : Fragment() {
     private var note: Note? = null
 
     //varibili
-    private lateinit var titletext : EditText
+    private lateinit var titletext: EditText
     private lateinit var inputText: EditText
     private lateinit var addBtn: Button
     private lateinit var loadingView: ProgressBar
@@ -75,11 +75,11 @@ class AddNoteFragment : Fragment() {
                 errorSave.visibility = View.VISIBLE
                 errorSave2.visibility = View.VISIBLE
                 Log.d("error", "campo vuoto")
-            } else if (inputText.text.toString().isEmpty() ) {
+            } else if (inputText.text.toString().isEmpty()) {
                 errorSave.visibility = View.GONE
                 errorSave2.visibility = View.VISIBLE
                 Log.d("error", "campo vuoto")
-            }else if (titletext.text.toString().isEmpty() ) {
+            } else if (titletext.text.toString().isEmpty()) {
                 errorSave.visibility = View.VISIBLE
                 errorSave2.visibility = View.GONE
                 Log.d("error", "campo vuoto")
@@ -114,7 +114,6 @@ class AddNoteFragment : Fragment() {
             //serve per mostrare il pulsante "+" tornando a Today Fragment
             NoteFragment.istance?.showButton()
         }
-
 
 
         //settare le variabili per modificarle

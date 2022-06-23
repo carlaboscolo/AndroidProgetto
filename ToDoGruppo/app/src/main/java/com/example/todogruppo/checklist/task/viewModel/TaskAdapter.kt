@@ -15,7 +15,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
+class TaskAdapter(
+    private val taskList: ArrayList<Task>,
+    private val viewModel: ViewModel,
+    private val context: Context
+) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
     NoteItemTouchHelper {
 
 
@@ -26,7 +30,7 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      //posizione corrente della task
+        //posizione corrente della task
         val currentItem = taskList[position]
         //titolo, data e se la task è "check" o no
         holder.textView.text = currentItem._heading
@@ -55,7 +59,7 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-       //dove verranno visualizzate in TodayFragment
+        //dove verranno visualizzate in TodayFragment
         val textView = itemView.findViewById<TextView>(R.id.task)
         val dataView = itemView.findViewById<TextView>(R.id.data)
         val checkTask = itemView.findViewById<CheckBox>(R.id.todoCheckBox)
@@ -92,7 +96,7 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
     //selezionare una task
     interface AdapterCallback {
         fun selectItem(position: Int)
-        fun check(position: Int, check : Boolean)
+        fun check(position: Int, check: Boolean)
     }
 
     private var mListener: AdapterCallback? = null
@@ -100,7 +104,6 @@ class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: 
     fun setOnCallback(mItemClickListener: AdapterCallback) {
         this.mListener = mItemClickListener
     }
-
 
 
 }

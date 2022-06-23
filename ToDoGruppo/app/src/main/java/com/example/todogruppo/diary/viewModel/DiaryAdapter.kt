@@ -14,16 +14,17 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class DiaryAdapter(private val diaryList: ArrayList<Diary>,
-                   private val diaryModel: DiaryModel,
-                   private val context: Context
+class DiaryAdapter(
+    private val diaryList: ArrayList<Diary>,
+    private val diaryModel: DiaryModel,
+    private val context: Context
 ) : RecyclerView.Adapter<DiaryAdapter.MyViewHolder>(),
     DiaryItemTouchHelper {
 
     //firebase storage per le foto
-   /* private var firebaseStore: FirebaseStorage? = null
-    private var storageReference: StorageReference? = null
-    */
+    /* private var firebaseStore: FirebaseStorage? = null
+     private var storageReference: StorageReference? = null
+     */
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -47,19 +48,19 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>,
             mListener?.selectItem(position)
         }
 
-      /*  var imageReference = storageReference?.child("images/_imageId")
+        /*  var imageReference = storageReference?.child("images/_imageId")
 
-        val ONE_MEGABYTE: Long = 1024 * 1024
-        if (imageReference != null) {
-            imageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-                // Data for "images/island.jpg" is returned, use this as needed
-                holder.image
-            }.addOnFailureListener {
-                // Handle any errors
-            }
-        }
+          val ONE_MEGABYTE: Long = 1024 * 1024
+          if (imageReference != null) {
+              imageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                  // Data for "images/island.jpg" is returned, use this as needed
+                  holder.image
+              }.addOnFailureListener {
+                  // Handle any errors
+              }
+          }
 
-       */
+         */
 
     }
 

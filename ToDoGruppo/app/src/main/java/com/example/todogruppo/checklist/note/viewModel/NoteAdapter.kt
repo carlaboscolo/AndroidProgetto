@@ -11,7 +11,8 @@ import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.NoteItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class NoteAdapter(private val noteList: ArrayList<Note>,
+class NoteAdapter(
+    private val noteList: ArrayList<Note>,
     private val noteModel: NoteModel,
     private val context: Context
 ) : RecyclerView.Adapter<NoteAdapter.MyViewHolder>(),

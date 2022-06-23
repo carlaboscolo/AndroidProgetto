@@ -15,7 +15,7 @@ import com.google.android.material.navigation.NavigationBarView
 open class HomePage : MainActivity() {
     val name = "HOME"
 
-    private lateinit var binding : HomeBinding
+    private lateinit var binding: HomeBinding
 
     //variabili
     private lateinit var titleUp: MaterialToolbar
@@ -23,7 +23,7 @@ open class HomePage : MainActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // setContentView(R.layout.home)
+        // setContentView(R.layout.home)
         binding = HomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

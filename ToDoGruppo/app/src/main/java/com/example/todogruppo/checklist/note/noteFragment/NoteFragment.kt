@@ -48,7 +48,7 @@ open class NoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-      //  return inflater.inflate(R.layout.fragment_note, container, false)
+        //  return inflater.inflate(R.layout.fragment_note, container, false)
         binding = FragmentNoteBinding.inflate(inflater, container, false)
         return binding.getRoot()
     }
@@ -119,7 +119,7 @@ open class NoteFragment : Fragment() {
             }
 
             //eliminare una nota
-          val callback: ItemTouchHelper.Callback = NoteSwipeHelperCallback(adapterNote)
+            val callback: ItemTouchHelper.Callback = NoteSwipeHelperCallback(adapterNote)
             var mItemTouchHelper = ItemTouchHelper(callback)
             mItemTouchHelper?.attachToRecyclerView(NoteRecyclerView)
         }

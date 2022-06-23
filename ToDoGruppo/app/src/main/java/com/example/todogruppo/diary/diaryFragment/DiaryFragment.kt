@@ -26,7 +26,7 @@ open class DiaryFragment : Fragment() {
     //variabili
     private lateinit var binding: FragmentDiaryBinding
     private lateinit var DiaryRecyclerView: RecyclerView
-    private lateinit var aggiungiDiario : FloatingActionButton
+    private lateinit var aggiungiDiario: FloatingActionButton
 
     //DiaryFragment per gestire '+'
     companion object {
@@ -74,9 +74,9 @@ open class DiaryFragment : Fragment() {
         //diary model -> ottieni i dati
         diaryModel.getDiary()
 
-        diaryModel.duplicateDate.observe(viewLifecycleOwner){
+        diaryModel.duplicateDate.observe(viewLifecycleOwner) {
 
-            if(it){
+            if (it) {
 
             }
         }

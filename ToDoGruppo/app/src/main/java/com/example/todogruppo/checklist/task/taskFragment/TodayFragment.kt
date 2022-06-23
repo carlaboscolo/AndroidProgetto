@@ -87,8 +87,8 @@ open class TodayFragment : Fragment() {
         viewModel.taskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.taskRecyclerView)
 
-            if(it.size > 0 && type == TYPE_DEADLINE){
-                val scaduti  = binding.scaduti
+            if (it.size > 0 && type == TYPE_DEADLINE) {
+                val scaduti = binding.scaduti
                 scaduti.visibility = View.VISIBLE
             }
         }
@@ -97,7 +97,7 @@ open class TodayFragment : Fragment() {
         viewModel.weekTaskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.weekRecyclerView)
 
-            if(it.size > 0){
+            if (it.size > 0) {
                 val settimana = binding.scadenzaSettimana
                 settimana.visibility = View.VISIBLE
             }
@@ -108,14 +108,14 @@ open class TodayFragment : Fragment() {
         viewModel.otherTaskList.observe(viewLifecycleOwner) {
             drawList(view, it, binding.otherWeekRecyclerView)
 
-            if(it.size > 0) {
+            if (it.size > 0) {
                 val oltreSettimana = binding.oltreSettimana
                 oltreSettimana.visibility = View.VISIBLE
             }
         }
     }
 
-     fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView){
+    fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView) {
 
         recyclerView.setHasFixedSize(true)
 
@@ -143,8 +143,8 @@ open class TodayFragment : Fragment() {
                     .commit()
             }
 
-            override fun check(position: Int, check : Boolean) {
-                viewModel.changeCheck(taskList.get(position).id,check)
+            override fun check(position: Int, check: Boolean) {
+                viewModel.changeCheck(taskList.get(position).id, check)
                 Log.d("check", check.toString())
             }
 
@@ -165,6 +165,7 @@ open class TodayFragment : Fragment() {
         var mItemTouchHelper = ItemTouchHelper(callback)
         mItemTouchHelper?.attachToRecyclerView(recyclerView)
     }
+
     //togliere il bottone dal fragment figlio
     fun showButton() {
         aggiungiTask.visibility = View.VISIBLE

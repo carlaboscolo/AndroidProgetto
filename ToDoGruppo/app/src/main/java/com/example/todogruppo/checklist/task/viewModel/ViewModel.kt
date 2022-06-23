@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ViewModel: ViewModel() {
+class ViewModel : ViewModel() {
 
     var taskList = MutableLiveData<ArrayList<Task>>()
     var weekTaskList = MutableLiveData<ArrayList<Task>>()
@@ -19,11 +19,11 @@ class ViewModel: ViewModel() {
     var todayList = MutableLiveData<ArrayList<Task>>()
 
     //funzione salva task
-     fun saveTask(nomeTask : String, data: String, check : Boolean = false){
+    fun saveTask(nomeTask: String, data: String, check: Boolean = false) {
         //FIREBASE
         val db = Firebase.firestore
         // crea una nuova task con nome e data
-        val task  = hashMapOf(
+        val task = hashMapOf(
             "name" to nomeTask,
             "data" to data,
             "check" to check
@@ -42,7 +42,7 @@ class ViewModel: ViewModel() {
     }
 
     //funzione che carica i dati nell'applicazione
-     fun getTask(type: Int){
+    fun getTask(type: Int) {
         val db = Firebase.firestore
 
         db.collection("task")
@@ -62,27 +62,36 @@ class ViewModel: ViewModel() {
                     )
 
                     //suddivisione delle date
-                    if(type == TodayFragment.TYPE_NO_DEADLINE && task.data == "Nessuna Scadenza"){   //Nessuna scadenza
+                    if (type == TodayFragment.TYPE_NO_DEADLINE && task.data == "Nessuna Scadenza") {   //Nessuna scadenza
                         taskArray.add(task)
-                    }else if(type == TodayFragment.TYPE_TODAY && task.data == calendar()){           //data di oggi
+                    } else if (type == TodayFragment.TYPE_TODAY && task.data == calendar()) {           //data di oggi
                         taskArray.add(task)
-                    }else if(type == TodayFragment.TYPE_DEADLINE && task.data != "Nessuna Scadenza" && task.data != calendar()){     //con una scadenza                                              //con una scadenza
+                    } else if (type == TodayFragment.TYPE_DEADLINE && task.data != "Nessuna Scadenza" && task.data != calendar()) {     //con una scadenza                                              //con una scadenza
                         val sdf = SimpleDateFormat("dd-MM-yyyy")
                         val dateDb = sdf.parse(task.data)
                         val today = Date()
                         val diff = dateDb.time - today.time
                         val days = diff / 1000 / 60 / 60 / 24
-                       // Log.d("days", task.data + " " +days.toString())
+                        // Log.d("days", task.data + " " +days.toString())
 
                         //scaduti (-1 da oggi)
-                        if(days < 0){
-                           Log.d("days ", "scaduto da " + days.toString() + " giorni dal " + task.data)
+                        if (days < 0) {
+                            Log.d(
+                                "days ",
+                                "scaduto da " + days.toString() + " giorni dal " + task.data
+                            )
                             taskArray.add(task)
-                        }  else if(days >= 0 && days <= 7 ){ //scadenza nella settimana
-                            Log.d("days ", "in scadenza nella settimana, mancano " + days.toString() + " giorni al " + task.data)
+                        } else if (days >= 0 && days <= 7) { //scadenza nella settimana
+                            Log.d(
+                                "days ",
+                                "in scadenza nella settimana, mancano " + days.toString() + " giorni al " + task.data
+                            )
                             weekTaskArray.add(task)
-                        } else if(days > 7 ){ //scadenza  oltre la settimana
-                            Log.d("days ", "in scadenza oltre la settimana, mancano " + days.toString() + " giorni al " + task.data)
+                        } else if (days > 7) { //scadenza  oltre la settimana
+                            Log.d(
+                                "days ",
+                                "in scadenza oltre la settimana, mancano " + days.toString() + " giorni al " + task.data
+                            )
                             otherTaskArray.add(task)
                         }
 
@@ -102,45 +111,49 @@ class ViewModel: ViewModel() {
 
 
     //cancella un dato con uno swipe
-    fun delete(id:String){
+    fun delete(id: String) {
 
         val db = Firebase.firestore
 
         db.collection("task").document(id)
             .delete()
-            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w( "Error deleting document", e) }
-
-    }
-
-  //funzione per cambiare i dati
-    fun change(id: String, nomeTask : String, data: String){
-
-      val db = Firebase.firestore
-
-      // aggiorna una task con nome e data
-      db.collection("task").document(id)
-          .update(mapOf(
-              "name" to nomeTask,
-              "data" to data
-          ))
-          .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
-          .addOnFailureListener { e -> Log.w( "Error not change document", e) }
+            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w("Error deleting document", e) }
 
     }
 
     //funzione per cambiare i dati
-    fun changeCheck(id: String, check: Boolean){
+    fun change(id: String, nomeTask: String, data: String) {
 
         val db = Firebase.firestore
 
         // aggiorna una task con nome e data
         db.collection("task").document(id)
-            .update(mapOf(
-                "check" to check
-            ))
-            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
-            .addOnFailureListener { e -> Log.w( "Error not change document", e) }
+            .update(
+                mapOf(
+                    "name" to nomeTask,
+                    "data" to data
+                )
+            )
+            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully changed!") }
+            .addOnFailureListener { e -> Log.w("Error not change document", e) }
+
+    }
+
+    //funzione per cambiare i dati
+    fun changeCheck(id: String, check: Boolean) {
+
+        val db = Firebase.firestore
+
+        // aggiorna una task con nome e data
+        db.collection("task").document(id)
+            .update(
+                mapOf(
+                    "check" to check
+                )
+            )
+            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully changed!") }
+            .addOnFailureListener { e -> Log.w("Error not change document", e) }
     }
 
 
@@ -149,10 +162,10 @@ class ViewModel: ViewModel() {
         val calendar = Calendar.getInstance()
         val year = calendar[Calendar.YEAR]
         val day = calendar[Calendar.DAY_OF_MONTH]
-        val month = calendar[Calendar.MONTH]+1
+        val month = calendar[Calendar.MONTH] + 1
 
-        val dayString = if(day<10) "0$day" else "$day"
-        val monthString = if(month<10) "0$month" else "$month"
+        val dayString = if (day < 10) "0$day" else "$day"
+        val monthString = if (month < 10) "0$month" else "$month"
 
         val data_string = "$dayString-$monthString-$year"
 
@@ -161,7 +174,7 @@ class ViewModel: ViewModel() {
     }
 
     //funzione che carica i dati nell'applicazione in base ad una data
-    fun getDateTask(date : String){
+    fun getDateTask(date: String) {
         val db = Firebase.firestore
 
         db.collection("task")
@@ -181,10 +194,10 @@ class ViewModel: ViewModel() {
                     Log.d("controllo", task.data + "  " + date)
 
                     //suddivisione delle date
-                    if(task.data == date) {
+                    if (task.data == date) {
                         todayArray.add(task)
                         Log.d("okey", todayArray.toString())
-                    }else{
+                    } else {
                         Log.d("error", "le date non sono uguali")
                     }
 

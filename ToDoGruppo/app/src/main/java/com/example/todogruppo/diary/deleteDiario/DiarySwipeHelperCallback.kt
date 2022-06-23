@@ -6,7 +6,7 @@ import com.example.todogruppo.checklist.note.viewModel.NoteAdapter
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 import com.example.todogruppo.diary.viewModel.DiaryAdapter
 
-class DiarySwipeHelperCallback(val adapterDiary : DiaryAdapter) : ItemTouchHelper.Callback() {
+class DiarySwipeHelperCallback(val adapterDiary: DiaryAdapter) : ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,

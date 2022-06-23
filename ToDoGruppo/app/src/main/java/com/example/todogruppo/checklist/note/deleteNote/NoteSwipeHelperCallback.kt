@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todogruppo.checklist.note.viewModel.NoteAdapter
 import com.example.todogruppo.checklist.task.viewModel.TaskAdapter
 
-class NoteSwipeHelperCallback(val adapterNote : NoteAdapter) : ItemTouchHelper.Callback() {
+class NoteSwipeHelperCallback(val adapterNote: NoteAdapter) : ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,

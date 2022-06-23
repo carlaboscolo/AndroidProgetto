@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/defaultBackground"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultBackground">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -76,8 +75,8 @@
     </androidx.core.widget.NestedScrollView>
 
     <include
-        android:id = "@+id/includeBtn"
-        layout = "@layout/button_add" />
+        android:id="@+id/includeBtn"
+        layout="@layout/button_add" />
 
     <!-- fragment -->
     <androidx.fragment.app.FragmentContainerView

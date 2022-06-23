@@ -10,13 +10,18 @@ import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DiaryModel : ViewModel(){
+class DiaryModel : ViewModel() {
 
     var diaryList = MutableLiveData<ArrayList<Diary>>()
     var duplicateDate = MutableLiveData<Boolean>()
 
     //funzione salva note
-    fun saveDiary(title: String, textDiary : String ="testo di prova", data : String,  imageId  : String){
+    fun saveDiary(
+        title: String,
+        textDiary: String = "testo di prova",
+        data: String,
+        imageId: String
+    ) {
 
         //FIREBASE
         val db = Firebase.firestore
@@ -32,21 +37,25 @@ class DiaryModel : ViewModel(){
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
                         document.id,
-                        try{document.data.getValue("imageId").toString()}catch (e:Exception){""}
+                        try {
+                            document.data.getValue("imageId").toString()
+                        } catch (e: Exception) {
+                            ""
+                        }
                     )
 
-                   //controllo che la data inserita non sia già presente nel db
-                    if(data == diary.data){
+                    //controllo che la data inserita non sia già presente nel db
+                    if (data == diary.data) {
                         find = true
                     }
                 }
 
-                if(find){
+                if (find) {
                     duplicateDate.value = true
-                }else{
-                    if(data > calendar()){
+                } else {
+                    if (data > calendar()) {
                         Log.d("error", "Non puoi inserire una data del futuro")
-                    }else{
+                    } else {
                         Log.d("success", "Data accettata")
 
                         // crea una nuova  pagina di diario con titolo, testo e data
@@ -77,12 +86,10 @@ class DiaryModel : ViewModel(){
             }
 
 
-
-
     }
 
     //funzione che carica i dati nell'applicazione
-    fun getDiary(/*imageId : String*/){
+    fun getDiary(/*imageId : String*/) {
         val db = Firebase.firestore
 
         db.collection("diary")
@@ -97,7 +104,11 @@ class DiaryModel : ViewModel(){
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
                         document.id,
-                                try{document.data.getValue("imageId").toString()}catch (e: Exception){""}
+                        try {
+                            document.data.getValue("imageId").toString()
+                        } catch (e: Exception) {
+                            ""
+                        }
                     )
 
                     diaryArray.add(diary)
@@ -112,32 +123,40 @@ class DiaryModel : ViewModel(){
 
 
     //cancella un dato con uno swipe
-    fun deleteDiary(id:String){
+    fun deleteDiary(id: String) {
 
         val db = Firebase.firestore
 
         db.collection("diary").document(id)
             .delete()
-            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w( "Error deleting document", e) }
+            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w("Error deleting document", e) }
 
     }
 
     //funzione per cambiare i dati
-    fun changeDiary(id: String, title: String, textDiary : String ="testo di prova", data : String, imageId  : String ){
+    fun changeDiary(
+        id: String,
+        title: String,
+        textDiary: String = "testo di prova",
+        data: String,
+        imageId: String
+    ) {
 
         val db = Firebase.firestore
 
         // aggiorna una task con nome e data
         db.collection("diary").document(id)
-            .update(mapOf(
-                "title" to title,
-                "textDiary" to textDiary,
-                "data" to data,
-                //"imageId" to imageId
-            ))
-            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
-            .addOnFailureListener { e -> Log.w( "Error not change document", e) }
+            .update(
+                mapOf(
+                    "title" to title,
+                    "textDiary" to textDiary,
+                    "data" to data,
+                    //"imageId" to imageId
+                )
+            )
+            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully changed!") }
+            .addOnFailureListener { e -> Log.w("Error not change document", e) }
 
     }
 
@@ -147,10 +166,10 @@ class DiaryModel : ViewModel(){
         val calendar = Calendar.getInstance()
         val year = calendar[Calendar.YEAR]
         val day = calendar[Calendar.DAY_OF_MONTH]
-        val month = calendar[Calendar.MONTH]+1
+        val month = calendar[Calendar.MONTH] + 1
 
-        val dayString = if(day<10) "0$day" else "$day"
-        val monthString = if(month<10) "0$month" else "$month"
+        val dayString = if (day < 10) "0$day" else "$day"
+        val monthString = if (month < 10) "0$month" else "$month"
 
         val data_string = "$dayString-$monthString-$year"
 
@@ -159,9 +178,8 @@ class DiaryModel : ViewModel(){
     }
 
 
-
     //funzione che carica i dati nell'applicazione in base ad una data
-    fun  getDateDiary(date : String){
+    fun getDateDiary(date: String) {
         val db = Firebase.firestore
 
         db.collection("diary")
@@ -176,15 +194,19 @@ class DiaryModel : ViewModel(){
                         document.data.getValue("textDiary").toString(),
                         document.data.getValue("data").toString(),
                         document.id,
-                        try{document.data.getValue("imageId").toString()}catch (e:Exception){""}
+                        try {
+                            document.data.getValue("imageId").toString()
+                        } catch (e: Exception) {
+                            ""
+                        }
                     )
 
 
                     //suddivisione delle date
-                    if(diary.data == date) {
+                    if (diary.data == date) {
                         diaryArray.add(diary)
                         Log.d("okey", diaryArray.toString())
-                    }else{
+                    } else {
                         Log.d("error", "le date non sono uguali")
                     }
 
@@ -196,9 +218,6 @@ class DiaryModel : ViewModel(){
                 Log.w("FirestoreExample", "Error getting documents.", exception)
             }
     }
-
-
-
 
 
 }

@@ -1,13 +1,12 @@
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <item
         android:id="@+id/checklist"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_checklist_24"
-        android:title="@string/checklist"
-        />
+        android:title="@string/checklist" />
 
     <item
         android:id="@+id/diario"
@@ -19,21 +18,19 @@
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/home"
-        />
+        android:title="@string/home" />
 
     <item
-            android:id="@+id/calendario"
-            android:enabled="true"
-            android:icon="@drawable/ic_baseline_calendar_month_24"
-            android:title="@string/calendario" />
-
-    <item
-        android:id = "@+id/focus"
+        android:id="@+id/calendario"
         android:enabled="true"
-        android:icon= "@drawable/ic_baseline_timer_24"
-        android:title="@string/focus"
-      />
+        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:title="@string/calendario" />
+
+    <item
+        android:id="@+id/focus"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_timer_24"
+        android:title="@string/focus" />
 
 
 </menu>

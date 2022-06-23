@@ -4,39 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2D2E33"
-    >
+    android:background="#2D2E33">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/image"
         android:layout_width="85dp"
         android:layout_height="85dp"
+        android:layout_marginTop="40dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="180dp"
         app:layout_constraintBottom_toTopOf="@+id/userName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginTop="40dp"
-        app:cardBackgroundColor="@color/white">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.cardview.widget.CardView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:cardCornerRadius="180dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            app:cardCornerRadius="180dp">
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/imgprova"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/imgprova" />
 
         </androidx.cardview.widget.CardView>
 
     </androidx.cardview.widget.CardView>
-
 
 
     <TextView
@@ -56,80 +54,80 @@
         android:id="@+id/nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
+        android:padding="10dp"
         android:text="@string/nome"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
 
     <TextView
         android:id="@+id/cognome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
+        android:padding="10dp"
         android:text="@string/cognome"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/nome" />
 
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
+        android:padding="10dp"
         android:text="@string/e_mail"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cognome"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/cognome" />
 
 
     <TextView
         android:id="@+id/data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
+        android:padding="10dp"
         android:text="@string/data_nascita"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:padding="10dp"
-        android:layout_marginStart="30dp"  />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
 
     <TextView
         android:id="@+id/telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
+        android:padding="10dp"
         android:text="@string/telefono"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/data"
-        android:padding="10dp"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintTop_toBottomOf="@+id/data" />
 
     <include
-        android:id = "@+id/includeBtnEdit"
-        layout = "@layout/button_edit" />
+        android:id="@+id/includeBtnEdit"
+        layout="@layout/button_edit" />
 
     <!--  fragment -->
     <androidx.fragment.app.FragmentContainerView

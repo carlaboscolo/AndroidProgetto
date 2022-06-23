@@ -88,46 +88,45 @@ class AddTaskFragment : Fragment() {
             }
         }
 
-            //salva la task inserita
-            addBtn.setOnClickListener {
+        //salva la task inserita
+        addBtn.setOnClickListener {
 
-                loadingView.visibility = View.VISIBLE
+            loadingView.visibility = View.VISIBLE
 
-                if (inputText.text.toString().isEmpty()) {
-                    errorSave.visibility = View.VISIBLE
-                    Log.d("error", "campo vuoto")
+            if (inputText.text.toString().isEmpty()) {
+                errorSave.visibility = View.VISIBLE
+                Log.d("error", "campo vuoto")
+            } else {
+
+                if (task == null) {
+                    //salva la nuova task
+                    viewModel.saveTask(inputText.text.toString(), selectedDate.text.toString())
                 } else {
-
-                    if (task == null) {
-                        //salva la nuova task
-                        viewModel.saveTask(inputText.text.toString(), selectedDate.text.toString())
-                    } else {
-                        //modifica la task
-                        viewModel.change(
-                            task!!._id,
-                            inputText.text.toString(),
-                            selectedDate.text.toString()
-                        )
-                    }
-
-                    //torna indietro di un fragment
-                    parentFragmentManager.popBackStackImmediate()
+                    //modifica la task
+                    viewModel.change(
+                        task!!._id,
+                        inputText.text.toString(),
+                        selectedDate.text.toString()
+                    )
                 }
 
-                //serve per mostrare il pulsante "+" tornando a Today Fragment
-                TodayFragment.istance?.showButton()
+                //torna indietro di un fragment
+                parentFragmentManager.popBackStackImmediate()
             }
 
+            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            TodayFragment.istance?.showButton()
+        }
 
-            //torna indietro senza salvare
-            closeBtn = binding.closeBtn
 
-            closeBtn.setOnClickListener {
-                parentFragmentManager.popBackStack()
-                //serve per mostrare il pulsante "+" tornando a Today Fragment
-                TodayFragment.istance?.showButton()
-            }
+        //torna indietro senza salvare
+        closeBtn = binding.closeBtn
 
+        closeBtn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            TodayFragment.istance?.showButton()
+        }
 
 
         //settare le variabili per modificarle

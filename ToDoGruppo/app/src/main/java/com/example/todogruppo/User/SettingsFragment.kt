@@ -10,9 +10,9 @@ import com.example.todogruppo.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
 
-    private lateinit var binding : FragmentSettingsBinding
+    private lateinit var binding: FragmentSettingsBinding
 
-    private lateinit var logout : Button
+    private lateinit var logout: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

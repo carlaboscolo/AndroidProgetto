@@ -39,10 +39,10 @@ class HomeFragment : Fragment() {
     //variabili
     private lateinit var binding: FragmentHomeBinding
     private lateinit var taskToday: RecyclerView
-    private lateinit var taskWeek : RecyclerView
+    private lateinit var taskWeek: RecyclerView
     private lateinit var diaryDate: RecyclerView
     private lateinit var addTask: Button
-    private lateinit var addDiary : Button
+    private lateinit var addDiary: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
                 taskWeek = binding.weekRecyclerView
                 binding.scadenzaSettimana.visibility = View.VISIBLE
             }
-        } 
+        }
 
 
         //DIARIO
@@ -114,7 +114,7 @@ class HomeFragment : Fragment() {
         //apri il fragment task per aggiungere una nuova task
         addTask = binding.addBtn
 
-        addTask.setOnClickListener{
+        addTask.setOnClickListener {
             val task = AddTaskFragment()
 
             //aprire il fragment
@@ -127,7 +127,7 @@ class HomeFragment : Fragment() {
         //apri il fragment task per aggiungere una nuova pagina di diario
         addDiary = binding.diarioBtn
 
-        addDiary.setOnClickListener{
+        addDiary.setOnClickListener {
             val diary = AddDiaryFragment()
 
             //aprire il fragment
@@ -179,7 +179,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun check(position: Int, check: Boolean) {
-                viewModel.changeCheck(taskList.get(position).id,check)
+                viewModel.changeCheck(taskList.get(position).id, check)
             }
         })
 
@@ -200,49 +200,48 @@ class HomeFragment : Fragment() {
     }
 
 
+    fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: RecyclerView) {
 
-fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: RecyclerView){
+        DiaryRecyclerView.setHasFixedSize(true)
 
-    DiaryRecyclerView.setHasFixedSize(true)
+        val adapterDiary = DiaryAdapter(diaryList, diaryModel, view.getContext())
 
-    val adapterDiary = DiaryAdapter(diaryList, diaryModel, view.getContext())
+        adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
 
-    adapterDiary.setOnCallback(object : DiaryAdapter.AdapterCallback {
+            //cliccare per modificare
+            override fun selectItem(position: Int) {
 
-        //cliccare per modificare
-        override fun selectItem(position: Int) {
+                val diary = AddDiaryFragment()
+                val bundle = Bundle()
 
-            val diary = AddDiaryFragment()
-            val bundle = Bundle()
+                //bundle serve per passare i parametri nei fragment
+                bundle.putSerializable("diary", diaryList[position])
 
-            //bundle serve per passare i parametri nei fragment
-            bundle.putSerializable("diary", diaryList[position])
+                diary.arguments = bundle
 
-            diary.arguments = bundle
+                //aprire il fragment new diary
+                childFragmentManager.beginTransaction()
+                    .replace(R.id.containerFragment, diary)
+                    .addToBackStack(null)
+                    .commit()
+            }
 
-            //aprire il fragment new diary
-            childFragmentManager.beginTransaction()
-                .replace(R.id.containerFragment, diary)
-                .addToBackStack(null)
-                .commit()
+        })
+
+        //carica la lista delle pagine di diario
+        DiaryRecyclerView.apply {
+            DiaryRecyclerView.adapter = adapterDiary
+
+            DiaryRecyclerView.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
         }
 
-    })
-
-    //carica la lista delle pagine di diario
-    DiaryRecyclerView.apply {
-        DiaryRecyclerView.adapter = adapterDiary
-
-        DiaryRecyclerView.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.VERTICAL, false
-        )
+        //eliminare una giornata di diario
+        val callback: ItemTouchHelper.Callback = DiarySwipeHelperCallback(adapterDiary)
+        var mItemTouchHelper = ItemTouchHelper(callback)
+        mItemTouchHelper?.attachToRecyclerView(DiaryRecyclerView)
     }
-
-    //eliminare una giornata di diario
-    val callback: ItemTouchHelper.Callback = DiarySwipeHelperCallback(adapterDiary)
-    var mItemTouchHelper = ItemTouchHelper(callback)
-    mItemTouchHelper?.attachToRecyclerView(DiaryRecyclerView)
-}
 }
 

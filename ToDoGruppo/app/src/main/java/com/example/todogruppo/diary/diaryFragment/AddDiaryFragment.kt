@@ -36,18 +36,18 @@ class AddDiaryFragment : Fragment() {
     val diaryModel: DiaryModel by viewModels()
 
     //task null -> nuovo task, altrimenti serve per la modifica
-    private var diary : Diary? = null
+    private var diary: Diary? = null
 
     //varibili
     private lateinit var CalendarBtn: Button
     private lateinit var selectedDate: TextView
-    private lateinit var titletext : EditText
+    private lateinit var titletext: EditText
     private lateinit var inputText: EditText
     private lateinit var addBtn: Button
     private lateinit var loadingView: ProgressBar
     private lateinit var errorSave: TextView
     private lateinit var errorSave2: TextView
-    private lateinit var errorSaveDate : TextView
+    private lateinit var errorSaveDate: TextView
     private lateinit var closeBtn: Button
 
     //carica immagine
@@ -133,15 +133,15 @@ class AddDiaryFragment : Fragment() {
 
             loadingView.visibility = View.VISIBLE
 
-            if (inputText.text.toString().isEmpty()  && titletext.text.toString().isEmpty()) {
+            if (inputText.text.toString().isEmpty() && titletext.text.toString().isEmpty()) {
                 errorSave.visibility = View.VISIBLE
                 errorSave2.visibility = View.VISIBLE
                 Log.d("error", "campo vuoto")
-            } else if (inputText.text.toString().isEmpty() ) {
+            } else if (inputText.text.toString().isEmpty()) {
                 errorSave.visibility = View.GONE
                 errorSave2.visibility = View.VISIBLE
                 Log.d("error", "campo vuoto")
-            }else if (titletext.text.toString().isEmpty() ) {
+            } else if (titletext.text.toString().isEmpty()) {
                 errorSave.visibility = View.VISIBLE
                 errorSave2.visibility = View.GONE
                 Log.d("error", "campo vuoto")
@@ -152,10 +152,15 @@ class AddDiaryFragment : Fragment() {
                     errorSave.visibility = View.GONE
                     errorSave2.visibility = View.GONE
                     Log.d("error", "campo data vuoto")
-                }else{
+                } else {
                     if (diary == null) {
                         //salva la nuova task
-                        diaryModel.saveDiary(titletext.text.toString(), inputText.text.toString(), selectedDate.text.toString(), idImg )
+                        diaryModel.saveDiary(
+                            titletext.text.toString(),
+                            inputText.text.toString(),
+                            selectedDate.text.toString(),
+                            idImg
+                        )
                     } else {
                         //modifica la task
                         diaryModel.changeDiary(
@@ -178,7 +183,6 @@ class AddDiaryFragment : Fragment() {
         }
 
 
-
         //torna indietro senza salvare
         closeBtn = binding.closeBtn
 
@@ -187,7 +191,6 @@ class AddDiaryFragment : Fragment() {
             //serve per mostrare il pulsante "+" tornando a Today Fragment
             DiaryFragment.istance?.showButton()
         }
-
 
 
         //settare le variabili per modificarle
@@ -214,8 +217,9 @@ class AddDiaryFragment : Fragment() {
             }
             filePath = data.data
 
-          try {
-                val bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, filePath)
+            try {
+                val bitmap =
+                    MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, filePath)
                 imagePreview.setImageBitmap(bitmap)
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -230,7 +234,7 @@ class AddDiaryFragment : Fragment() {
             progressDialog.setTitle("Uploading...")
             progressDialog.show()
 
-            val id =   UUID.randomUUID().toString()
+            val id = UUID.randomUUID().toString()
             val ref = storageReference!!.child("images/" + id)
             ref.putFile(filePath!!)
                 .addOnSuccessListener {

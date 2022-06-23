@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/defaultBackground"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultBackground">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/diaryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-        android:nestedScrollingEnabled="true" />
+        android:nestedScrollingEnabled="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <include
         android:id="@+id/includeBtnDiary"

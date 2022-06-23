@@ -1,185 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp"
-    android:fillViewport="true"
     android:background="@color/defaultBackground"
-    >
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/defaultBackground">
-
-        <TextView
-            android:id="@+id/titleHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/seg_ui_semibold"
-            android:text="@string/da_fare"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/titleHome"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/seg_ui_semibold"
-            android:text="@string/vuoi_aggiungere_una_task"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
-
-        <Button
-            android:id="@+id/addBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/titleHome"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/label"
-            android:backgroundTint="@color/Button"
-            android:fontFamily="@font/seg_ui_semibold"
-            android:text="@string/aggiungi"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="13dp" />
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/listTask"
-            android:layout_below="@+id/addBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="vertical">
-
-        <!-- task oggi  -->
-        <TextView
-            android:id="@+id/oggi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="@string/oggi"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:visibility="gone" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/todayRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="true"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        <!-- task scadenza nella settimana -->
-        <TextView
-            android:id="@+id/scadenzaSettimana"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="@string/scadenza_settimana"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:visibility="gone" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/weekRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-        <TextView
-            android:id="@+id/titleHome2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/listTask"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/seg_ui_semibold"
-            android:text="@string/diario"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
         <RelativeLayout
-            android:id="@+id/diario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/titleHome2"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/card_list">
+            android:layout_height="match_parent"
+            android:background="@color/defaultBackground">
 
             <TextView
-                android:id="@+id/avvisoDiario"
+                android:id="@+id/titleHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="2dp"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="@string/oggi_non_hai_scritto_ancora_nulla"
-                android:textColor="@color/colorTextWhite"
-                android:textSize="15dp"
-                android:visibility="gone"
-                />
+                android:text="@string/da_fare"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleHome"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/seg_ui_semibold"
+                android:text="@string/vuoi_aggiungere_una_task"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
 
             <Button
-                android:id="@+id/diarioBtn"
+                android:id="@+id/addBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/avvisoDiario"
-                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/titleHome"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp"
+                android:layout_toEndOf="@+id/label"
                 android:backgroundTint="@color/Button"
                 android:fontFamily="@font/seg_ui_semibold"
-                android:text="@string/aggiungi_la_tua_giornata"
+                android:text="@string/aggiungi"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="13dp"
-                android:visibility="gone" />
+                android:textSize="13dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/diaryRecyclerView"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/listTask"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/addBtn">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="vertical">
+
+                    <!-- task oggi  -->
+                    <TextView
+                        android:id="@+id/oggi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/oggi"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:visibility="gone" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/todayRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="true"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    <!-- task scadenza nella settimana -->
+                    <TextView
+                        android:id="@+id/scadenzaSettimana"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/scadenza_settimana"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:visibility="gone" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/weekRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="true"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <TextView
+                android:id="@+id/titleHome2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/listTask"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/seg_ui_semibold"
+                android:text="@string/diario"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/diario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="true"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:layout_below="@+id/titleHome2"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_list">
+
+                <TextView
+                    android:id="@+id/avvisoDiario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/seg_ui_semibold"
+                    android:text="@string/oggi_non_hai_scritto_ancora_nulla"
+                    android:textColor="@color/colorTextWhite"
+                    android:textSize="15dp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/diarioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/avvisoDiario"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:backgroundTint="@color/Button"
+                    android:fontFamily="@font/seg_ui_semibold"
+                    android:text="@string/aggiungi_la_tua_giornata"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/diaryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="true"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
-
-
-    </RelativeLayout>
     </ScrollView>
 
     <!-- fragment -->

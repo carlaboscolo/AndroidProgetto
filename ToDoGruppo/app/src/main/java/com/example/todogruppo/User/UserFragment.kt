@@ -16,8 +16,8 @@ class UserFragment : Fragment() {
     private lateinit var binding: FragmentUserBinding
 
     //variabili
-    private lateinit var editProfile : FloatingActionButton
-    private lateinit var image : CardView
+    private lateinit var editProfile: FloatingActionButton
+    private lateinit var image: CardView
 
     //userFragment per gestire bottone 'matita'
     companion object {
@@ -49,13 +49,13 @@ class UserFragment : Fragment() {
         editProfile = binding.includeBtnEdit.editBtn
         image = binding.image
 
-        editProfile.setOnClickListener{
+        editProfile.setOnClickListener {
             //quando viene cliccato, il bottone "matita" scompare perchè non si deve vedere in "editUserFragment"
             editProfile.visibility = View.GONE
-            image.visibility =  View.GONE
+            image.visibility = View.GONE
 
 
-        val editUserFragment  = EditUserFragment()
+            val editUserFragment = EditUserFragment()
 
             //aprire il fragment per aggiornare i dati del profilo
             childFragmentManager.beginTransaction()
@@ -70,7 +70,7 @@ class UserFragment : Fragment() {
     //togliere il bottone dal fragment figlio
     fun showButton() {
         editProfile.visibility = View.VISIBLE
-        image.visibility =  View.VISIBLE
+        image.visibility = View.VISIBLE
     }
 
 

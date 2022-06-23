@@ -15,7 +15,7 @@ class EditUserFragment : Fragment() {
     private lateinit var binding: FragmentEditUserBinding
 
     //variabili
-    private lateinit var saveBtn : Button
+    private lateinit var saveBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

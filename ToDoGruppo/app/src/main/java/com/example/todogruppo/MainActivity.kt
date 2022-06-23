@@ -11,7 +11,6 @@ import com.example.todogruppo.databinding.ActivityMainBinding
 import com.example.todogruppo.databinding.FragmentListBinding
 
 
-
 open class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

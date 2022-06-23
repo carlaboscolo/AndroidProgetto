@@ -8,16 +8,16 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.collections.ArrayList
 
-class NoteModel: ViewModel() {
+class NoteModel : ViewModel() {
 
     var noteList = MutableLiveData<ArrayList<Note>>()
 
     //funzione salva note
-    fun saveNote(title: String, textNote : String){
+    fun saveNote(title: String, textNote: String) {
         //FIREBASE
         val db = Firebase.firestore
         // crea una nuova task con nome e data
-        val note  = hashMapOf(
+        val note = hashMapOf(
             "title" to title,
             "textNote" to textNote
         )
@@ -35,7 +35,7 @@ class NoteModel: ViewModel() {
     }
 
     //funzione che carica i dati nell'applicazione
-    fun getNote(){
+    fun getNote() {
         val db = Firebase.firestore
 
         db.collection("note")
@@ -63,33 +63,34 @@ class NoteModel: ViewModel() {
 
 
     //cancella un dato con uno swipe
-    fun deleteNote(id:String){
+    fun deleteNote(id: String) {
 
         val db = Firebase.firestore
 
         db.collection("note").document(id)
             .delete()
-            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w( "Error deleting document", e) }
+            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w("Error deleting document", e) }
 
     }
 
     //funzione per cambiare i dati
-    fun changeNote(id: String, title: String, textNote : String){
+    fun changeNote(id: String, title: String, textNote: String) {
 
         val db = Firebase.firestore
 
         // aggiorna una task con nome e data
         db.collection("note").document(id)
-            .update(mapOf(
-                "title" to title,
-                "textNote" to textNote
-            ))
-            .addOnSuccessListener { Log.d( "success","DocumentSnapshot successfully changed!") }
-            .addOnFailureListener { e -> Log.w( "Error not change document", e) }
+            .update(
+                mapOf(
+                    "title" to title,
+                    "textNote" to textNote
+                )
+            )
+            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully changed!") }
+            .addOnFailureListener { e -> Log.w("Error not change document", e) }
 
     }
-
 
 
 }
