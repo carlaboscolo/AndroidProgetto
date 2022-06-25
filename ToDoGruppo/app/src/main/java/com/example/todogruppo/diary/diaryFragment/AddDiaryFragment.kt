@@ -97,6 +97,7 @@ class AddDiaryFragment : Fragment() {
         errorSave2 = binding.errorSave2
         errorSaveDate = binding.errorSaveData
 
+
         //aggiungere una data alla task
         CalendarBtn = binding.addDataBtn
         selectedDate = view.findViewById(R.id.selected_data)
@@ -153,6 +154,7 @@ class AddDiaryFragment : Fragment() {
                     errorSave2.visibility = View.GONE
                     Log.d("error", "campo data vuoto")
                 } else {
+
                     if (diary == null) {
                         //salva la nuova task
                         diaryModel.saveDiary(
@@ -234,7 +236,7 @@ class AddDiaryFragment : Fragment() {
             progressDialog.setTitle("Uploading...")
             progressDialog.show()
 
-            val id = UUID.randomUUID().toString()
+            val id = UUID.randomUUID()
             val ref = storageReference!!.child("images/" + id)
             ref.putFile(filePath!!)
                 .addOnSuccessListener {

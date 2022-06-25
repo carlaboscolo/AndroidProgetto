@@ -14,6 +14,7 @@ class DiaryModel : ViewModel() {
 
     var diaryList = MutableLiveData<ArrayList<Diary>>()
     var duplicateDate = MutableLiveData<Boolean>()
+    var futureDate = MutableLiveData<Boolean>()
 
     //funzione salva note
     fun saveDiary(
@@ -52,8 +53,10 @@ class DiaryModel : ViewModel() {
 
                 if (find) {
                     duplicateDate.value = true
+                    Log.d("error", "Data gia' presente nel db")
                 } else {
                     if (data > calendar()) {
+                        futureDate.value = true
                         Log.d("error", "Non puoi inserire una data del futuro")
                     } else {
                         Log.d("success", "Data accettata")

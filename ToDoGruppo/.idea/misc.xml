@@ -30,12 +30,12 @@
         <entry key="app/src/main/res/layout/diary_detail.xml" value="0.28284622413524685" />
         <entry key="app/src/main/res/layout/diary_layout.xml" value="0.2195845697329377" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_add_diary.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_diary.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_add_note.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.2034313725490196" />
         <entry key="app/src/main/res/layout/fragment_deadline.xml" value="0.18659420289855072" />
-        <entry key="app/src/main/res/layout/fragment_diary.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_diary.xml" value="0.14919586181640626" />
         <entry key="app/src/main/res/layout/fragment_diary2.xml" value="0.19927536231884058" />
         <entry key="app/src/main/res/layout/fragment_diary_frag.xml" value="0.11018518518518519" />
         <entry key="app/src/main/res/layout/fragment_edit_user.xml" value="0.14388489208633093" />

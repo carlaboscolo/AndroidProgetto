@@ -74,6 +74,8 @@
     <string name="oltre_la_settimana">Oltre la settimana</string>
     <string name="scadenza_settimana">In scadenza nella settimana</string>
     <string name="scaduti">Scaduti</string>
+    <string name="data_gia_presente">Questa data è gia\' presente nel db</string>
+    <string name="data_del_futuro">Non puoi inserire una data del futuro</string>
 
 
 </resources>

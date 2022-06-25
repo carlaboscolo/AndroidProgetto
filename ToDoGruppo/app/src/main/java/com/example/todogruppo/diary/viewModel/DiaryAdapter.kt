@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.todogruppo.R
 import com.example.todogruppo.checklist.task.deleteTask.DiaryItemTouchHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 
 class DiaryAdapter(
     private val diaryList: ArrayList<Diary>,
@@ -40,27 +43,57 @@ class DiaryAdapter(
         holder.dataView.text = currentItem._data
         holder.title.text = currentItem._heading
         holder.description.text = currentItem._description
-        //currentItem._imageId
+        //holder.image = currentItem._imageId
+
+
+
+     /*   val storage = FirebaseStorage.getInstance()
+       // Create a reference to a file from a Google Cloud Storage URI
+        val gsReference = storage.getReferenceFromUrl("gs://todogruppo.appspot.com/images/f8677525-22a4-45ac-be83-76cfb2e9a505")
+
+        Glide.with(context)
+            .load(gsReference)
+            .centerCrop()
+            .into(holder.image)
+
+*/
+
+        val storageReference = Firebase.storage
+        storageReference.getReferenceFromUrl("gs://todogruppo.appspot.com/images/f8677525-22a4-45ac-be83-76cfb2e9a505")
+        Glide.with(context)
+            .load(storageReference)
+            .centerCrop()
+            .into(holder.image)
+
+
+      /*
+       // Create a child reference
+       // imagesRef now points to "images"
+        var imagesRef: StorageReference? = storageRef.child("images")
+
+       // Child references can also take paths
+       // spaceRef now points to "images/space.jpg
+       // imagesRef still points to "images"
+        var spaceRef = storageRef.child("images/space.jpg")
+
+        // Reference to an image file in Cloud Storage
+        val storageReference = Firebase.storage.reference
+
+        // ImageView in your Activity
+         //val imageView = holder.findViewById<ImageView>(R.id.imageView)
+
+     // Download directly from StorageReference using Glide
+     // (See MyAppGlideModule for Loader registration)
+        Glide.with(this /* context */)
+                .load(storageReference)
+                .into(holder.image)
+*/
 
         //selezionare una pagina di diario
         holder.itemView.setOnClickListener {
             Log.d("Selezionato", currentItem.toString())
             mListener?.selectItem(position)
         }
-
-        /*  var imageReference = storageReference?.child("images/_imageId")
-
-          val ONE_MEGABYTE: Long = 1024 * 1024
-          if (imageReference != null) {
-              imageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-                  // Data for "images/island.jpg" is returned, use this as needed
-                  holder.image
-              }.addOnFailureListener {
-                  // Handle any errors
-              }
-          }
-
-         */
 
     }
 

@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/imgprova" />
+         />
+
+    <!-- android:src="@drawable/imgprova"  -->
 
     <EditText
         android:id="@+id/titleDiary"
@@ -76,6 +78,7 @@
             android:layout_marginBottom="48dp"
             android:background="@drawable/calendar_btn" />
 
+        <!-- gestione degli errori -->
         <TextView
             android:id="@+id/errorSaveData"
             android:layout_width="164dp"
