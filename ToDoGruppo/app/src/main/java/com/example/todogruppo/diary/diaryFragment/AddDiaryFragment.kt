@@ -51,7 +51,7 @@ class AddDiaryFragment : Fragment() {
     private lateinit var errorSaveDate: TextView
     private lateinit var closeBtn: Button
 
-
+    private var done = false
 
     //carica immagine
     private val PICK_IMAGE_REQUEST = 71
@@ -146,6 +146,7 @@ class AddDiaryFragment : Fragment() {
                     }
                     .show()
             }else{
+               // done = true
                 Log.d("okey", "data accettata")
                 parentFragmentManager.popBackStack()
             }
@@ -202,9 +203,10 @@ class AddDiaryFragment : Fragment() {
                     }
 
 
-                       //torna indietro di un fragment
+                    //if(done == true){
+                        //torna indietro di un fragment
                       //  parentFragmentManager.popBackStack()
-
+                   // }
 
 
                 }
