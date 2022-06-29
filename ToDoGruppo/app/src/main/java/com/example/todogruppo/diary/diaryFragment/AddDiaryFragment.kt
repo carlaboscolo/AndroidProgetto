@@ -132,6 +132,7 @@ class AddDiaryFragment : Fragment() {
 
         diaryModel.duplicateDate.observe(viewLifecycleOwner) {
             if (it) {
+              //done = false
 
                 Log.d("okey", "data errata")
                 //Avviso se si è inserito correttamente la pagina di diario
@@ -287,6 +288,3 @@ class AddDiaryFragment : Fragment() {
         return id.toString()
     }
 }
-
-
-
