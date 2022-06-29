@@ -36,7 +36,7 @@ class AddDiaryFragment : Fragment() {
     //view model
     val diaryModel: DiaryModel by viewModels()
 
-    //task null -> nuovo task, altrimenti serve per la modifica
+    //diary null -> nuovo diario, altrimenti serve per la modifica
     private var diary: Diary? = null
 
     //varibili
@@ -50,6 +50,8 @@ class AddDiaryFragment : Fragment() {
     private lateinit var errorSave2: TextView
     private lateinit var errorSaveDate: TextView
     private lateinit var closeBtn: Button
+
+    private var done = false
 
     //carica immagine
     private val PICK_IMAGE_REQUEST = 71
@@ -127,20 +129,26 @@ class AddDiaryFragment : Fragment() {
             launchGallery()
         }
 
+
         diaryModel.duplicateDate.observe(viewLifecycleOwner) {
-
             if (it) {
+              //done = false
 
-                //Avviso se si vuole eliminare o no la task
-
+                Log.d("okey", "data errata")
+                //Avviso se si è inserito correttamente la pagina di diario
                 MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Conferma")
-                    .setMessage("Vuoi eliminare questo elemento?")
-                    .setNegativeButton("No") { dialog, which -> }
-                    .setPositiveButton("Si") { dialog, which ->
+                    .setMessage("La pagina che vuoi inserire già esiste oppure è una data del futuro, cosa vuoi fare?")
+                    .setNegativeButton("Annulla l'inserimento") { dialog, which ->
+                        parentFragmentManager.popBackStack()
+                    }
+                    .setPositiveButton("Scegli una nuova data") { dialog, which ->
                     }
                     .show()
-
+            }else{
+               // done = true
+                Log.d("okey", "data accettata")
+                parentFragmentManager.popBackStack()
             }
         }
 
@@ -173,15 +181,18 @@ class AddDiaryFragment : Fragment() {
                 } else {
 
                     if (diary == null) {
-                        //salva la nuova task
+
+                        //salva la nuova pagina di diario
                         diaryModel.saveDiary(
                             titletext.text.toString(),
                             inputText.text.toString(),
                             selectedDate.text.toString(),
                             idImg
                         )
+
                     } else {
-                        //modifica la task
+
+                        //modifica la pagina di diario
                         diaryModel.changeDiary(
                             diary!!._id,
                             titletext.text.toString(),
@@ -191,8 +202,13 @@ class AddDiaryFragment : Fragment() {
                         )
                     }
 
-                    //torna indietro di un fragment
-                   // parentFragmentManager.popBackStack()
+
+                    //if(done == true){
+                        //torna indietro di un fragment
+                      //  parentFragmentManager.popBackStack()
+                   // }
+
+
                 }
 
             }

@@ -63,6 +63,8 @@ class DiaryModel : ViewModel() {
                     } else {
                         Log.d("success", "Data accettata")
 
+                        duplicateDate.value = false
+
                         // crea una nuova  pagina di diario con titolo, testo e data
                         val diary = hashMapOf(
                             "title" to title,

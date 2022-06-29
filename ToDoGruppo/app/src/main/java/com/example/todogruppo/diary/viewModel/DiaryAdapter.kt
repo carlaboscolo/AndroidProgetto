@@ -58,12 +58,12 @@ class DiaryAdapter(
 
 */
 
-        val storageReference = Firebase.storage
+       /* val storageReference = Firebase.storage
         storageReference.getReferenceFromUrl("gs://todogruppo.appspot.com/images/f8677525-22a4-45ac-be83-76cfb2e9a505")
         Glide.with(context)
             .load(storageReference)
             .centerCrop()
-            .into(holder.image)
+            .into(holder.image) */
 
 
       /*

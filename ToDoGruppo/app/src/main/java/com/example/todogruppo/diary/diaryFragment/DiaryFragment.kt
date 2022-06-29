@@ -79,8 +79,6 @@ open class DiaryFragment : Fragment() {
         //diary model -> ottieni i dati
         diaryModel.getDiary()
 
-
-
         //esegui operazioni sulla lista delle task
         diaryModel.diaryList.observe(viewLifecycleOwner) {
             DiaryRecyclerView = binding.diaryRecyclerView
