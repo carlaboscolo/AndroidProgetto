@@ -18,6 +18,7 @@ import com.example.todogruppo.databinding.FragmentAddDiaryBinding
 import com.example.todogruppo.diary.viewModel.Diary
 import com.example.todogruppo.diary.viewModel.DiaryModel
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener
 import com.google.firebase.storage.StorageReference
@@ -126,8 +127,24 @@ class AddDiaryFragment : Fragment() {
             launchGallery()
         }
 
+        diaryModel.duplicateDate.observe(viewLifecycleOwner) {
 
-        //salva la task inserita
+            if (it) {
+
+                //Avviso se si vuole eliminare o no la task
+
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Conferma")
+                    .setMessage("Vuoi eliminare questo elemento?")
+                    .setNegativeButton("No") { dialog, which -> }
+                    .setPositiveButton("Si") { dialog, which ->
+                    }
+                    .show()
+
+            }
+        }
+
+        //salva il diario inserita
         addBtn.setOnClickListener {
 
             val idImg = uploadImage()
@@ -175,7 +192,7 @@ class AddDiaryFragment : Fragment() {
                     }
 
                     //torna indietro di un fragment
-                    parentFragmentManager.popBackStack()
+                   // parentFragmentManager.popBackStack()
                 }
 
             }

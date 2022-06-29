@@ -110,6 +110,5 @@
         android:textColor="@color/red"
         android:visibility="gone" />
 
-
 </RelativeLayout>
 

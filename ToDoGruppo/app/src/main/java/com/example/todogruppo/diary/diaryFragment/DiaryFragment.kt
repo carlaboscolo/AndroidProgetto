@@ -2,7 +2,6 @@ package com.example.todogruppo.diary.diaryFragment
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.app.ProgressDialog.show
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,8 +21,7 @@ import com.example.todogruppo.diary.viewModel.DiaryAdapter
 import com.example.todogruppo.diary.viewModel.DiaryModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+
 
 open class DiaryFragment : Fragment() {
 
@@ -32,7 +31,7 @@ open class DiaryFragment : Fragment() {
     //variabili
     private lateinit var binding: FragmentDiaryBinding
     private lateinit var DiaryRecyclerView: RecyclerView
-    private lateinit var aggiungiDiario: FloatingActionButton
+    private  var aggiungiDiario: FloatingActionButton? = null
 
     //DiaryFragment per gestire '+'
     companion object {
@@ -64,9 +63,9 @@ open class DiaryFragment : Fragment() {
         //bottone che serve ad aggiungere una pagina di diario
         aggiungiDiario = binding.includeBtnDiary.addNewBtn
 
-        aggiungiDiario.setOnClickListener {
+        aggiungiDiario?.setOnClickListener {
             //quando viene cliccato, il bottone "+" scompare perchè non si deve vedere in "addNote"
-            aggiungiDiario.visibility = View.GONE
+            aggiungiDiario?.visibility = View.GONE
 
             val diary = AddDiaryFragment()
 
@@ -80,35 +79,7 @@ open class DiaryFragment : Fragment() {
         //diary model -> ottieni i dati
         diaryModel.getDiary()
 
-       diaryModel.duplicateDate.observe(viewLifecycleOwner) {
 
-            if (it) {
-                //Avviso se si vuole eliminare o no la task
-                /*MaterialAlertDialogBuilder()
-                    .setTitle("Conferma")
-                    .setMessage("Vuoi eliminare questo elemento?")
-                    .setNegativeButton("No") { dialog, which -> }
-                    .setPositiveButton("Si") { dialog, which ->
-
-                    }
-                    .show()
-
-                 */
-
-
-                /*
-                val dialog = context?.let { AlertDialog.Builder(it) }
-                dialog?.setPositiveButton("Add"){ _: DialogInterface, _: Int ->
-                }
-                dialog?.setNegativeButton("Cancel"){ _: DialogInterface, _: Int->
-                }
-                dialog?.show() */
-                
-
-
-
-            }
-        }
 
         //esegui operazioni sulla lista delle task
         diaryModel.diaryList.observe(viewLifecycleOwner) {
@@ -122,7 +93,7 @@ open class DiaryFragment : Fragment() {
                 //cliccare per modificare
                 override fun selectItem(position: Int) {
                     //nasconde il pulsante "+" quando apro "addDiary"
-                    aggiungiDiario.visibility = View.GONE
+                    aggiungiDiario?.visibility = View.GONE
 
                     val diary = AddDiaryFragment()
                     val bundle = Bundle()
@@ -161,7 +132,7 @@ open class DiaryFragment : Fragment() {
 
     //togliere il bottone dal fragment figlio
     fun showButton() {
-        aggiungiDiario.visibility = View.VISIBLE
+        aggiungiDiario?.visibility = View.VISIBLE
     }
 
 }

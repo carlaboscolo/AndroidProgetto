@@ -5,6 +5,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
@@ -56,6 +57,7 @@ class DiaryModel : ViewModel() {
                     Log.d("error", "Data gia' presente nel db")
                 } else {
                     if (data > calendar()) {
+                        duplicateDate.value = true
                         futureDate.value = true
                         Log.d("error", "Non puoi inserire una data del futuro")
                     } else {
@@ -87,7 +89,6 @@ class DiaryModel : ViewModel() {
             .addOnFailureListener { exception ->
                 Log.w("FirestoreExample", "Error getting documents.", exception)
             }
-
 
     }
 
@@ -221,7 +222,6 @@ class DiaryModel : ViewModel() {
                 Log.w("FirestoreExample", "Error getting documents.", exception)
             }
     }
-
 
 }
 

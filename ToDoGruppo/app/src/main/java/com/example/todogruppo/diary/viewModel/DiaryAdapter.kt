@@ -95,6 +95,8 @@ class DiaryAdapter(
             mListener?.selectItem(position)
         }
 
+
+
     }
 
     override fun getItemCount(): Int {
@@ -117,7 +119,7 @@ class DiaryAdapter(
     //eliminare la task
     override fun onItemDismiss(position: Int) {
 
-        //Avviso se si vuole eliminare o no la task
+        //Avviso se si vuole eliminare o no la pagina di diario
         MaterialAlertDialogBuilder(context)
             .setTitle("Conferma")
             .setMessage("Vuoi eliminare questo elemento?")
@@ -146,6 +148,7 @@ class DiaryAdapter(
     fun setOnCallback(mItemClickListener: AdapterCallback) {
         this.mListener = mItemClickListener
     }
+
 }
 
 

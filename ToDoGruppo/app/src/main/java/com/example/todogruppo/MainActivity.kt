@@ -28,7 +28,7 @@ open class MainActivity : AppCompatActivity() {
 
         val username = binding.username
         val password = binding.password
-        val button = binding.button
+        val button   = binding.button
 
         button.setOnClickListener {
             /*
