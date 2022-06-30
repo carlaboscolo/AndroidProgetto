@@ -111,7 +111,32 @@ class DiaryModel : ViewModel() {
 
                         }
                         firstDate == secondDate -> {
-                            Log.d("check", "=")
+                           Log.d("check", "=")
+
+                            Log.d("success", "Data accettata")
+                            duplicateDate.value = false
+
+                            // crea una nuova  pagina di diario con titolo, testo e data
+                            val diary = hashMapOf(
+                                "title" to title,
+                                "textDiary" to textDiary,
+                                "data" to data,
+                                "imageId" to imageId
+                            )
+
+                            // aggiungi un nuovo documenti
+                            db.collection("diary")
+                                .add(diary)
+                                .addOnSuccessListener { documentReference ->
+                                    Log.d(
+                                        ContentValues.TAG,
+                                        "DocumentSnapshot added with ID: ${documentReference.id}"
+                                    )
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w(ContentValues.TAG, "Error adding document", e)
+                                }
+
                         }
                     }
 

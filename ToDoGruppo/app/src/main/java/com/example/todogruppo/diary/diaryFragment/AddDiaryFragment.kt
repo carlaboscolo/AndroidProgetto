@@ -101,9 +101,30 @@ class AddDiaryFragment : Fragment() {
         errorSaveDate = binding.errorSaveData
 
 
+
         //aggiungere una data alla task
         CalendarBtn = binding.addDataBtn
         selectedDate = view.findViewById(R.id.selected_data)
+
+
+
+        val calendar = Calendar.getInstance()
+        val year = calendar[Calendar.YEAR]
+        val day = calendar[Calendar.DAY_OF_MONTH]
+        val month = calendar[Calendar.MONTH] + 1
+
+        val dayString = if (day < 10) "0$day" else "$day"
+        val monthString = if (month < 10) "0$month" else "$month"
+
+//formato di stampa a schermo della data
+        val data_string = "$dayString-$monthString-$year"
+        Log.d("data", data_string)
+
+//inserisci data selezionata come default
+        selectedDate.setText(data_string)
+
+
+
 
         //MaterialDatePicker
         val datePicker =
@@ -170,44 +191,47 @@ class AddDiaryFragment : Fragment() {
                 Log.d("error", "campo vuoto")
             } else {
 
-                if (selectedDate.text.toString() == "Nessuna data") {
+         /*  if (selectedDate.text.toString() == "Nessuna scadenza") {
                     errorSaveDate.visibility = View.VISIBLE
                     errorSave.visibility = View.GONE
                     errorSave2.visibility = View.GONE
                     Log.d("error", "campo data vuoto")
-                } else {
-
-                    if (diary == null) {
-
-                        Log.d("bool",  selectedDate.text.toString())
-                        //salva la nuova pagina di diario
-                        diaryModel.saveDiary(
-                            titletext.text.toString(),
-                            inputText.text.toString(),
-                            selectedDate.text.toString(),
-                            idImg
-                        )
-
-                    } else {
-
-                        //modifica la pagina di diario
-                        diaryModel.changeDiary(
-                            diary!!._id,
-                            titletext.text.toString(),
-                            inputText.text.toString(),
-                            selectedDate.text.toString(),
-                            idImg
-                        )
-                    }
+                } else {  */
 
 
+                 errorSave.visibility = View.GONE
+                 errorSave2.visibility = View.GONE
 
-                        //torna indietro di un fragment
-                      //  parentFragmentManager.popBackStack()
+                 if (diary == null) {
+
+                     Log.d("bool", selectedDate.text.toString())
+                     //salva la nuova pagina di diario
+                     diaryModel.saveDiary(
+                         titletext.text.toString(),
+                         inputText.text.toString(),
+                         selectedDate.text.toString(),
+                         idImg
+                     )
+
+                 } else {
+
+                     //modifica la pagina di diario
+                     diaryModel.changeDiary(
+                         diary!!._id,
+                         titletext.text.toString(),
+                         inputText.text.toString(),
+                         selectedDate.text.toString(),
+                         idImg
+                     )
+                 }
 
 
+                 //torna indietro di un fragment
+                 //  parentFragmentManager.popBackStack()
 
-                }
+
+                 // }
+             //}
 
             }
 
