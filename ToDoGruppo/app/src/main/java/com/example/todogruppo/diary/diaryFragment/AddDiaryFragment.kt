@@ -132,8 +132,6 @@ class AddDiaryFragment : Fragment() {
 
         diaryModel.duplicateDate.observe(viewLifecycleOwner) {
             if (it) {
-              //done = false
-
                 Log.d("okey", "data errata")
                 //Avviso se si è inserito correttamente la pagina di diario
                 MaterialAlertDialogBuilder(requireContext())
@@ -146,7 +144,6 @@ class AddDiaryFragment : Fragment() {
                     }
                     .show()
             }else{
-               // done = true
                 Log.d("okey", "data accettata")
                 parentFragmentManager.popBackStack()
             }
@@ -182,6 +179,7 @@ class AddDiaryFragment : Fragment() {
 
                     if (diary == null) {
 
+                        Log.d("bool",  selectedDate.text.toString())
                         //salva la nuova pagina di diario
                         diaryModel.saveDiary(
                             titletext.text.toString(),
@@ -203,10 +201,10 @@ class AddDiaryFragment : Fragment() {
                     }
 
 
-                    //if(done == true){
+
                         //torna indietro di un fragment
                       //  parentFragmentManager.popBackStack()
-                   // }
+
 
 
                 }
