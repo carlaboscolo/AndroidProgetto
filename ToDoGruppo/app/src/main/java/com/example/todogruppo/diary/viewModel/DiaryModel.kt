@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -16,13 +17,15 @@ class DiaryModel : ViewModel() {
     var diaryList = MutableLiveData<ArrayList<Diary>>()
     var duplicateDate = MutableLiveData<Boolean>()
 
+
     //funzione salva note
     fun saveDiary(
         title: String,
         textDiary: String = "testo di prova",
         data: String,
-        imageId: String) {
-        
+        imageId: String
+    ) {
+
         //FIREBASE
         val db = Firebase.firestore
 
@@ -53,36 +56,71 @@ class DiaryModel : ViewModel() {
                 if (find) {
                     duplicateDate.value = true
                     Log.d("error", "Data gia' presente nel db")
-                } else if (data > calendar()) {
-                        duplicateDate.value = true
-                        Log.d("error", "Non puoi inserire una data del futuro")
                 } else {
-                        Log.d("success", "Data accettata")
 
-                        duplicateDate.value = false
+                    //controlli per data futura
+                    val today = calendar()
 
-                        // crea una nuova  pagina di diario con titolo, testo e data
-                        val diary = hashMapOf(
-                            "title" to title,
-                            "textDiary" to textDiary,
-                            "data" to data,
-                            "imageId" to imageId
-                        )
+                    val dateFormat = SimpleDateFormat("dd-MM-yyyy")
 
-                        // aggiungi un nuovo documenti
-                        db.collection("diary")
-                            .add(diary)
-                            .addOnSuccessListener { documentReference ->
-                                Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w(ContentValues.TAG, "Error adding document", e)
-                            }
+                    val firstDate: Date = dateFormat.parse(data)
+                    val secondDate: Date = dateFormat.parse(today)
+
+                    Log.d("check", "input " + firstDate.toString())
+
+                    try {
+                        Log.d("check", "oggi " + secondDate.toString())
+                    } catch (exception: NumberFormatException) {
+                        ""
                     }
+
+                    when {
+                        firstDate.after(secondDate) -> {
+                            Log.d("check", ">")
+                            Log.d("error", "Non puoi inserire una data del futuro")
+                            duplicateDate.value = true
+
+                        }
+                        firstDate.before(secondDate) -> {
+                            Log.d("check", "<")
+
+                            Log.d("success", "Data accettata")
+                            duplicateDate.value = false
+
+                            // crea una nuova  pagina di diario con titolo, testo e data
+                            val diary = hashMapOf(
+                                "title" to title,
+                                "textDiary" to textDiary,
+                                "data" to data,
+                                "imageId" to imageId
+                            )
+
+                            // aggiungi un nuovo documenti
+                            db.collection("diary")
+                                .add(diary)
+                                .addOnSuccessListener { documentReference ->
+                                    Log.d(
+                                        ContentValues.TAG,
+                                        "DocumentSnapshot added with ID: ${documentReference.id}"
+                                    )
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w(ContentValues.TAG, "Error adding document", e)
+                                }
+
+
+                        }
+                        firstDate == secondDate -> {
+                            Log.d("check", "=")
+                        }
+                    }
+
+                }
             }
             .addOnFailureListener { exception ->
                 Log.w("FirestoreExample", "Error getting documents.", exception)
             }
+
 
     }
 
@@ -158,24 +196,6 @@ class DiaryModel : ViewModel() {
 
     }
 
-
-    //selezionare la data di oggi
-    fun calendar(): String {
-        val calendar = Calendar.getInstance()
-        val year = calendar[Calendar.YEAR]
-        val day = calendar[Calendar.DAY_OF_MONTH]
-        val month = calendar[Calendar.MONTH] + 1
-
-        val dayString = if (day < 10) "0$day" else "$day"
-        val monthString = if (month < 10) "0$month" else "$month"
-
-        val data_string = "$dayString-$monthString-$year"
-
-        Log.d("data", data_string)
-        return data_string
-    }
-
-
     //funzione che carica i dati nell'applicazione in base ad una data
     fun getDateDiary(date: String) {
         val db = Firebase.firestore
@@ -215,6 +235,23 @@ class DiaryModel : ViewModel() {
             .addOnFailureListener { exception ->
                 Log.w("FirestoreExample", "Error getting documents.", exception)
             }
+    }
+
+
+    //selezionare la data di oggi
+    fun calendar(): String {
+        val calendar = Calendar.getInstance()
+        val year = calendar[Calendar.YEAR]
+        val day = calendar[Calendar.DAY_OF_MONTH]
+        val month = calendar[Calendar.MONTH] + 1
+
+        val dayString = if (day < 10) "0$day" else "$day"
+        val monthString = if (month < 10) "0$month" else "$month"
+
+        val data_string = "$dayString-$monthString-$year"
+
+        Log.d("data", data_string)
+        return data_string
     }
 
 }
