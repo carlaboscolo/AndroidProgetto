@@ -111,7 +111,7 @@ class DiaryModel : ViewModel() {
 
                         }
                         firstDate == secondDate -> {
-                           Log.d("check", "=")
+                            Log.d("check", "=")
 
                             Log.d("success", "Data accettata")
                             duplicateDate.value = false
@@ -206,18 +206,114 @@ class DiaryModel : ViewModel() {
 
         val db = Firebase.firestore
 
-        // aggiorna una task con nome e data
-        db.collection("diary").document(id)
-            .update(
-                mapOf(
-                    "title" to title,
-                    "textDiary" to textDiary,
-                    "data" to data,
-                    //"imageId" to imageId
-                )
-            )
-            .addOnSuccessListener { Log.d("success", "DocumentSnapshot successfully changed!") }
-            .addOnFailureListener { e -> Log.w("Error not change document", e) }
+
+        db.collection("diary")
+            .get()
+            .addOnSuccessListener { result ->
+
+                var find = false
+                for (document in result) {
+                    val diary = Diary(
+                        document.data.getValue("title").toString(),
+                        document.data.getValue("textDiary").toString(),
+                        document.data.getValue("data").toString(),
+                        document.id,
+                        try {
+                            document.data.getValue("imageId").toString()
+                        } catch (e: Exception) {
+                            ""
+                        }
+                    )
+
+                    //controllo che la data inserita non sia già presente nel db
+                    if (data == diary.data) {
+                        find = true
+                    }
+                }
+
+                if (find) {
+                    duplicateDate.value = true
+                    Log.d("error", "Data gia' presente nel db")
+                } else {
+
+                    //controlli per data futura
+                    val today = calendar()
+
+                    val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+
+                    val firstDate: Date = dateFormat.parse(data)
+                    val secondDate: Date = dateFormat.parse(today)
+
+                    Log.d("check", "input " + firstDate.toString())
+
+                    try {
+                        Log.d("check", "oggi " + secondDate.toString())
+                    } catch (exception: NumberFormatException) {
+                        ""
+                    }
+
+                    when {
+                        firstDate.after(secondDate) -> {
+                            Log.d("check", ">")
+                            Log.d("error", "Non puoi inserire una data del futuro")
+                            duplicateDate.value = true
+
+                        }
+                        firstDate.before(secondDate) -> {
+                            Log.d("check", "<")
+
+                            Log.d("success", "Data accettata")
+                            duplicateDate.value = false
+
+                            // aggiorna una task con nome e data
+                            db.collection("diary").document(id)
+                                .update(
+                                    mapOf(
+                                        "title" to title,
+                                        "textDiary" to textDiary,
+                                        "data" to data,
+                                        //"imageId" to imageId
+                                    )
+                                )
+                                .addOnSuccessListener {
+                                    Log.d(
+                                        "success",
+                                        "DocumentSnapshot successfully changed!"
+                                    )
+                                }
+                                .addOnFailureListener { e -> Log.w("Error not change document", e) }
+
+
+                        }
+                        firstDate == secondDate -> {
+                            Log.d("check", "=")
+
+                            Log.d("success", "Data accettata")
+                            duplicateDate.value = false
+
+                            // aggiorna una task con nome e data
+                            db.collection("diary").document(id)
+                                .update(
+                                    mapOf(
+                                        "title" to title,
+                                        "textDiary" to textDiary,
+                                        "data" to data,
+                                        //"imageId" to imageId
+                                    )
+                                )
+                                .addOnSuccessListener {
+                                    Log.d(
+                                        "success",
+                                        "DocumentSnapshot successfully changed!"
+                                    )
+                                }
+                                .addOnFailureListener { e -> Log.w("Error not change document", e) }
+
+                        }
+                    }
+                }
+            }
+
 
     }
 
