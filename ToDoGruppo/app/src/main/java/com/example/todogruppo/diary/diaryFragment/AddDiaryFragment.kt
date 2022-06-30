@@ -51,7 +51,7 @@ class AddDiaryFragment : Fragment() {
     private lateinit var errorSaveDate: TextView
     private lateinit var closeBtn: Button
 
-    private var done = false
+
 
     //carica immagine
     private val PICK_IMAGE_REQUEST = 71
@@ -132,7 +132,6 @@ class AddDiaryFragment : Fragment() {
 
         diaryModel.duplicateDate.observe(viewLifecycleOwner) {
             if (it) {
-              //done = false
 
                 Log.d("okey", "data errata")
                 //Avviso se si è inserito correttamente la pagina di diario
@@ -146,7 +145,6 @@ class AddDiaryFragment : Fragment() {
                     }
                     .show()
             }else{
-               // done = true
                 Log.d("okey", "data accettata")
                 parentFragmentManager.popBackStack()
             }
@@ -203,10 +201,9 @@ class AddDiaryFragment : Fragment() {
                     }
 
 
-                    //if(done == true){
-                        //torna indietro di un fragment
+                       //torna indietro di un fragment
                       //  parentFragmentManager.popBackStack()
-                   // }
+
 
 
                 }

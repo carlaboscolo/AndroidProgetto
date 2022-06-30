@@ -15,16 +15,14 @@ class DiaryModel : ViewModel() {
 
     var diaryList = MutableLiveData<ArrayList<Diary>>()
     var duplicateDate = MutableLiveData<Boolean>()
-    var futureDate = MutableLiveData<Boolean>()
 
     //funzione salva note
     fun saveDiary(
         title: String,
         textDiary: String = "testo di prova",
         data: String,
-        imageId: String
-    ) {
-
+        imageId: String) {
+        
         //FIREBASE
         val db = Firebase.firestore
 
@@ -55,12 +53,10 @@ class DiaryModel : ViewModel() {
                 if (find) {
                     duplicateDate.value = true
                     Log.d("error", "Data gia' presente nel db")
-                } else {
-                    if (data > calendar()) {
+                } else if (data > calendar()) {
                         duplicateDate.value = true
-                        futureDate.value = true
                         Log.d("error", "Non puoi inserire una data del futuro")
-                    } else {
+                } else {
                         Log.d("success", "Data accettata")
 
                         duplicateDate.value = false
@@ -77,16 +73,12 @@ class DiaryModel : ViewModel() {
                         db.collection("diary")
                             .add(diary)
                             .addOnSuccessListener { documentReference ->
-                                Log.d(
-                                    ContentValues.TAG,
-                                    "DocumentSnapshot added with ID: ${documentReference.id}"
-                                )
+                                Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                             }
                             .addOnFailureListener { e ->
                                 Log.w(ContentValues.TAG, "Error adding document", e)
                             }
                     }
-                }
             }
             .addOnFailureListener { exception ->
                 Log.w("FirestoreExample", "Error getting documents.", exception)
