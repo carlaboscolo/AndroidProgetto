@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoGruppo">
         <activity
+            android:name=".Registrazione"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -22,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomePage" />
-
     </application>
 
 </manifest>

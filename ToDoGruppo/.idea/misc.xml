@@ -24,7 +24,8 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/note.xml" value="0.1035" />
         <entry key="app/src/main/res/font/se.xml" value="0.27708333333333335" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.207757568359375" />
+        <entry key="app/src/main/res/layout/activity_registrazione.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/layout/button_add.xml" value="0.1" />
         <entry key="app/src/main/res/layout/button_edit.xml" value="0.36363636363636365" />
         <entry key="app/src/main/res/layout/diary_detail.xml" value="0.28284622413524685" />

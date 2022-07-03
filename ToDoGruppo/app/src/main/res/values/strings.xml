@@ -23,7 +23,6 @@
     <string name="login">LOGIN</string>
     <string name="ricorda">Ricorda</string>
     <string name="hai_bisogno_di_aiuto">Hai bisogno di aiuto?</string>
-    <string name="sign_in">Sign In</string>
     <string name="non_hai_un_account">Non hai un account?</string>
     <string name="registrati">Registrati</string>
     <string name="someone_gmail_com">someone@gmail.com</string>
@@ -80,6 +79,13 @@
     <string name="reset">RESET</string>
     <string name="inserisci_i_minuti">Inserisci i minuti</string>
     <string name="set">SET</string>
+    <string name="label_registrazione">Registrati per utilizzare l\'app</string>
+    <string name="credenziali">Inserisci qui sotto le tue credenziali</string>
+    <string name="numero_di_telefono">numero di telefono</string>
+    <string name="inserisci_di_nuovo_la_password">Inserisci di nuovo la password</string>
+    <string name="email">email</string>
+    <string name="account_presente">Hai già un account?</string>
+    <string name="accedi">Accedi</string>
 
 
 </resources>

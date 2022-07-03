@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.example.todogruppo.databinding.ActivityMainBinding
 import com.example.todogruppo.databinding.FragmentListBinding
 
@@ -15,10 +16,11 @@ open class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var username: EditText
     private lateinit var password: EditText
     private lateinit var login: Button
+    private lateinit var registrazione: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +28,14 @@ open class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = binding.username
-        val password = binding.password
-        val button   = binding.button
+        //inizializza variabili
+        username = binding.username
+        password = binding.password
+        login   = binding.button
+        registrazione = binding.RegistratiBtn
 
-        button.setOnClickListener {
+
+        login.setOnClickListener {
             /*
               if (username.text.toString().isEmpty() && password.text.toString().isEmpty()){
                   Log.d("log", "credential empty ")
@@ -38,6 +43,12 @@ open class MainActivity : AppCompatActivity() {
             launchSecondActivity()
             /*  } */
         }
+
+        registrazione.setOnClickListener{
+            launchRegisterActivity()
+        }
+
+
     }
 
 
@@ -61,6 +72,13 @@ open class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+    private fun launchRegisterActivity() {
+        val intent = Intent(this, Registrazione::class.java)
+        startActivity(intent)
+    }
+
 
 
 }

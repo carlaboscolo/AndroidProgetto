@@ -100,6 +100,7 @@
                 android:textColorHint="@color/colorPlaceholder" />
 
             <CheckBox
+                android:id="@+id/RicordaPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="48dp"
@@ -136,7 +137,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/Button"
                     android:fontFamily="@font/seg_ui_semibold"
-                    android:text="@string/sign_in"
+                    android:text="@string/accedi"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -152,6 +153,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/NessunAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -160,13 +162,15 @@
                 android:textColor="@color/colorTextWhite"
                 android:textSize="15dp" />
 
-            <TextView
+            <Button
+                android:id="@+id/RegistratiBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/Button"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:text="@string/registrati"
-                android:textColor="@color/Button"
                 android:textSize="15dp" />
         </LinearLayout>
 

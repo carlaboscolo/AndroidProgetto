@@ -1,4 +1,4 @@
-package com.example.todogruppo
+package com.example.todogruppo.Focus
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.todogruppo.databinding.FragmentFocusBinding
 import java.util.*

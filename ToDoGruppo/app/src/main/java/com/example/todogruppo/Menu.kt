@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.todogruppo.calendar.CalendarFragment
 import com.example.fragment.HomeFragment
+import com.example.todogruppo.Focus.FocusFragment
 import com.example.todogruppo.User.SettingsFragment
 import com.example.todogruppo.User.UserFragment
 import com.example.todogruppo.checklist.ListFragment
