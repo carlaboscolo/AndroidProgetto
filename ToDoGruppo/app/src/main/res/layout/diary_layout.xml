@@ -22,9 +22,8 @@
             android:layout_height="160dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/RoundCorner"
             android:src="@drawable/imgprova"
-            />
+            app:shapeAppearanceOverlay="@style/RoundCorner" />
 
 
         <TextView

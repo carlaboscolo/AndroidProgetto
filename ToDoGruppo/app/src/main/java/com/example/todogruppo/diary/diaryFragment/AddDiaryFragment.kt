@@ -52,7 +52,6 @@ class AddDiaryFragment : Fragment() {
     private lateinit var closeBtn: Button
 
 
-
     //carica immagine
     private val PICK_IMAGE_REQUEST = 71
     private var filePath: Uri? = null
@@ -101,11 +100,9 @@ class AddDiaryFragment : Fragment() {
         errorSaveDate = binding.errorSaveData
 
 
-
         //aggiungere una data alla task
         CalendarBtn = binding.addDataBtn
         selectedDate = view.findViewById(R.id.selected_data)
-
 
 
         val calendar = Calendar.getInstance()
@@ -122,8 +119,6 @@ class AddDiaryFragment : Fragment() {
 
 //inserisci data selezionata come default
         selectedDate.setText(data_string)
-
-
 
 
         //MaterialDatePicker
@@ -164,7 +159,7 @@ class AddDiaryFragment : Fragment() {
                     .setPositiveButton("Scegli una nuova data") { dialog, which ->
                     }
                     .show()
-            }else{
+            } else {
                 Log.d("okey", "data accettata")
                 parentFragmentManager.popBackStack()
             }
@@ -191,47 +186,47 @@ class AddDiaryFragment : Fragment() {
                 Log.d("error", "campo vuoto")
             } else {
 
-         /*  if (selectedDate.text.toString() == "Nessuna scadenza") {
-                    errorSaveDate.visibility = View.VISIBLE
-                    errorSave.visibility = View.GONE
-                    errorSave2.visibility = View.GONE
-                    Log.d("error", "campo data vuoto")
-                } else {  */
+                /*  if (selectedDate.text.toString() == "Nessuna scadenza") {
+                           errorSaveDate.visibility = View.VISIBLE
+                           errorSave.visibility = View.GONE
+                           errorSave2.visibility = View.GONE
+                           Log.d("error", "campo data vuoto")
+                       } else {  */
 
 
-                 errorSave.visibility = View.GONE
-                 errorSave2.visibility = View.GONE
+                errorSave.visibility = View.GONE
+                errorSave2.visibility = View.GONE
 
-                 if (diary == null) {
+                if (diary == null) {
 
-                     Log.d("bool", selectedDate.text.toString())
-                     //salva la nuova pagina di diario
-                     diaryModel.saveDiary(
-                         titletext.text.toString(),
-                         inputText.text.toString(),
-                         selectedDate.text.toString(),
-                         idImg
-                     )
+                    Log.d("bool", selectedDate.text.toString())
+                    //salva la nuova pagina di diario
+                    diaryModel.saveDiary(
+                        titletext.text.toString(),
+                        inputText.text.toString(),
+                        selectedDate.text.toString(),
+                        idImg
+                    )
 
-                 } else {
+                } else {
 
-                     //modifica la pagina di diario
-                     diaryModel.changeDiary(
-                         diary!!._id,
-                         titletext.text.toString(),
-                         inputText.text.toString(),
-                         selectedDate.text.toString(),
-                         idImg
-                     )
-                 }
-
-
-                 //torna indietro di un fragment
-                 //  parentFragmentManager.popBackStack()
+                    //modifica la pagina di diario
+                    diaryModel.changeDiary(
+                        diary!!._id,
+                        titletext.text.toString(),
+                        inputText.text.toString(),
+                        selectedDate.text.toString(),
+                        idImg
+                    )
+                }
 
 
-                 // }
-             //}
+                //torna indietro di un fragment
+                //  parentFragmentManager.popBackStack()
+
+
+                // }
+                //}
 
             }
 

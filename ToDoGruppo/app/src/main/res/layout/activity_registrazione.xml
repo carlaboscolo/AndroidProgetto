@@ -95,8 +95,7 @@
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp"
                 android:textColor="@color/colorTextBlack"
-                android:textColorHint="@color/colorPlaceholder"
-              />
+                android:textColorHint="@color/colorPlaceholder" />
 
 
             <EditText

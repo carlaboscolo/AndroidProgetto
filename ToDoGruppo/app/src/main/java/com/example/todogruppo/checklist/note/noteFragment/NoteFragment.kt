@@ -108,7 +108,7 @@ open class NoteFragment : Fragment() {
 
             })
 
-            //carica la lista delle task
+            //carica la lista delle note
             NoteRecyclerView.apply {
                 NoteRecyclerView.adapter = adapterNote
 

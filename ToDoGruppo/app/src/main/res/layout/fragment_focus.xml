@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defaultBackground" >
+    android:background="@color/defaultBackground">
 
 
     <TextView
@@ -41,10 +41,10 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:hint="@string/inserisci_i_minuti"
+        android:inputType="number"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="12sp"
-        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/buttonSet"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView5"

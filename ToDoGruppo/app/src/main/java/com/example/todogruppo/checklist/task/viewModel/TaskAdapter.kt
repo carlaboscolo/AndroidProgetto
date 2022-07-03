@@ -15,12 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class TaskAdapter(
-    private val taskList: ArrayList<Task>,
-    private val viewModel: ViewModel,
-    private val context: Context
-) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(),
-    NoteItemTouchHelper {
+class TaskAdapter(private val taskList: ArrayList<Task>, private val viewModel: ViewModel, private val context: Context) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>(), NoteItemTouchHelper {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

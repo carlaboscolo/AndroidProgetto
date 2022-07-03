@@ -31,7 +31,7 @@ open class MainActivity : AppCompatActivity() {
         //inizializza variabili
         username = binding.username
         password = binding.password
-        login   = binding.button
+        login = binding.button
         registrazione = binding.RegistratiBtn
 
 
@@ -44,7 +44,7 @@ open class MainActivity : AppCompatActivity() {
             /*  } */
         }
 
-        registrazione.setOnClickListener{
+        registrazione.setOnClickListener {
             launchRegisterActivity()
         }
 
@@ -78,7 +78,6 @@ open class MainActivity : AppCompatActivity() {
         val intent = Intent(this, Registrazione::class.java)
         startActivity(intent)
     }
-
 
 
 }

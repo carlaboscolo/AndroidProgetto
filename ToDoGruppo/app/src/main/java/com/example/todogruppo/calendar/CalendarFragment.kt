@@ -39,7 +39,7 @@ class CalendarFragment : Fragment() {
 
     private lateinit var binding: FragmentCalendarBinding
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var day: CalendarView
     private lateinit var selectedDate: TextView
     private lateinit var addTask: Button

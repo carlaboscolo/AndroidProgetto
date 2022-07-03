@@ -168,9 +168,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:background="@android:color/transparent"
-                android:textColor="@color/Button"
                 android:fontFamily="@font/segoe_ui_bold"
                 android:text="@string/registrati"
+                android:textColor="@color/Button"
                 android:textSize="15dp" />
         </LinearLayout>
 

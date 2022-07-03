@@ -7,7 +7,6 @@
     android:orientation="horizontal">
 
     <!-- BUTTON TASK E NOTE -->
-
     <Button
         android:id="@+id/task"
         android:layout_width="0dp"

@@ -31,7 +31,7 @@ open class DiaryFragment : Fragment() {
     //variabili
     private lateinit var binding: FragmentDiaryBinding
     private lateinit var DiaryRecyclerView: RecyclerView
-    private  var aggiungiDiario: FloatingActionButton? = null
+    private var aggiungiDiario: FloatingActionButton? = null
 
     //DiaryFragment per gestire '+'
     companion object {
