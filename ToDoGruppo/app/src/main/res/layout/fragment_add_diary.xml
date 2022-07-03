@@ -124,10 +124,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectImageBtn"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"
+        android:backgroundTint="@color/Button"
         android:text="@string/salva"
         android:textAllCaps="false"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/black"
         android:textSize="25sp" />
 
     <Button
