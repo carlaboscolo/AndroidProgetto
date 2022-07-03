@@ -76,6 +76,10 @@
     <string name="scaduti">Scaduti</string>
     <string name="data_gia_presente">Questa data è gia\' presente nel db</string>
     <string name="data_del_futuro">Non puoi inserire una data del futuro</string>
+    <string name="start">START</string>
+    <string name="reset">RESET</string>
+    <string name="inserisci_i_minuti">Inserisci i minuti</string>
+    <string name="set">SET</string>
 
 
 </resources>
