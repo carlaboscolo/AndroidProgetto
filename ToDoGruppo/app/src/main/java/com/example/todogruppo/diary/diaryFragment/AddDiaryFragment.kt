@@ -48,7 +48,6 @@ class AddDiaryFragment : Fragment() {
     private lateinit var loadingView: ProgressBar
     private lateinit var errorSave: TextView
     private lateinit var errorSave2: TextView
-    private lateinit var errorSaveDate: TextView
     private lateinit var closeBtn: Button
 
 
@@ -97,7 +96,6 @@ class AddDiaryFragment : Fragment() {
         loadingView = binding.loadingView
         errorSave = binding.errorSave
         errorSave2 = binding.errorSave2
-        errorSaveDate = binding.errorSaveData
 
 
         //aggiungere una data alla pagina di diario

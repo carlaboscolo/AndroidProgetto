@@ -76,21 +76,6 @@
             android:layout_marginBottom="48dp"
             android:background="@drawable/calendar_btn" />
 
-        <!-- gestione degli errori -->
-        <TextView
-            android:id="@+id/errorSaveData"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginEnd="225dp"
-            android:text="Compila questo campo"
-            android:textColor="@color/red"
-            android:visibility="gone" />
-
     </RelativeLayout>
 
 
@@ -116,7 +101,7 @@
         android:text="@string/carica_immagine"
         android:textAllCaps="false"
         android:textColor="@android:color/darker_gray"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/newDiaryButton"
@@ -128,7 +113,7 @@
         android:text="@string/salva"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/closeBtn"
@@ -140,7 +125,7 @@
         android:text="@string/back"
         android:textAllCaps="false"
         android:textColor="@android:color/darker_gray"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/errorSave"
@@ -149,7 +134,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="225dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="164dp"
         android:layout_marginEnd="21dp"
         android:text="Compila questo campo"
@@ -163,7 +148,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="223dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="199dp"
         android:layout_marginEnd="23dp"
         android:text="Compila questo campo"

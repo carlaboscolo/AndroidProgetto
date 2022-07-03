@@ -32,7 +32,7 @@
         <entry key="app/src/main/res/layout/diary_layout.xml" value="0.2195845697329377" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_diary.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_add_note.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_note.xml" value="0.20205078125000003" />
         <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.22004394531250002" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.2034313725490196" />
         <entry key="app/src/main/res/layout/fragment_deadline.xml" value="0.18659420289855072" />
