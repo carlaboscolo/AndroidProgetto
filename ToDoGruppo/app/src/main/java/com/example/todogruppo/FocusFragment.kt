@@ -31,7 +31,7 @@ class FocusFragment : Fragment() {
     private var mStartTimeInMillis: Long = 0
     private var mTimeLeftInMillis: Long = 0
     private var mEndTime: Long = 0
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,39 +50,51 @@ class FocusFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        //inizializzo variabili
         mEditTextInput = binding.editTextInput
         mTextViewCountDown = binding.textViewCountdown
         mButtonSet = binding.buttonSet
         mButtonStartPause = binding.buttonStartPause
         mButtonReset = binding.buttonReset
 
-        mButtonSet.setOnClickListener(View.OnClickListener {
+        //bottone per settare i minuti
+        mButtonSet.setOnClickListener {
             val input = mEditTextInput.getText().toString()
             if (input.length == 0) {
                 Log.d("error", "campo vuoto")
             }
+
             val millisInput = input.toLong() * 60000
             if (millisInput == 0L) {
                 Log.d("error", "inserisci un campo positivo")
             }
+
             setTime(millisInput)
             mEditTextInput.setText("")
-        })
-        mButtonStartPause.setOnClickListener(View.OnClickListener {
+        }
+
+        //bottone start/pause
+        mButtonStartPause.setOnClickListener {
             if (mTimerRunning) {
                 pauseTimer()
             } else {
                 startTimer()
             }
-        })
-        mButtonReset.setOnClickListener(View.OnClickListener { resetTimer() })
+        }
+
+        //bottone reset
+        mButtonReset.setOnClickListener {
+            resetTimer()
+        }
     }
+
+    //setta il tempo
     private fun setTime(milliseconds: Long) {
         mStartTimeInMillis = milliseconds
         resetTimer()
     }
 
+    //avvia il timer
     private fun startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
         mCountDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
@@ -96,22 +108,26 @@ class FocusFragment : Fragment() {
                 updateWatchInterface()
             }
         }.start()
+
         mTimerRunning = true
         updateWatchInterface()
     }
 
+    //pausa timer
     private fun pauseTimer() {
         mCountDownTimer!!.cancel()
         mTimerRunning = false
         updateWatchInterface()
     }
 
+    //resetta il timer
     private fun resetTimer() {
         mTimeLeftInMillis = mStartTimeInMillis
         updateCountDownText()
         updateWatchInterface()
     }
 
+    //aggiorna il contatore
     private fun updateCountDownText() {
         val hours = (mTimeLeftInMillis / 1000).toInt() / 3600
         val minutes = (mTimeLeftInMillis / 1000 % 3600).toInt() / 60
@@ -131,16 +147,17 @@ class FocusFragment : Fragment() {
         mTextViewCountDown!!.text = timeLeftFormatted
     }
 
+    //aggiorna l'interfaccia
     private fun updateWatchInterface() {
         if (mTimerRunning) {
             mEditTextInput!!.visibility = View.INVISIBLE
             mButtonSet!!.visibility = View.INVISIBLE
             mButtonReset!!.visibility = View.INVISIBLE
-            mButtonStartPause!!.text = "Pause"
+            mButtonStartPause!!.text = "PAUSE"
         } else {
             mEditTextInput!!.visibility = View.VISIBLE
             mButtonSet!!.visibility = View.VISIBLE
-            mButtonStartPause!!.text = "Start"
+            mButtonStartPause!!.text = "START"
             if (mTimeLeftInMillis < 1000) {
                 mButtonStartPause!!.visibility = View.INVISIBLE
             } else {
@@ -154,6 +171,7 @@ class FocusFragment : Fragment() {
         }
     }
 
+    //stoppa contatore
     override fun onStop() {
         super.onStop()
 
@@ -169,6 +187,7 @@ class FocusFragment : Fragment() {
         }
     }
 
+    //avvia contatore
     override fun onStart() {
         super.onStart()
         val prefs = this.activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
@@ -190,4 +209,5 @@ class FocusFragment : Fragment() {
             }
         }
     }
+
 }
