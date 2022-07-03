@@ -19,16 +19,16 @@ import java.util.*
 
 class AddNoteFragment : Fragment() {
 
-    //lateinit -> inizializza variabile più tardi
+    ///binding
     private lateinit var binding: FragmentAddNoteBinding
 
     //view model
     val noteModel: NoteModel by viewModels()
 
-    //task null -> nuovo task, altrimenti serve per la modifica
+    //note null -> nuova nota, altrimenti serve per la modifica
     private var note: Note? = null
 
-    //varibili
+    //dichiarazione variabili
     private lateinit var titletext: EditText
     private lateinit var inputText: EditText
     private lateinit var addBtn: Button
@@ -59,14 +59,13 @@ class AddNoteFragment : Fragment() {
 
         //inizializza variabili
         addBtn = binding.newNoteButton
-
         titletext = binding.newNoteTitle
         inputText = binding.newNoteText
         loadingView = binding.loadingView
         errorSave = binding.errorSave
         errorSave2 = binding.errorSave2
 
-        //salva la task inserita
+        //salva la nota inserita
         addBtn.setOnClickListener {
 
             loadingView.visibility = View.VISIBLE
@@ -86,10 +85,10 @@ class AddNoteFragment : Fragment() {
             } else {
 
                 if (note == null) {
-                    //salva la nuova task
+                    //salva la nuova nota
                     noteModel.saveNote(titletext.text.toString(), inputText.text.toString())
                 } else {
-                    //modifica la task
+                    //modifica la nota
                     noteModel.changeNote(
                         note!!._id,
                         titletext.text.toString(),
@@ -101,7 +100,7 @@ class AddNoteFragment : Fragment() {
                 parentFragmentManager.popBackStackImmediate()
             }
 
-            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            //serve per mostrare il pulsante "+" tornando a Note Fragment
             NoteFragment.istance?.showButton()
         }
 
@@ -111,7 +110,7 @@ class AddNoteFragment : Fragment() {
 
         closeBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
-            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            //serve per mostrare il pulsante "+" tornando a Note Fragment
             NoteFragment.istance?.showButton()
         }
 

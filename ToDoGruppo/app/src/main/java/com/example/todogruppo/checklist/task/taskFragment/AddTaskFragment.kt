@@ -18,7 +18,7 @@ import java.util.*
 
 class AddTaskFragment : Fragment() {
 
-    //lateinit -> inizializza variabile più tardi
+    //binding
     private lateinit var binding: FragmentAddTaskBinding
 
     //view model

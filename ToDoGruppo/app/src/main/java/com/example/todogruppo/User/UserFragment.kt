@@ -13,9 +13,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class UserFragment : Fragment() {
 
+    //binding
     private lateinit var binding: FragmentUserBinding
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var editProfile: FloatingActionButton
     private lateinit var image: CardView
 
@@ -46,14 +47,15 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //inizializza variabili
         editProfile = binding.includeBtnEdit.editBtn
         image = binding.image
 
+        //apre schermata per modificare profilo
         editProfile.setOnClickListener {
             //quando viene cliccato, il bottone "matita" scompare perchè non si deve vedere in "editUserFragment"
             editProfile.visibility = View.GONE
             image.visibility = View.GONE
-
 
             val editUserFragment = EditUserFragment()
 
@@ -63,8 +65,6 @@ class UserFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-
-
     }
 
     //togliere il bottone dal fragment figlio
@@ -72,6 +72,5 @@ class UserFragment : Fragment() {
         editProfile.visibility = View.VISIBLE
         image.visibility = View.VISIBLE
     }
-
 
 }

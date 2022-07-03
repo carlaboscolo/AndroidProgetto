@@ -28,7 +28,7 @@ open class DiaryFragment : Fragment() {
     //view model
     val diaryModel: DiaryModel by viewModels()
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var binding: FragmentDiaryBinding
     private lateinit var DiaryRecyclerView: RecyclerView
     private var aggiungiDiario: FloatingActionButton? = null
@@ -79,7 +79,7 @@ open class DiaryFragment : Fragment() {
         //diary model -> ottieni i dati
         diaryModel.getDiary()
 
-        //esegui operazioni sulla lista delle task
+        //esegui operazioni sulla lista della pagina di diario
         diaryModel.diaryList.observe(viewLifecycleOwner) {
             DiaryRecyclerView = binding.diaryRecyclerView
             DiaryRecyclerView.setHasFixedSize(true)

@@ -17,9 +17,10 @@ import java.util.*
 
 class FocusFragment : Fragment() {
 
+    //binding
     private lateinit var binding: FragmentFocusBinding
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var mEditTextInput: EditText
     private lateinit var mTextViewCountDown: TextView
     private lateinit var mButtonSet: Button

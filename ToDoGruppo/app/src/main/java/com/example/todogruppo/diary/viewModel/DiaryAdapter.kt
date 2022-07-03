@@ -24,10 +24,8 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>, private val diaryMod
      private var storageReference: StorageReference? = null
      */
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.diary_layout, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.diary_layout, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -109,7 +107,7 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>, private val diaryMod
         return false
     }
 
-    //eliminare la task
+    //eliminare la pagina di diario
     override fun onItemDismiss(position: Int) {
 
         //Avviso se si vuole eliminare o no la pagina di diario
@@ -131,7 +129,7 @@ class DiaryAdapter(private val diaryList: ArrayList<Diary>, private val diaryMod
     *
     * */
 
-    //selezionare una task
+    //selezionare una pagina di diario
     interface AdapterCallback {
         fun selectItem(position: Int)
     }

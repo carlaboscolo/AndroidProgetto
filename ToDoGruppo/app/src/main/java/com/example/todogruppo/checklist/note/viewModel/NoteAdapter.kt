@@ -14,13 +14,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class NoteAdapter(private val noteList: ArrayList<Note>, private val noteModel: NoteModel, private val context: Context) : RecyclerView.Adapter<NoteAdapter.MyViewHolder>(), NoteItemTouchHelper {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.note_layout, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.note_layout, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        //posizione corrente della task
+        //posizione corrente della nota
         val currentItem = noteList[position]
         //titolo
         holder.title.text = currentItem._heading
@@ -35,7 +34,7 @@ class NoteAdapter(private val noteList: ArrayList<Note>, private val noteModel: 
     }
 
     override fun getItemCount(): Int {
-        //ritorna la lunghezza dell'array delle task
+        //ritorna la lunghezza dell'array delle note
         return noteList.size
     }
 
@@ -49,10 +48,10 @@ class NoteAdapter(private val noteList: ArrayList<Note>, private val noteModel: 
         return false
     }
 
-    //eliminare la task
+    //eliminare la nota
     override fun onItemDismiss(position: Int) {
 
-        //Avviso se si vuole eliminare o no la task
+        //Avviso se si vuole eliminare o no la nota
         MaterialAlertDialogBuilder(context)
             .setTitle("Conferma")
             .setMessage("Vuoi eliminare questo elemento?")
@@ -71,7 +70,7 @@ class NoteAdapter(private val noteList: ArrayList<Note>, private val noteModel: 
     *
     * */
 
-    //selezionare una task
+    //selezionare una nota
     interface AdapterCallback {
         fun selectItem(position: Int)
     }

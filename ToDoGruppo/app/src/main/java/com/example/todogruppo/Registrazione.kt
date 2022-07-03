@@ -10,6 +10,7 @@ import com.example.todogruppo.databinding.ActivityRegistrazioneBinding
 
 class Registrazione : AppCompatActivity() {
 
+    //binding
     private lateinit var binding: ActivityRegistrazioneBinding
 
     //dichiarazione variabili
@@ -24,13 +25,11 @@ class Registrazione : AppCompatActivity() {
     private lateinit var registratiBtn: Button
     private lateinit var accediBtn: Button
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_registrazione)
         binding = ActivityRegistrazioneBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         //inizializza variabili
         accediBtn = binding.accediBtn
@@ -44,7 +43,7 @@ class Registrazione : AppCompatActivity() {
         password = binding.password
         repeatPassword = binding.repeatPassword
 
-
+        //bottone registrati
         registratiBtn.setOnClickListener {
             /* if (username.text.toString().isEmpty() && password.text.toString().isEmpty()){
                   Log.d("log", "credential empty ")
@@ -53,6 +52,7 @@ class Registrazione : AppCompatActivity() {
             /*  } */
         }
 
+        //bottone accedi
         accediBtn.setOnClickListener {
             launchAccediActivity()
         }
@@ -60,6 +60,7 @@ class Registrazione : AppCompatActivity() {
     }
 
 
+    //lanciare schermata accedi con controlli
     private fun launchActivity() {
         //val username = binding.username
         //val password = binding.password
@@ -77,10 +78,9 @@ class Registrazione : AppCompatActivity() {
         } else {
             Log.d("log", "error credential")
         } */
+   }
 
-
-    }
-
+    //lanciare schermata accedi
     private fun launchAccediActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

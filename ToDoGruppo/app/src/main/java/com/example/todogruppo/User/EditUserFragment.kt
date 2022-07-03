@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.example.fragment.HomeFragment
-import com.example.todogruppo.R
+import android.widget.EditText
 import com.example.todogruppo.databinding.FragmentEditUserBinding
 
 class EditUserFragment : Fragment() {
 
+    //binding
     private lateinit var binding: FragmentEditUserBinding
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var saveBtn: Button
+    private lateinit var nome: EditText
+    private lateinit var cognome: EditText
+    private lateinit var dataNascita: EditText
+    private lateinit var numeroTelefono: EditText
+    private lateinit var email: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +40,15 @@ class EditUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        //inizializza variabili
         saveBtn = binding.saveBtn
+        nome = binding.insNome
+        cognome = binding.insCog
+        dataNascita = binding.insData
+        numeroTelefono = binding.insTel
+        email = binding.insEmail
 
+        //salva modifiche
         saveBtn.setOnClickListener {
             //torna indietro di un fragment
             parentFragmentManager.popBackStack()

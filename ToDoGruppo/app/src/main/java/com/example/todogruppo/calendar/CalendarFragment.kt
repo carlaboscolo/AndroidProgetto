@@ -37,6 +37,7 @@ class CalendarFragment : Fragment() {
     val viewModel: ViewModel by viewModels()
     val diaryModel: DiaryModel by viewModels()
 
+    //binding
     private lateinit var binding: FragmentCalendarBinding
 
     //dichiarazione variabili
@@ -65,7 +66,7 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Stampa data in base alla scelta nel calendario
+        //inizializza variabili
         selectedDate = binding.outputDay
         day = binding.calendarView
 
@@ -109,7 +110,7 @@ class CalendarFragment : Fragment() {
             //diary model -> ottieni i dati
             diaryModel.getDateDiary(checkData)
 
-            //esegui operazioni sulla lista delle task
+            //esegui operazioni sulla lista del diario
             diaryModel.diaryList.observe(viewLifecycleOwner) {
                 drawDiary(view, it, binding.diaryRecyclerView)
 
@@ -139,7 +140,7 @@ class CalendarFragment : Fragment() {
                 .commit()
         }
 
-        //apri il fragment task per aggiungere una nuova pagina di diario
+        //apri il fragment diary per aggiungere una nuova pagina di diario
         addDiary = binding.diarioBtn
 
         addDiary.setOnClickListener {
@@ -154,6 +155,7 @@ class CalendarFragment : Fragment() {
 
     }
 
+    //formato della data
     fun dateFormat(): String {
         val calendar = Calendar.getInstance()
         val year = calendar[Calendar.YEAR]
@@ -169,6 +171,7 @@ class CalendarFragment : Fragment() {
         return data_string
     }
 
+    //disegna la recyclerView delle task
     fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView) {
 
         recyclerView.setHasFixedSize(true)
@@ -216,7 +219,7 @@ class CalendarFragment : Fragment() {
         mItemTouchHelper?.attachToRecyclerView(recyclerView)
     }
 
-
+    //disegna la recyclerView del diario
     fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: RecyclerView) {
 
         DiaryRecyclerView.setHasFixedSize(true)

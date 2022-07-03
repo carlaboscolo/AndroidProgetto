@@ -14,6 +14,7 @@ import com.example.todogruppo.databinding.FragmentListBinding
 
 open class MainActivity : AppCompatActivity() {
 
+    //binding
     private lateinit var binding: ActivityMainBinding
 
     //dichiarazione variabili
@@ -34,7 +35,7 @@ open class MainActivity : AppCompatActivity() {
         login = binding.button
         registrazione = binding.RegistratiBtn
 
-
+        //bottone login
         login.setOnClickListener {
             /*
               if (username.text.toString().isEmpty() && password.text.toString().isEmpty()){
@@ -44,14 +45,14 @@ open class MainActivity : AppCompatActivity() {
             /*  } */
         }
 
+        //bottone registrazione
         registrazione.setOnClickListener {
             launchRegisterActivity()
         }
+ }
 
 
-    }
-
-
+    //lanciare l'activity home
     private fun launchSecondActivity() {
         val username = binding.username
         val password = binding.password
@@ -69,11 +70,9 @@ open class MainActivity : AppCompatActivity() {
         } else {
             Log.d("log", "error credential")
         } */
+   }
 
-
-    }
-
-
+    //lanciare l'activity registrati
     private fun launchRegisterActivity() {
         val intent = Intent(this, Registrazione::class.java)
         startActivity(intent)

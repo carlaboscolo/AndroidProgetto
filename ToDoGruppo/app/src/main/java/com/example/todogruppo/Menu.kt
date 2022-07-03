@@ -3,7 +3,7 @@ package com.example.todogruppo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.todogruppo.calendar.CalendarFragment
-import com.example.fragment.HomeFragment
+import com.example.todogruppo.Home.HomeFragment
 import com.example.todogruppo.Focus.FocusFragment
 import com.example.todogruppo.User.SettingsFragment
 import com.example.todogruppo.User.UserFragment
@@ -16,9 +16,10 @@ import com.google.android.material.navigation.NavigationBarView
 open class HomePage : MainActivity() {
     val name = "HOME"
 
+    //binding
     private lateinit var binding: HomeBinding
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var titleUp: MaterialToolbar
     private lateinit var bottom_navigation: NavigationBarView
 
@@ -111,7 +112,6 @@ open class HomePage : MainActivity() {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
-
 
 }
 

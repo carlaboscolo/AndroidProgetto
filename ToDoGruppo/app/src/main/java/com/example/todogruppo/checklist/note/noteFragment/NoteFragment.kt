@@ -24,8 +24,10 @@ open class NoteFragment : Fragment() {
     //view model
     val noteModel: NoteModel by viewModels()
 
-    //variabili
+    //binding
     private lateinit var binding: FragmentNoteBinding
+
+    //dichiarazione variabili
     private lateinit var NoteRecyclerView: RecyclerView
     private lateinit var aggiungiNote: FloatingActionButton
 

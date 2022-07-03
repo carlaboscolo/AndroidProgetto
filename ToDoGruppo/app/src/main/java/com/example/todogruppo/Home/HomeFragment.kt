@@ -1,4 +1,4 @@
-package com.example.fragment
+package com.example.todogruppo.Home
 
 import android.os.Bundle
 import android.util.Log
@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
     //setta oggi come default
     private var type = TodayFragment.TYPE_DEADLINE
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var binding: FragmentHomeBinding
     private lateinit var taskToday: RecyclerView
     private lateinit var taskWeek: RecyclerView
@@ -95,7 +95,7 @@ class HomeFragment : Fragment() {
         //diary model -> ottieni i dati
         diaryModel.getDateDiary(defaultDay)
 
-        //esegui operazioni sulla lista delle task
+        //esegui operazioni sulla lista delle pagine di diario
         diaryModel.diaryList.observe(viewLifecycleOwner) {
             drawDiary(view, it, binding.diaryRecyclerView)
 
@@ -124,7 +124,7 @@ class HomeFragment : Fragment() {
                 .commit()
         }
 
-        //apri il fragment task per aggiungere una nuova pagina di diario
+        //apri il fragment diario per aggiungere una nuova pagina di diario
         addDiary = binding.diarioBtn
 
         addDiary.setOnClickListener {
@@ -138,6 +138,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    //formato della data
     fun dateFormat(): String {
         val calendar = Calendar.getInstance()
         val year = calendar[Calendar.YEAR]
@@ -153,6 +154,7 @@ class HomeFragment : Fragment() {
         return data_string
     }
 
+    //stampa recyclerView delle task
     fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView) {
 
         recyclerView.setHasFixedSize(true)
@@ -199,7 +201,7 @@ class HomeFragment : Fragment() {
         mItemTouchHelper?.attachToRecyclerView(recyclerView)
     }
 
-
+    //stampa recyclerView delle pagine di diario
     fun drawDiary(view: View, diaryList: ArrayList<Diary>, DiaryRecyclerView: RecyclerView) {
 
         DiaryRecyclerView.setHasFixedSize(true)

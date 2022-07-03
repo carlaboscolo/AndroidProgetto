@@ -14,6 +14,7 @@ import com.example.todogruppo.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
 
+    //binding
     private lateinit var binding: FragmentListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

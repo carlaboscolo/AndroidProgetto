@@ -30,7 +30,7 @@ import java.util.*
 
 class AddDiaryFragment : Fragment() {
 
-    //lateinit -> inizializza variabile più tardi
+    //binding
     private lateinit var binding: FragmentAddDiaryBinding
 
     //view model
@@ -39,7 +39,7 @@ class AddDiaryFragment : Fragment() {
     //diary null -> nuovo diario, altrimenti serve per la modifica
     private var diary: Diary? = null
 
-    //varibili
+    //dichiarazione variabili
     private lateinit var CalendarBtn: Button
     private lateinit var selectedDate: TextView
     private lateinit var titletext: EditText
@@ -79,7 +79,7 @@ class AddDiaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //se passo dei parametri la variabile note sarà valorizzata, altrimenti sarà nullo
+        //se passo dei parametri la variabile diario sarà valorizzata, altrimenti sarà nullo
         diary = arguments?.getSerializable("diary") as Diary?
 
         //carica immagine
@@ -100,11 +100,12 @@ class AddDiaryFragment : Fragment() {
         errorSaveDate = binding.errorSaveData
 
 
-        //aggiungere una data alla task
+        //aggiungere una data alla pagina di diario
         CalendarBtn = binding.addDataBtn
         selectedDate = view.findViewById(R.id.selected_data)
 
 
+        //prendere la data di oggi
         val calendar = Calendar.getInstance()
         val year = calendar[Calendar.YEAR]
         val day = calendar[Calendar.DAY_OF_MONTH]
@@ -113,13 +114,12 @@ class AddDiaryFragment : Fragment() {
         val dayString = if (day < 10) "0$day" else "$day"
         val monthString = if (month < 10) "0$month" else "$month"
 
-//formato di stampa a schermo della data
+       //formato di stampa a schermo della data
         val data_string = "$dayString-$monthString-$year"
         Log.d("data", data_string)
 
-//inserisci data selezionata come default
+       //inserisci data selezionata come default
         selectedDate.setText(data_string)
-
 
         //MaterialDatePicker
         val datePicker =
@@ -186,14 +186,6 @@ class AddDiaryFragment : Fragment() {
                 Log.d("error", "campo vuoto")
             } else {
 
-                /*  if (selectedDate.text.toString() == "Nessuna scadenza") {
-                           errorSaveDate.visibility = View.VISIBLE
-                           errorSave.visibility = View.GONE
-                           errorSave2.visibility = View.GONE
-                           Log.d("error", "campo data vuoto")
-                       } else {  */
-
-
                 errorSave.visibility = View.GONE
                 errorSave2.visibility = View.GONE
 
@@ -220,17 +212,9 @@ class AddDiaryFragment : Fragment() {
                     )
                 }
 
-
-                //torna indietro di un fragment
-                //  parentFragmentManager.popBackStack()
-
-
-                // }
-                //}
-
             }
 
-            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            //serve per mostrare il pulsante "+" tornando a Diary Fragment
             DiaryFragment.istance?.showButton()
         }
 
@@ -240,7 +224,7 @@ class AddDiaryFragment : Fragment() {
 
         closeBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
-            //serve per mostrare il pulsante "+" tornando a Today Fragment
+            //serve per mostrare il pulsante "+" tornando a Diary Fragment
             DiaryFragment.istance?.showButton()
         }
 
@@ -254,6 +238,7 @@ class AddDiaryFragment : Fragment() {
     }
 
 
+    //apri galleria telefono
     private fun launchGallery() {
         val intent = Intent()
         intent.type = "image/*"
@@ -279,7 +264,7 @@ class AddDiaryFragment : Fragment() {
         }
     }
 
-
+   //carica immagine
     private fun uploadImage(): String {
         if (filePath != null) {
             val progressDialog = ProgressDialog(requireContext())

@@ -17,14 +17,8 @@ class DiaryModel : ViewModel() {
     var diaryList = MutableLiveData<ArrayList<Diary>>()
     var duplicateDate = MutableLiveData<Boolean>()
 
-
-    //funzione salva note
-    fun saveDiary(
-        title: String,
-        textDiary: String = "testo di prova",
-        data: String,
-        imageId: String
-    ) {
+    //funzione salva pagina di diario
+    fun saveDiary(title: String, textDiary: String = "testo di prova", data: String, imageId: String) {
 
         //FIREBASE
         val db = Firebase.firestore
@@ -196,16 +190,9 @@ class DiaryModel : ViewModel() {
     }
 
     //funzione per cambiare i dati
-    fun changeDiary(
-        id: String,
-        title: String,
-        textDiary: String = "testo di prova",
-        data: String,
-        imageId: String
-    ) {
+    fun changeDiary(id: String, title: String, textDiary: String = "testo di prova", data: String, imageId: String) {
 
         val db = Firebase.firestore
-
 
         db.collection("diary")
             .get()
@@ -313,8 +300,6 @@ class DiaryModel : ViewModel() {
                     }
                 }
             }
-
-
     }
 
     //funzione che carica i dati nell'applicazione in base ad una data
@@ -337,9 +322,7 @@ class DiaryModel : ViewModel() {
                             document.data.getValue("imageId").toString()
                         } catch (e: Exception) {
                             ""
-                        }
-                    )
-
+                })
 
                     //suddivisione delle date
                     if (diary.data == date) {

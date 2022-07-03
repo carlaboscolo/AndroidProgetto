@@ -25,11 +25,13 @@ open class TodayFragment : Fragment() {
     //view model
     val viewModel: ViewModel by viewModels()
 
+    //binding
+    private lateinit var binding: FragmentTodayBinding
+
     //setta oggi come default
     private var type = TYPE_TODAY
 
-    //variabili
-    private lateinit var binding: FragmentTodayBinding
+    //dichiarazione variabili
     private lateinit var aggiungiTask: FloatingActionButton
 
     //TodayFragment gestirà "oggi", "in scadenza" e "nessuna scadenza"
@@ -61,7 +63,6 @@ open class TodayFragment : Fragment() {
         //type -> settata ad "oggi"
         type = arguments?.getInt("type", TYPE_DEADLINE) ?: TYPE_DEADLINE
 
-
         //bottone che serve ad aggiungere una task
         aggiungiTask = binding.includeBtn.addNewBtn
 
@@ -80,8 +81,6 @@ open class TodayFragment : Fragment() {
 
         //view model -> ottieni i dati
         viewModel.getTask(type)
-
-        //esegui operazioni sulla lista delle task
 
         //scaduti
         viewModel.taskList.observe(viewLifecycleOwner) {
@@ -115,6 +114,7 @@ open class TodayFragment : Fragment() {
         }
     }
 
+    //stampa la recyclerView delle task
     fun drawList(view: View, taskList: ArrayList<Task>, recyclerView: RecyclerView) {
 
         recyclerView.setHasFixedSize(true)

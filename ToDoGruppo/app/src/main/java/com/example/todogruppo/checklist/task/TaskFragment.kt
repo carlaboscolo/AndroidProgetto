@@ -13,9 +13,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class TaskFragment : Fragment() {
 
+    //binding
     private lateinit var binding: FragmentTaskBinding
 
-    //variabili
+    //dichiarazione variabili
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 

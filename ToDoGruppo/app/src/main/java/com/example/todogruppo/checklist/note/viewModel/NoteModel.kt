@@ -16,13 +16,13 @@ class NoteModel : ViewModel() {
     fun saveNote(title: String, textNote: String) {
         //FIREBASE
         val db = Firebase.firestore
-        // crea una nuova task con nome e data
+        // crea una nuova nota con titolo e testo
         val note = hashMapOf(
             "title" to title,
             "textNote" to textNote
         )
 
-        // aggiungi un nuovo documenti
+        // aggiungi un nuovo documento
         db.collection("note")
             .add(note)
             .addOnSuccessListener { documentReference ->
@@ -79,7 +79,7 @@ class NoteModel : ViewModel() {
 
         val db = Firebase.firestore
 
-        // aggiorna una task con nome e data
+        // aggiorna una  nota con nome e testo
         db.collection("note").document(id)
             .update(
                 mapOf(

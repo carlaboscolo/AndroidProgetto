@@ -149,7 +149,7 @@
         android:layout_height="38dp"
         android:backgroundTint="@color/white"
         android:hint="@string/inserisci_data_nascita"
-        android:inputType="text"
+        android:inputType="date"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
