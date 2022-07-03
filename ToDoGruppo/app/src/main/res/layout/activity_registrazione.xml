@@ -51,40 +51,17 @@
         android:background="@drawable/card_background"
         android:elevation="10dp">
 
-        <TextView
-            android:id="@+id/Registrati"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/seg_ui_semibold"
-            android:text="@string/registrati"
-            android:textColor="@color/colorTextWhite"
-            android:textSize="26dp" />
-
-        <TextView
-            android:id="@+id/credenziali"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="60dp"
-            android:fontFamily="@font/seg_ui_semibold"
-            android:text="@string/credenziali"
-            android:textColor="@color/colorTextWhite"
-            android:textSize="10dp" />
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="35dp"
             android:orientation="vertical">
 
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="48dp"
@@ -101,7 +78,7 @@
             <EditText
                 android:id="@+id/nome"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="48dp"
@@ -117,7 +94,7 @@
             <EditText
                 android:id="@+id/cognome"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="48dp"
@@ -134,7 +111,7 @@
             <EditText
                 android:id="@+id/dataNascita"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="48dp"
@@ -152,7 +129,7 @@
             <EditText
                 android:id="@+id/telefono"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="48dp"
@@ -169,7 +146,7 @@
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="48dp"
@@ -186,7 +163,7 @@
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="48dp"
@@ -203,7 +180,7 @@
             <EditText
                 android:id="@+id/repeatPassword"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="48dp"
@@ -255,8 +232,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="650dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="550dp"
             android:orientation="horizontal">
 
             <TextView
