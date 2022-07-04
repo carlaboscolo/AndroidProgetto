@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/defaultBackground">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
 
     <TextView
         android:id="@+id/Studio"
@@ -109,5 +113,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewCountdown"
         app:layout_constraintVertical_bias="0.611" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

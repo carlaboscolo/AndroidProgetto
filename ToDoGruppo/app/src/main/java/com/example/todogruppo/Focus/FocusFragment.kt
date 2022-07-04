@@ -182,9 +182,6 @@ class FocusFragment : Fragment() {
         editor.putBoolean("timerRunning", mTimerRunning)
         editor.putLong("endTime", mEndTime)
         editor.apply()
-        if (mCountDownTimer != null) {
-            mCountDownTimer!!.cancel()
-        }
     }
 
     //avvia contatore
